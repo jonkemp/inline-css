@@ -1,5 +1,5 @@
 {
-  "name": "parse-css",
+  "name": "css-rules",
   "version": "1.0.0",
   "description": "Returns a parse tree for a CSS source.",
   "main": "index.js",
