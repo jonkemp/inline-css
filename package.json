@@ -1,0 +1,32 @@
+{
+  "name": "inline-css",
+  "version": "1.0.0",
+  "description": "Inline css into an html file.",
+  "main": "index.js",
+  "dependencies": {
+    "cheerio": "^0.18.0",
+    "css-property": "^1.0.0",
+    "css-rules": "^1.0.0",
+    "extract-css": "^1.0.0",
+    "style-selector": "^1.0.0"
+  },
+  "scripts": {
+    "test": "'echo \"Error: no test specified\" && exit 1'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jonkemp/inline-css"
+  },
+  "keywords": [
+    "inline",
+    "css",
+    "html",
+    "email"
+  ],
+  "author": "Jonathan Kemp <kempdogg@gmail.com> (http://jonkemp.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jonkemp/inline-css/issues"
+  },
+  "homepage": "https://github.com/jonkemp/inline-css"
+}
