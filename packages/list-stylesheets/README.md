@@ -1,6 +1,6 @@
 # list-stylesheets
 
-> Inline your CSS properties into the `style` attribute in an html file. Useful for emails.
+> Get a list of stylesheets from an HTML document.
 
 ## Install
 
