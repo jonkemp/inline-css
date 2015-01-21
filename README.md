@@ -2,7 +2,7 @@
 
 > Inline your CSS properties into the `style` attribute in an html file. Useful for emails.
 
-Inspired by [juice](https://github.com/Automattic/juice) library.
+Inspired by the [juice](https://github.com/Automattic/juice) library.
 
 ## How It Works
 
