@@ -1,0 +1,25 @@
+{
+  "name": "remote-content",
+  "version": "1.0.0",
+  "description": "Get remote content.",
+  "main": "index.js",
+  "scripts": {
+    "test": "'echo \"Error: no test specified\" && exit 1'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jonkemp/remote-content"
+  },
+  "keywords": [
+    "superagent"
+  ],
+  "author": "Jonathan Kemp <kempdogg@gmail.com> (http://jonkemp.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jonkemp/remote-content/issues"
+  },
+  "homepage": "https://github.com/jonkemp/remote-content",
+  "dependencies": {
+    "superagent": "^0.21.0"
+  }
+}
