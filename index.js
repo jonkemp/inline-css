@@ -1,7 +1,6 @@
 'use strict';
 
-var assert = require('assert'),
-    extractCss = require('extract-css'),
+var extractCss = require('extract-css'),
     inlineCss = require('./lib/inline-css');
 
 function extend(obj, src) {
@@ -15,19 +14,7 @@ function extend(obj, src) {
     return obj;
 }
 
-function getDefaultOptions(options) {
-    return extend({
-        extraCss: '',
-        applyStyleTags: true,
-        removeStyleTags: true,
-        applyLinkTags: true,
-        removeLinkTags: true,
-        preserveMediaQueries: false,
-        applyWidthAttributes: false,
-    }, options);
-}
-
-function inlineDocumentWithCb(html, css, options, callback) {
+function inlineCssWithCb(html, css, options, callback) {
     var content;
 
     try {
@@ -38,24 +25,29 @@ function inlineDocumentWithCb(html, css, options, callback) {
     }
 }
 
-function juiceDocument(src, options, callback) {
-    assert.ok(options.url, 'options.url is required');
-    options = getDefaultOptions(options);
+function inlineContent(src, options, callback) {
     extractCss(src, options, function (err, html, css) {
         if (err) {
             return callback(err);
         }
 
         css += '\n' + options.extraCss;
-        inlineDocumentWithCb(html, css, options, callback);
+        inlineCssWithCb(html, css, options, callback);
     });
 }
 
 module.exports = function (html, options, callback) {
-    assert.ok(options.url, 'options.url is required');
-    options = getDefaultOptions(options);
+    var opt = extend({
+            extraCss: '',
+            applyStyleTags: true,
+            removeStyleTags: true,
+            applyLinkTags: true,
+            removeLinkTags: true,
+            preserveMediaQueries: false,
+            applyWidthAttributes: false,
+        }, options);
 
-    juiceDocument(html, options, function (err, content) {
+    inlineContent(html, opt, function (err, content) {
         if (err) {
             callback(err);
         } else {

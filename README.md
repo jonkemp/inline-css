@@ -57,6 +57,16 @@ Install with [npm](https://npmjs.org/package/inline-css)
 npm install --save inline-css
 ```
 
+## Usage
+
+```js
+var inlineCss = require('inline-css');
+
+inlineCss('/path/to/file.html', function(err, html) {
+    console.log(html);
+});
+```
+
 ## API
 
 ### inlineCss(options)
