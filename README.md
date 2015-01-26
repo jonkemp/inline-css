@@ -111,6 +111,13 @@ Default: `true`
 
 Whether to remove the original `<link rel="stylesheet">` tags after (possibly) inlining the css from them.
 
+#### options.url
+
+Type: `String`  
+Default: `filePath`
+
+How to resolve hrefs. Required.
+
 #### options.preserveMediaQueries
 
 Type: `Boolean`  
