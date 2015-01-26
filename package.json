@@ -11,7 +11,7 @@
     "style-selector": "^1.0.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "gulp test"
   },
   "repository": {
     "type": "git",
@@ -28,5 +28,13 @@
   "bugs": {
     "url": "https://github.com/jonkemp/inline-css/issues"
   },
-  "homepage": "https://github.com/jonkemp/inline-css"
+  "homepage": "https://github.com/jonkemp/inline-css",
+  "devDependencies": {
+    "gulp": "^3.8.10",
+    "gulp-jshint": "^1.9.0",
+    "gulp-mocha": "^2.0.0",
+    "gulp-util": "^3.0.2",
+    "mocha": "^2.1.0",
+    "should": "^4.6.1"
+  }
 }
