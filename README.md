@@ -4,6 +4,13 @@
 
 Inspired by the [juice](https://github.com/Automattic/juice) library.
 
+## Why inline-css instead of Juice?
+- Uses [cheerio](https://github.com/cheeriojs/cheerio) instead of jsdom
+- Works on Windows
+- Preserves Doctype
+- Modular
+- Gets your CSS automatically through style and link tags
+
 ## How It Works
 
 This gulp plugin takes an html file and inlines the CSS properties into the style attribute.
