@@ -1,0 +1,18 @@
+
+      h1 {
+        border: 1px solid #ccc;
+      }
+    
+body {
+  font-family: Arial;
+}
+h1 {
+  color: blue;
+}
+.headline {
+  font-size: 24px;
+}
+
+td {
+  padding: 5px;
+}

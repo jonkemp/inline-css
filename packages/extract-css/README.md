@@ -15,7 +15,7 @@ npm install --save extract-css
 ```js
 var extractCss = require('extract-css');
 
-extractCss(html, options, function (err, html, css) {
+extractCss(document, options, function (err, html, css) {
     console.log(html);
     console.log(css);
 });
@@ -23,7 +23,7 @@ extractCss(html, options, function (err, html, css) {
 
 ## API
 
-### inlineCss(options)
+### extractCss(html, options, callback)
 
 #### options.applyStyleTags
 
@@ -62,7 +62,7 @@ Whether to remove the original `<link rel="stylesheet">` tags after (possibly) i
 Type: `String`  
 Default: `filePath`
 
-How to resolve hrefs.
+How to resolve hrefs. Required.
 
 #### options.preserveMediaQueries
 
