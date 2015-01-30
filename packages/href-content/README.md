@@ -15,7 +15,9 @@ npm install --save href-content
 ```js
 var getHrefContent = require('href-content');
 
-var content = getHrefContent(destHref, sourceHref, callback);
+getHrefContent('path/to/css', 'file://path/to/html', function (err, css) {
+    console.log(css);
+});
 ```
 
 ## Credit

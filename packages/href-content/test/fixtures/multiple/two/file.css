@@ -1,0 +1,13 @@
+body {
+    font-family: Arial;
+}
+h1 {
+    color: red;
+}
+.headline {
+    font-size: 24px;
+}
+
+td {
+    padding: 5px;
+}
