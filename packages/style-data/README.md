@@ -15,7 +15,10 @@ npm install --save style-data
 ```js
 var getStylesData = require('style-data');
 
-getStylesData(html, options, callback);
+getStylesData(html, options, function (err, results) {
+    console.log(results.html);  // resulting html
+    console.log(results.css);   // array of css rules
+});
 ```
 
 ## API
