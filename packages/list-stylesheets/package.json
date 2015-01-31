@@ -21,5 +21,13 @@
   "homepage": "https://github.com/jonkemp/list-stylesheets",
   "dependencies": {
     "cheerio": "^0.18.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.10",
+    "gulp-jshint": "^1.9.0",
+    "gulp-mocha": "^2.0.0",
+    "gulp-util": "^3.0.2",
+    "mocha": "^2.1.0",
+    "should": "^4.6.2"
   }
 }
