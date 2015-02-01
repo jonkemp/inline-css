@@ -16,6 +16,11 @@ npm install --save css-rules
 var parseCSS = require('css-rules');
 
 var rules = parseCSS(css);
+
+rules.forEach(function (rule) {
+    console.log(rule[0]);
+    console.log(rule[1]);
+});
 ```
 
 ## Credit
