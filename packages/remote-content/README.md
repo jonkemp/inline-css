@@ -15,7 +15,9 @@ npm install --save remote-content
 ```js
 var getRemoteContent = require('remote-content');
 
-getRemoteContent(url, callback);
+getRemoteContent(remotePath, function (err, contents) {
+    console.log(contents);
+});
 ```
 
 ## Credit

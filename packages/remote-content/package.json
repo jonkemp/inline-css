@@ -4,14 +4,20 @@
   "description": "Get remote content.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "gulp test"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/jonkemp/remote-content"
   },
   "keywords": [
-    "superagent"
+    "superagent",
+    "remote",
+    "content",
+    "http",
+    "ajax",
+    "request",
+    "agent"
   ],
   "author": "Jonathan Kemp <kempdogg@gmail.com> (http://jonkemp.com/)",
   "license": "MIT",
@@ -21,5 +27,12 @@
   "homepage": "https://github.com/jonkemp/remote-content",
   "dependencies": {
     "superagent": "^0.21.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.10",
+    "gulp-jshint": "^1.9.1",
+    "gulp-mocha": "^2.0.0",
+    "gulp-util": "^3.0.2",
+    "should": "^4.6.2"
   }
 }
