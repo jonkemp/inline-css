@@ -32,7 +32,6 @@
     "gulp": "^3.8.10",
     "gulp-jshint": "^1.9.1",
     "gulp-mocha": "^2.0.0",
-    "gulp-util": "^3.0.2",
     "should": "^4.6.2"
   }
 }
