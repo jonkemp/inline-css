@@ -15,7 +15,9 @@ npm install --save mediaquery-text
 ```js
 var mediaQueryText = require('mediaquery-text');
 
-var mediaQueries = mediaQueryText(element.childNodes[0].nodeValue);
+var mediaQueries = mediaQueryText(css);
+
+console.log(mediaQueries);  // @media only screen and (min-width: 35em) {}
 ```
 
 ## Credit
