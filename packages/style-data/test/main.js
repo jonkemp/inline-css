@@ -18,12 +18,12 @@ function getFile(filePath) {
     });
 }
 
-function compare(fixturePath, expectedHTML, options, done) {
+function compare(fixturePath, expectedHTML, css, options, done) {
     var file = getFile(fixturePath);
 
     getStylesData(file.contents.toString('utf8'), options, function (err, results) {
         results.html.should.be.equal(String(fs.readFileSync(expectedHTML)));
-        should.deepEqual(results.css, [ '\n      h1 {\n        border: 1px solid #ccc;\n      }\n    ' ]);
+        should.deepEqual(results.css, css);
         done();
     });
 }
@@ -35,6 +35,16 @@ describe('style-data', function() {
             removeStyleTags: true,
             preserveMediaQueries: false
         };
-        compare(path.join('test', 'fixtures', 'in.html'), path.join('test', 'expected', 'out.html'), options, done);
+        compare(path.join('test', 'fixtures', 'in.html'), path.join('test', 'expected', 'out.html'), [ '\n      h1 {\n        border: 1px solid #ccc;\n      }\n    ' ], options, done);
     });
+
+    it('Should leave html from no style html', function(done) {
+        var options = {
+            applyStyleTags: true,
+            removeStyleTags: true,
+            preserveMediaQueries: false
+        };
+        compare(path.join('test', 'fixtures', 'no-style-tag', 'in.html'), path.join('test', 'expected', 'no-style-tag', 'out.html'), [], options, done);
+    });
+
 });

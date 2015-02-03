@@ -29,8 +29,9 @@ module.exports = function (html, options, callback) {
                 $(element).remove();
             }
         }
-
-        results.html = $.html();
     });
+
+    results.html = $.html();
+
     callback(null, results);
 };
