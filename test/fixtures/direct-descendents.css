@@ -1,0 +1,6 @@
+p em {
+  background: blue;
+}
+p > em {
+  color: red;
+}
