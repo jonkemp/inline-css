@@ -49,9 +49,9 @@ describe('inline-css', function() {
         compare(path.join('test', 'fixtures', 'class.html'), path.join('test', 'expected', 'class.html'), options, function () {});
         compare(path.join('test', 'fixtures', 'class+id.html'), path.join('test', 'expected', 'class+id.html'), options, function () {});
         compare(path.join('test', 'fixtures', 'empty.html'), path.join('test', 'expected', 'empty.html'), options, function () {});
-        compare(path.join('test', 'fixtures', 'media.html'), path.join('test', 'expected', 'media.html'), options, done);
+        compare(path.join('test', 'fixtures', 'media.html'), path.join('test', 'expected', 'media.html'), options, function () {});
+        compare(path.join('test', 'fixtures', 'css-quotes.html'), path.join('test', 'expected', 'css-quotes.html'), options, done);
 
-        //compare(path.join('test', 'fixtures', 'css-quotes.html'), path.join('test', 'expected', 'css-quotes.html'), options, done);
         //compare(path.join('test', 'fixtures', 'direct-descendents.html'), path.join('test', 'expected', 'direct-descendents.html'), options, done);
         //compare(path.join('test', 'fixtures', 'id.html'), path.join('test', 'expected', 'id.html'), options, done);
         //compare(path.join('test', 'fixtures', 'identical-important.html'), path.join('test', 'expected', 'identical-important.html'), options, done);

@@ -1,4 +1,4 @@
-# inline-css
+# inline-css [![Build Status](https://travis-ci.org/jonkemp/inline-css.svg?branch=master)](https://travis-ci.org/jonkemp/inline-css)
 
 > Inline your CSS properties into the `style` attribute in an html file. Useful for emails.
 
