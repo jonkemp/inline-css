@@ -198,4 +198,11 @@ describe('inline-css', function() {
         };
         compare(path.join('test', 'fixtures', 'width-attr.html'), path.join('test', 'expected', 'width-attr.html'), options, done);
     });
+
+    it('Should inline css in HTML templates', function(done) {
+        var options = {
+            url: './'
+        };
+        compare(path.join('test', 'fixtures', 'template.ejs'), path.join('test', 'fixtures', 'template.ejs'), options, done);
+    });
 });
