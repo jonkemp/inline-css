@@ -14,6 +14,14 @@ npm install --save extract-css
 
 ```js
 var extractCss = require('extract-css');
+var options = {
+      url: './',
+      applyStyleTags: true,
+      removeStyleTags: true,
+      applyLinkTags: true,
+      removeLinkTags: true,
+      preserveMediaQueries: false
+  };
 
 extractCss(document, options, function (err, html, css) {
     console.log(html);
@@ -28,7 +36,6 @@ extractCss(document, options, function (err, html, css) {
 #### options.applyStyleTags
 
 Type: `Boolean`  
-Default: `true`
 
 Whether to inline styles in `<style></style>`.
 
@@ -36,7 +43,6 @@ Whether to inline styles in `<style></style>`.
 #### options.applyLinkTags
 
 Type: `Boolean`  
-Default: `true`
 
 Whether to resolve `<link rel="stylesheet">` tags and inline the resulting styles.
 
@@ -44,7 +50,6 @@ Whether to resolve `<link rel="stylesheet">` tags and inline the resulting style
 #### options.removeStyleTags
 
 Type: `Boolean`  
-Default: `true`
 
 Whether to remove the original `<style></style>` tags after (possibly) inlining the css from them.
 
@@ -52,7 +57,6 @@ Whether to remove the original `<style></style>` tags after (possibly) inlining 
 #### options.removeLinkTags
 
 Type: `Boolean`  
-Default: `true`
 
 Whether to remove the original `<link rel="stylesheet">` tags after (possibly) inlining the css from them.
 
@@ -60,14 +64,12 @@ Whether to remove the original `<link rel="stylesheet">` tags after (possibly) i
 #### options.url
 
 Type: `String`  
-Default: `filePath`
 
 How to resolve hrefs. Required.
 
 #### options.preserveMediaQueries
 
 Type: `Boolean`  
-Default: `false`
 
 Preserves all media queries (and contained styles) within `<style></style>` tags as a refinement when `removeStyleTags` is `true`. Other styles are removed.
 

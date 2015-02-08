@@ -1,6 +1,7 @@
 'use strict';
 
-var Batch = require('batch'),
+var assert = require('assert'),
+    Batch = require('batch'),
     getStylesData = require('style-data'),
     getStylesheetList = require('list-stylesheets'),
     getHrefContent = require('href-content');
@@ -11,6 +12,9 @@ module.exports = function (html, options, callback) {
     batch.push(function (callback) {
         getStylesData(data.html, options, callback);
     });
+    if (data.hrefs.length) {
+        assert.ok(options.url, 'options.url is required');
+    }
     data.hrefs.forEach(function (stylesheetHref) {
         batch.push(function (callback) {
             getHrefContent(stylesheetHref, options.url, callback);
