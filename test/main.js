@@ -141,4 +141,61 @@ describe('inline-css', function() {
         var options = {};
         compare(path.join('test', 'fixtures', 'yui-reset.html'), path.join('test', 'expected', 'yui-reset.html'), options, done);
     });
+
+    it('Should inline css with doctype', function(done) {
+        var options = {};
+        compare(path.join('test', 'fixtures', 'doctype.html'), path.join('test', 'expected', 'doctype.html'), options, done);
+    });
+
+    it('Should inline css with no css', function(done) {
+        var options = {};
+        compare(path.join('test', 'fixtures', 'no_css.html'), path.join('test', 'expected', 'no_css.html'), options, done);
+    });
+
+    it('Should inline css with remote url', function(done) {
+        this.timeout(5000);
+        var options = {};
+        compare(path.join('test', 'fixtures', 'remote_url.html'), path.join('test', 'expected', 'remote_url.html'), options, done);
+    });
+
+    it('Should inline css in with spaces in path', function(done) {
+        var options = {};
+        compare(path.join('test', 'fixtures', 'spaces_in_path.html'), path.join('test', 'expected', 'spaces_in_path.html'), options, done);
+    });
+
+    it('Should inline css with two styles', function(done) {
+        var options = {};
+        compare(path.join('test', 'fixtures', 'two_styles.html'), path.join('test', 'expected', 'two_styles.html'), options, done);
+    });
+
+    it('Should inline css with font quotes', function(done) {
+        var options = {
+            url: './',
+            removeStyleTags: true
+        };
+        compare(path.join('test', 'fixtures', 'font-quotes.html'), path.join('test', 'expected', 'font-quotes.html'), options, done);
+    });
+
+    it('Should inline css with two styles', function(done) {
+        var options = {};
+        compare(path.join('test', 'fixtures', 'two_styles.html'), path.join('test', 'expected', 'two_styles.html'), options, done);
+    });
+
+    it('Should inline css and preserve media queries', function(done) {
+        var options = {
+            url: './',
+            removeStyleTags: true,
+            preserveMediaQueries: true
+        };
+        compare(path.join('test', 'fixtures', 'media-preserve.html'), path.join('test', 'expected', 'media-preserve.html'), options, done);
+    });
+
+    it('Should inline css and create width attributes on elements', function(done) {
+        var options = {
+            url: './',
+            removeStyleTags: true,
+            applyWidthAttributes: true
+        };
+        compare(path.join('test', 'fixtures', 'width-attr.html'), path.join('test', 'expected', 'width-attr.html'), options, done);
+    });
 });
