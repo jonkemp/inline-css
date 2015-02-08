@@ -1,6 +1,7 @@
 'use strict';
 
-var extractCss = require('extract-css'),
+var assert = require('assert'),
+    extractCss = require('extract-css'),
     inlineCss = require('./lib/inline-css');
 
 function extend(obj, src) {
@@ -26,6 +27,7 @@ function inlineCssWithCb(html, css, options, callback) {
 }
 
 function inlineContent(src, options, callback) {
+    assert.ok(options.url, 'options.url is required');
     extractCss(src, options, function (err, html, css) {
         if (err) {
             return callback(err);
