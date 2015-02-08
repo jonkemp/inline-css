@@ -1,0 +1,9 @@
+.myClass {
+  color: red;
+  font-size: 12px;
+}
+
+#myId {
+  display: inline-block;
+  width: 100%;
+}

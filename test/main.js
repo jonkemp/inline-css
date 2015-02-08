@@ -205,4 +205,12 @@ describe('inline-css', function() {
         };
         compare(path.join('test', 'fixtures', 'template.ejs'), path.join('test', 'fixtures', 'template.ejs'), options, done);
     });
+
+    it('Should inline css in edge case and remove html selectors', function(done) {
+      var options = {
+        removeHtmlSelectors: true
+      };
+      compare(path.join('test', 'fixtures', 'remove-html-selectors.html'), path.join('test', 'expected', 'remove-html-selectors.html'), options, done);
+    });
+
 });
