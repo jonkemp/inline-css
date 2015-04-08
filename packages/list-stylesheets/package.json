@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/jonkemp/list-stylesheets",
   "dependencies": {
-    "cheerio": "^0.18.0"
+    "cheerio": "^0.19.0"
   },
   "devDependencies": {
     "gulp": "^3.8.10",
@@ -28,6 +28,6 @@
     "gulp-mocha": "^2.0.0",
     "gulp-util": "^3.0.2",
     "mocha": "^2.1.0",
-    "should": "^4.6.2"
+    "should": "^5.2.0"
   }
 }
