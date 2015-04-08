@@ -4,7 +4,9 @@ var cheerio = require('cheerio');
 
 module.exports = function (html, options) {
     var results = {};
-    var $ = cheerio.load(html);
+    var $ = cheerio.load(html, {
+            decodeEntities: false
+        });
 
     results.hrefs = [];
 
