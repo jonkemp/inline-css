@@ -5,7 +5,9 @@ var mediaQueryText = require('mediaquery-text'),
 
 module.exports = function (html, options, callback) {
     var results = {},
-        $ = cheerio.load(html),
+        $ = cheerio.load(html, {
+            decodeEntities: false
+        }),
         styleDataList,
         styleData;
 
