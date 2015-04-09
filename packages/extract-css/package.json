@@ -31,6 +31,6 @@
     "gulp-mocha": "^2.0.0",
     "gulp-util": "^3.0.2",
     "mocha": "^2.1.0",
-    "should": "^4.6.2"
+    "should": "^5.2.0"
   }
 }
