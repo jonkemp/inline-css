@@ -26,12 +26,12 @@
   },
   "homepage": "https://github.com/jonkemp/remote-content",
   "dependencies": {
-    "superagent": "^0.21.0"
+    "superagent": "^1.1.0"
   },
   "devDependencies": {
     "gulp": "^3.8.10",
     "gulp-jshint": "^1.9.1",
     "gulp-mocha": "^2.0.0",
-    "should": "^4.6.2"
+    "should": "^5.2.0"
   }
 }
