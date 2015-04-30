@@ -12,7 +12,7 @@ module.exports = function (html, options) {
 
     $('link').each(function (index, element) {
         var $el = $(element);
-        if ($el.attr('rel').toLowerCase() === 'stylesheet') {
+        if ($el.attr('rel') && $el.attr('rel').toLowerCase() === 'stylesheet') {
             if (options.applyLinkTags) {
                 results.hrefs.push($el.attr('href'));
             }
