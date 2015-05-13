@@ -68,8 +68,9 @@ npm install --save inline-css
 
 ```js
 var inlineCss = require('inline-css');
+var html = "<style>div{color:red;}</style><div/>";
 
-inlineCss('/path/to/file.html', options, function(err, html) {
+inlineCss(html, options, function(err, html) {
     console.log(html);
 });
 ```
