@@ -1,4 +1,4 @@
-# inline-css [![Build Status](https://travis-ci.org/jonkemp/inline-css.svg?branch=master)](https://travis-ci.org/jonkemp/inline-css)
+# inline-css [![npm](http://img.shields.io/npm/v/inline-css.svg?style=flat)](https://badge.fury.io/js/inline-css) [![Build Status](https://travis-ci.org/jonkemp/inline-css.svg?branch=master)](https://travis-ci.org/jonkemp/inline-css)
 
 > Inline your CSS properties into the `style` attribute in an html file. Useful for emails.
 
@@ -68,8 +68,9 @@ npm install --save inline-css
 
 ```js
 var inlineCss = require('inline-css');
+var html = "<style>div{color:red;}</style><div/>";
 
-inlineCss('/path/to/file.html', options, function(err, html) {
+inlineCss(html, options, function(err, html) {
     console.log(html);
 });
 ```
