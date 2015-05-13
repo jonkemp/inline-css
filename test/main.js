@@ -23,15 +23,15 @@ function compare(fixturePath, expectedPath, options, done) {
 
     options.url = 'file://' + file.path;
 
-    inlineCss(file.contents.toString('utf8'), options, function (err, html) {
-
-        if (err) {
-            return done(err);
-        }
-
+    inlineCss(file.contents.toString('utf8'), options)
+    .then(function(html){
         html.should.be.equal(String(fs.readFileSync(expectedPath)));
-
-        done();
+    })
+    .then(function(){
+        done()
+    })
+    .catch(function(err){
+        done(err)
     });
 }
 
@@ -227,4 +227,29 @@ describe('inline-css', function() {
       compare(path.join('test', 'fixtures', 'remove-html-selectors.html'), path.join('test', 'expected', 'remove-html-selectors.html'), options, done);
     });
 
+    it('Should error when passed malformed CSS', function(done) {
+        var options = {
+            url: './'
+        };
+        var file = getFile(path.join('test', 'fixtures', 'malformed.html'));
+        inlineCss(file.contents.toString('utf8'), options)
+        .then(function(html) {
+            done(new Error('test should error when options.url is not set'));
+        })
+        .catch(function(err){
+            done();
+        });
+    });
+
+    it('Should error when options.url is not set', function(done) {
+        var options = {}
+        var file = getFile(path.join('test', 'fixtures', 'template.ejs'));
+        inlineCss(file.contents.toString('utf8'), options)
+        .then(function(html) {
+            done(new Error('test should error when options.url is not set'));
+        })
+        .catch(function(err){
+            done();
+        });
+    });
 });

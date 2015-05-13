@@ -2,7 +2,8 @@
 
 var assert = require('assert'),
     extractCss = require('extract-css'),
-    inlineCss = require('./lib/inline-css');
+    inlineCss = require('./lib/inline-css'),
+    Promise = require('bluebird');
 
 function extend(obj, src) {
     var own = {}.hasOwnProperty;
@@ -15,47 +16,42 @@ function extend(obj, src) {
     return obj;
 }
 
-function inlineCssWithCb(html, css, options, callback) {
-    var content;
-
-    try {
-        content = inlineCss(html, css, options);
-        callback(null, content);
-    } catch (err) {
-        callback(err);
-    }
-}
-
-function inlineContent(src, options, callback) {
-    assert.ok(options.url, 'options.url is required');
-    extractCss(src, options, function (err, html, css) {
-        if (err) {
-            return callback(err);
+function inlineContent(src, options) {
+    return new Promise(function(resolve, reject) {
+        var content;
+        if (!options.url) {
+            reject('options.url is required');
         }
 
-        css += '\n' + options.extraCss;
-        inlineCssWithCb(html, css, options, callback);
+        extractCss(src, options, function (err, html, css) {
+            if (err) {
+                return reject(err);
+            }
+
+            css += '\n' + options.extraCss;
+            content = inlineCss(html, css, options);
+            resolve(content);
+        });
     });
+
 }
 
-module.exports = function (html, options, callback) {
-    var opt = extend({
-            extraCss: '',
-            applyStyleTags: true,
-            removeStyleTags: true,
-            applyLinkTags: true,
-            removeLinkTags: true,
-            preserveMediaQueries: false,
-            removeHtmlSelectors: false,
-            applyWidthAttributes: false,
-            applyTableAttributes: false
-        }, options);
+module.exports = function (html, options) {
+    return new Promise(function(resolve, reject) {
+        var opt = extend({
+                extraCss: '',
+                applyStyleTags: true,
+                removeStyleTags: true,
+                applyLinkTags: true,
+                removeLinkTags: true,
+                preserveMediaQueries: false,
+                removeHtmlSelectors: false,
+                applyWidthAttributes: false,
+                applyTableAttributes: false
+            }, options);
 
-    inlineContent(html, opt, function (err, content) {
-        if (err) {
-            callback(err);
-        } else {
-            callback(null, content);
-        }
-    });
+        inlineContent(html, opt)
+            .then(function(data) { resolve(data); })
+            .catch(function(err) { reject(err); })
+        });
 };
