@@ -46,8 +46,9 @@ module.exports = function (html, options, callback) {
             applyLinkTags: true,
             removeLinkTags: true,
             preserveMediaQueries: false,
-            applyWidthAttributes: false,
             removeHtmlSelectors: false,
+            applyWidthAttributes: false,
+            applyTableAttributes: false
         }, options);
 
     inlineContent(html, opt, function (err, content) {
