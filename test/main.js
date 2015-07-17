@@ -204,6 +204,15 @@ describe('inline-css', function() {
         compare(path.join('test', 'fixtures', 'width-attr.html'), path.join('test', 'expected', 'width-attr.html'), options, done);
     });
 
+    it('Should inline css and create height attributes on elements', function(done) {
+        var options = {
+            url: './',
+            removeStyleTags: true,
+            applyHeightAttributes: true
+        };
+        compare(path.join('test', 'fixtures', 'height-attr.html'), path.join('test', 'expected', 'height-attr.html'), options, done);
+    });
+
     it('Should inline css and create table attributes on table elements', function(done) {
         var options = {
             url: './',

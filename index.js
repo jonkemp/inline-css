@@ -48,6 +48,7 @@ module.exports = function (html, options, callback) {
             preserveMediaQueries: false,
             removeHtmlSelectors: false,
             applyWidthAttributes: false,
+            applyHeightAttributes: false,
             applyTableAttributes: false
         }, options);
 
