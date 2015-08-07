@@ -24,6 +24,11 @@ function compare(fixturePath, expectedPath, options, done) {
     options.url = 'file://' + file.path;
 
     inlineCss(file.contents.toString('utf8'), options, function (err, html) {
+
+        if (err) {
+            return done(err);
+        }
+
         html.should.be.equal(String(fs.readFileSync(expectedPath)));
 
         done();
@@ -197,6 +202,15 @@ describe('inline-css', function() {
             applyWidthAttributes: true
         };
         compare(path.join('test', 'fixtures', 'width-attr.html'), path.join('test', 'expected', 'width-attr.html'), options, done);
+    });
+
+    it('Should inline css and create table attributes on table elements', function(done) {
+        var options = {
+            url: './',
+            removeStyleTags: true,
+            applyTableAttributes: true
+        };
+        compare(path.join('test', 'fixtures', 'table-attr.html'), path.join('test', 'expected', 'table-attr.html'), options, done);
     });
 
     it('Should inline css in HTML templates', function(done) {
