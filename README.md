@@ -140,6 +140,13 @@ Default: `false`
 
 Whether to use any CSS pixel widths to create `width` attributes on elements.
 
+#### options.applyHeightAttributes
+
+Type: `Boolean`  
+Default: `false`
+
+Whether to use any CSS pixel heights to create `height` attributes on elements.
+
 #### options.applyTableAttributes
 
 Type: `Boolean`
