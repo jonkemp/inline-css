@@ -1,7 +1,8 @@
 'use strict';
 var gulp = require('gulp'),
     jshint = require('gulp-jshint'),
-    mocha = require('gulp-mocha');
+    mocha = require('gulp-mocha'),
+    jscs = require('gulp-jscs');
 
 var paths = {
     scripts: ['./*.js', './lib/*.js', '!./gulpfile.js']
@@ -13,13 +14,18 @@ gulp.task('lint', function() {
         .pipe(jshint.reporter('default'));
 });
 
+gulp.task('jscs', function () {
+    return gulp.src(paths.scripts)
+        .pipe(jscs());
+});
+
 gulp.task('test', function() {
     return gulp.src('./test/*.js')
         .pipe(mocha({reporter: 'dot'}));
 });
 
 gulp.task('watch', function () {
-    gulp.watch(paths.scripts, ['lint', 'test']);
+    gulp.watch(paths.scripts, ['lint', 'jscs', 'test']);
 });
 
-gulp.task('default', ['lint', 'test', 'watch']);
+gulp.task('default', ['lint', 'jscs', 'test', 'watch']);
