@@ -4,6 +4,7 @@
   "description": "Inline css into an html file.",
   "main": "index.js",
   "dependencies": {
+    "bluebird": "^2.9.25",
     "cheerio": "^0.19.0",
     "css-property": "^1.0.0",
     "css-rules": "^1.0.0",
@@ -11,7 +12,8 @@
     "style-selector": "^1.0.0"
   },
   "scripts": {
-    "test": "gulp test"
+    "test": "gulp test",
+    "coverage": "istanbul cover _mocha --report html -- -R spec && open coverage/index.html"
   },
   "repository": {
     "type": "git",
@@ -35,6 +37,7 @@
     "gulp-jshint": "^1.9.0",
     "gulp-mocha": "^2.0.0",
     "gulp-util": "^3.0.2",
+    "istanbul": "0.3.x",
     "mocha": "^2.1.0",
     "should": "^5.2.0"
   }

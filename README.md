@@ -10,10 +10,11 @@ Inspired by the [juice](https://github.com/Automattic/juice) library.
 - Preserves Doctype
 - Modular
 - Gets your CSS automatically through style and link tags
+- Functions return [A+ compliant](https://promisesaplus.com/) Promises
 
 ## How It Works
 
-This gulp plugin takes an html file and inlines the CSS properties into the style attribute.
+This module takes html and inlines the CSS properties into the style attribute.
 
 `/path/to/file.html`:
 ```html
@@ -70,14 +71,13 @@ npm install --save inline-css
 var inlineCss = require('inline-css');
 var html = "<style>div{color:red;}</style><div/>";
 
-inlineCss(html, options, function(err, html) {
-    console.log(html);
-});
+inlineCss(html, options)
+    .then(function(html) { console.log(html); });
 ```
 
 ## API
 
-### inlineCss(html, options, callback)
+### inlineCss(html, options)
 
 
 #### options.extraCss
@@ -124,7 +124,7 @@ Whether to remove the original `<link rel="stylesheet">` tags after (possibly) i
 Type: `String`  
 Default: `filePath`
 
-How to resolve hrefs. Required.
+How to resolve hrefs. **Required**.
 
 #### options.preserveMediaQueries
 
