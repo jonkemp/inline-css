@@ -126,9 +126,7 @@
     "safeContextKeyword": ["self"],
     "validateIndentation": 4,
     "validateLineBreaks": "LF",
-    "validateNewlineAfterArrayElements": {
-        "maximum": 3
-    },
+    "validateNewlineAfterArrayElements": true,
     "validateParameterSeparator": ", ",
     "validateQuoteMarks": "'"
 }
