@@ -142,7 +142,7 @@ Whether to use any CSS pixel widths to create `width` attributes on elements.
 
 #### options.applyTableAttributes
 
-Type: `Boolean`
+Type: `Boolean`  
 Default: `false`
 
 Whether to apply the `border`, `cellpadding` and `cellspacing` attributes to `table` elements.
