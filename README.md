@@ -1,5 +1,7 @@
 # inline-css [![npm](http://img.shields.io/npm/v/inline-css.svg?style=flat)](https://badge.fury.io/js/inline-css) [![Build Status](https://travis-ci.org/jonkemp/inline-css.svg?branch=master)](https://travis-ci.org/jonkemp/inline-css)
 
+[![NPM](https://nodei.co/npm/inline-css.png?downloads=true)](https://nodei.co/npm/inline-css/)
+
 > Inline your CSS properties into the `style` attribute in an html file. Useful for emails.
 
 Inspired by the [juice](https://github.com/Automattic/juice) library.
