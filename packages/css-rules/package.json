@@ -1,6 +1,6 @@
 {
   "name": "css-rules",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Returns a parse tree for a CSS source.",
   "main": "index.js",
   "scripts": {
