@@ -1,5 +1,7 @@
 # remote-content
 
+[![NPM](https://nodei.co/npm/remote-content.png?downloads=true)](https://nodei.co/npm/remote-content/)
+
 > Get remote content.
 
 ## Install
