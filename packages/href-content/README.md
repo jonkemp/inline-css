@@ -1,5 +1,7 @@
 # href-content
 
+[![NPM](https://nodei.co/npm/href-content.png?downloads=true)](https://nodei.co/npm/href-content/)
+
 > Get content from link tags in an HTML document.
 
 ## Install
