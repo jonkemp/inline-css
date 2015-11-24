@@ -1,5 +1,7 @@
 # css-rules
 
+[![NPM](https://nodei.co/npm/css-rules.png?downloads=true)](https://nodei.co/npm/css-rules/)
+
 > Returns a parse tree for a CSS source.
 
 ## Install
