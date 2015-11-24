@@ -1,5 +1,7 @@
 # mediaquery-text
 
+[![NPM](https://nodei.co/npm/mediaquery-text.png?downloads=true)](https://nodei.co/npm/mediaquery-text/)
+
 > Returns Media Query text for a CSS source.
 
 ## Install
