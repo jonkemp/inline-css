@@ -1,5 +1,7 @@
 # extract-css
 
+[![NPM](https://nodei.co/npm/extract-css.png?downloads=true)](https://nodei.co/npm/extract-css/)
+
 > Extract the CSS from an HTML document.
 
 ## Install
