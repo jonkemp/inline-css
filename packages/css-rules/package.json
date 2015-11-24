@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jonkemp/parse-css"
+    "url": "https://github.com/jonkemp/css-rules"
   },
   "keywords": [
     "inline",
@@ -20,9 +20,9 @@
   "author": "Jonathan Kemp <kempdogg@gmail.com> (http://jonkemp.com/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jonkemp/parse-css/issues"
+    "url": "https://github.com/jonkemp/css-rules/issues"
   },
-  "homepage": "https://github.com/jonkemp/parse-css",
+  "homepage": "https://github.com/jonkemp/css-rules",
   "dependencies": {
     "cssom": "^0.3.0"
   },
