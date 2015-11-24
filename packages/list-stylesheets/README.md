@@ -1,5 +1,7 @@
 # list-stylesheets
 
+[![NPM](https://nodei.co/npm/list-stylesheets.png?downloads=true)](https://nodei.co/npm/list-stylesheets/)
+
 > Get a list of stylesheets from an HTML document.
 
 ## Install
