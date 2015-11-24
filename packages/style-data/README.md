@@ -1,5 +1,7 @@
 # style-data
 
+[![NPM](https://nodei.co/npm/style-data.png?downloads=true)](https://nodei.co/npm/style-data/)
+
 > Get the content of style tags.
 
 ## Install
