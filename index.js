@@ -47,7 +47,8 @@ module.exports = function (html, options) {
                 preserveMediaQueries: false,
                 removeHtmlSelectors: false,
                 applyWidthAttributes: false,
-                applyTableAttributes: false
+                applyTableAttributes: false,
+                xml: false
             }, options);
 
         inlineContent(html, opt)
