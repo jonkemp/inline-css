@@ -26,7 +26,7 @@
     "no-loop-func": 2,
     "no-multi-spaces": 2,
     "no-multi-str": 2,
-    "no-param-reassign": 2,
+    "no-param-reassign": 1,
     "no-unused-expressions": 2,
     "no-useless-call": 2,
     "no-useless-concat": 2,

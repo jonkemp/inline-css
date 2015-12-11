@@ -5,9 +5,10 @@ var extractCss = require('extract-css'),
     Promise = require('bluebird');
 
 function extend(obj, src) {
-    var own = {}.hasOwnProperty;
+    var key,
+        own = {}.hasOwnProperty;
 
-    for (var key in src) {
+    for (key in src) {
         if (own.call(src, key)) {
             obj[key] = src[key];
         }
@@ -39,16 +40,16 @@ function inlineContent(src, options) {
 module.exports = function (html, options) {
     return new Promise(function (resolve, reject) {
         var opt = extend({
-                extraCss: '',
-                applyStyleTags: true,
-                removeStyleTags: true,
-                applyLinkTags: true,
-                removeLinkTags: true,
-                preserveMediaQueries: false,
-                removeHtmlSelectors: false,
-                applyWidthAttributes: false,
-                applyTableAttributes: false
-            }, options);
+            extraCss: '',
+            applyStyleTags: true,
+            removeStyleTags: true,
+            applyLinkTags: true,
+            removeLinkTags: true,
+            preserveMediaQueries: false,
+            removeHtmlSelectors: false,
+            applyWidthAttributes: false,
+            applyTableAttributes: false
+        }, options);
 
         inlineContent(html, opt)
             .then(function (data) {
