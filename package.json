@@ -3,6 +3,9 @@
   "version": "2.1.0",
   "description": "Inline css into an html file.",
   "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
   "dependencies": {
     "bluebird": "^2.9.25",
     "cheerio": "^0.19.0",
@@ -11,14 +14,26 @@
     "extract-css": "^1.0.0",
     "style-selector": "^1.0.0"
   },
+  "devDependencies": {
+    "coveralls": "^2.11.6",
+    "gulp": "^3.9.0",
+    "gulp-eslint": "^1.1.1",
+    "gulp-mocha": "^2.0.0",
+    "gulp-util": "^3.0.2",
+    "mocha": "^2.1.0",
+    "nyc": "^5.0.0",
+    "should": "^5.2.0"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
   "scripts": {
-    "test": "gulp test",
-    "coverage": "istanbul cover _mocha --report html -- -R spec && open coverage/index.html"
+    "test": "mocha",
+    "lint": "gulp lint",
+    "coverage": "nyc npm test && nyc report",
+    "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/jonkemp/inline-css"
-  },
+  "repository": "jonkemp/inline-css",
   "keywords": [
     "inline",
     "css",
@@ -26,19 +41,5 @@
     "email"
   ],
   "author": "Jonathan Kemp <kempdogg@gmail.com> (http://jonkemp.com/)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/jonkemp/inline-css/issues"
-  },
-  "homepage": "https://github.com/jonkemp/inline-css",
-  "devDependencies": {
-    "gulp": "^3.9.0",
-    "gulp-jscs": "^3.0.0",
-    "gulp-jshint": "^1.9.0",
-    "gulp-mocha": "^2.0.0",
-    "gulp-util": "^3.0.2",
-    "istanbul": "0.3.x",
-    "mocha": "^2.1.0",
-    "should": "^5.2.0"
-  }
+  "license": "MIT"
 }
