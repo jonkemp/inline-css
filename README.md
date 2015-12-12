@@ -149,6 +149,10 @@ Default: `false`
 
 Whether to apply the `border`, `cellpadding` and `cellspacing` attributes to `table` elements.
 
+## Contributing
+
+See the [CONTRIBUTING Guidelines](https://github.com/jonkemp/inline-css/blob/master/CONTRIBUTING.md)
+
 ## License
 
 MIT © [Jonathan Kemp](http://jonkemp.com)
