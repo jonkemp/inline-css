@@ -33,6 +33,10 @@
     "coverage": "nyc npm test && nyc report",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
   },
+  "files": [
+    "index.js",
+    "lib"
+  ],
   "repository": "jonkemp/inline-css",
   "keywords": [
     "inline",
