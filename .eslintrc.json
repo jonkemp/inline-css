@@ -9,7 +9,7 @@
     "block-scoped-var": 2,
     "complexity": [
       1,
-      4
+      5
     ],
     "consistent-return": 2,
     "curly": [
@@ -23,9 +23,13 @@
     "no-eq-null": 2,
     "no-extend-native": 2,
     "no-implicit-coercion": 2,
+    "no-invalid-this": 2,
     "no-loop-func": 2,
     "no-multi-spaces": 2,
     "no-multi-str": 2,
+    "no-new-func": 2,
+    "no-new-wrappers": 2,
+    "no-new": 2,
     "no-param-reassign": 1,
     "no-unused-expressions": 2,
     "no-useless-call": 2,
@@ -123,10 +127,12 @@
       1,
       "always"
     ],
+    "no-array-constructor": 2,
     "no-bitwise": 1,
     "no-lonely-if": 1,
     "no-multi-spaces": 1,
     "no-multiple-empty-lines": 1,
+    "no-new-object": 2,
     "no-spaced-func": 1,
     "no-trailing-spaces": 1,
     "no-unneeded-ternary": 1,
@@ -145,7 +151,7 @@
     ],
     "quote-props": [
       1,
-      "consistent"
+      "as-needed"
     ],
     "quotes": [
       1,
