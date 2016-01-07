@@ -25,12 +25,14 @@ function inlineContent(src, options) {
         }
 
         extractCss(src, options, function (err, html, css) {
+            var extraCss;
+
             if (err) {
                 return reject(err);
             }
 
-            css += '\n' + options.extraCss;
-            content = inlineCss(html, css, options);
+            extraCss = css + '\n' + options.extraCss;
+            content = inlineCss(html, extraCss, options);
             resolve(content);
         });
     });
