@@ -1,8 +1,7 @@
 'use strict';
 
-var extractCss = require('extract-css'),
-    inlineCss = require('./lib/inline-css'),
-    Promise = require('bluebird');
+var Promise = require('bluebird'),
+    inlineContent = require('./lib/inlineContent');
 
 function extend(obj, src) {
     var key,
@@ -14,29 +13,6 @@ function extend(obj, src) {
         }
     }
     return obj;
-}
-
-function inlineContent(src, options) {
-    return new Promise(function (resolve, reject) {
-        var content;
-
-        if (!options.url) {
-            reject('options.url is required');
-        }
-
-        extractCss(src, options, function (err, html, css) {
-            var extraCss;
-
-            if (err) {
-                return reject(err);
-            }
-
-            extraCss = css + '\n' + options.extraCss;
-            content = inlineCss(html, extraCss, options);
-            resolve(content);
-        });
-    });
-
 }
 
 module.exports = function (html, options) {
