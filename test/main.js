@@ -158,7 +158,7 @@ describe('inline-css', function() {
     });
 
     it('Should inline css with remote url', function(done) {
-        this.timeout(5000);
+        this.timeout(10000);
         var options = {};
         compare(path.join('test', 'fixtures', 'remote_url.html'), path.join('test', 'expected', 'remote_url.html'), options, done);
     });
