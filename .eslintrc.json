@@ -30,7 +30,7 @@
     "no-new-func": 2,
     "no-new-wrappers": 2,
     "no-new": 2,
-    "no-param-reassign": 1,
+    "no-param-reassign": 2,
     "no-unused-expressions": 2,
     "no-useless-call": 2,
     "no-useless-concat": 2,
@@ -115,7 +115,7 @@
     ],
     "max-params": [
       1,
-      4
+      3
     ],
     "max-statements": [
       1,
