@@ -1,5 +1,4 @@
-/* jshint node: true */
-/* global describe, it */
+/*eslint-disable */
 
 'use strict';
 
