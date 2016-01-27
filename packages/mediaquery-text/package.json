@@ -4,7 +4,7 @@
   "description": "Returns Media Query text for a CSS source.",
   "main": "index.js",
   "scripts": {
-    "test": "gulp test"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -27,8 +27,9 @@
   },
   "devDependencies": {
     "gulp": "^3.8.10",
-    "gulp-jshint": "^1.9.1",
-    "gulp-mocha": "^2.0.0",
+    "gulp-eslint": "^1.1.1",
+    "gulp-mocha": "^2.2.0",
+    "mocha": "^2.4.2",
     "should": "^4.6.2"
   }
 }
