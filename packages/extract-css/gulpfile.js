@@ -1,6 +1,6 @@
 'use strict';
 var gulp = require('gulp'),
-    jshint = require('gulp-jshint'),
+    eslint = require('gulp-eslint'),
     mocha = require('gulp-mocha');
 
 var paths = {
@@ -9,13 +9,13 @@ var paths = {
 
 gulp.task('lint', function() {
     return gulp.src(paths.scripts)
-        .pipe(jshint())
-        .pipe(jshint.reporter('default'));
+        .pipe(eslint())
+        .pipe(eslint.format());
 });
 
 gulp.task('test', function() {
     return gulp.src('./test/*.js')
-        .pipe(mocha({reporter: 'dot'}));
+        .pipe(mocha());
 });
 
 gulp.task('watch', function () {
