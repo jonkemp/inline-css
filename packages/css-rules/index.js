@@ -12,8 +12,8 @@ var cssom = require('cssom');
 
 function extract(selectorText) {
     var attr = 0,
-    sels = [],
-    sel = '';
+        sels = [],
+        sel = '';
 
     for (var i = 0, l = selectorText.length; i < l; i++) {
         var c = selectorText.charAt(i);
@@ -64,7 +64,7 @@ module.exports = function (css) {
                 selectors = extract(rule.selectorText);
 
             for (var ii = 0, ll = selectors.length; ii < ll; ii++) {
-                ret.push([selectors[ii], rule.style]);
+                ret.push([ selectors[ii], rule.style ]);
             }
         }
     }
