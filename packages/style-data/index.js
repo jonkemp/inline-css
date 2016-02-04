@@ -14,6 +14,8 @@ module.exports = function (html, options, callback) {
     results.css = [];
 
     $('style').each(function (index, element) {
+        var mediaQueries;
+
         styleDataList = element.childNodes;
         if (styleDataList.length !== 1) {
             callback(new Error('empty style element'));
@@ -25,7 +27,7 @@ module.exports = function (html, options, callback) {
         }
         if (options.removeStyleTags) {
             if (options.preserveMediaQueries) {
-                var mediaQueries = mediaQueryText(element.childNodes[0].nodeValue);
+                mediaQueries = mediaQueryText(element.childNodes[0].nodeValue);
                 element.childNodes[0].nodeValue = mediaQueries;
             } else {
                 $(element).remove();
