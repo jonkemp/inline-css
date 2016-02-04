@@ -1,4 +1,4 @@
-# style-data
+# style-data [![Build Status](https://travis-ci.org/jonkemp/style-data.svg?branch=master)](https://travis-ci.org/jonkemp/style-data) [![Coverage Status](https://coveralls.io/repos/jonkemp/style-data/badge.svg?branch=master&service=github)](https://coveralls.io/github/jonkemp/style-data?branch=master)
 
 [![NPM](https://nodei.co/npm/style-data.png?downloads=true)](https://nodei.co/npm/style-data/)
 
