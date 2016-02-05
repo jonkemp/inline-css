@@ -1,4 +1,4 @@
-# remote-content
+# remote-content [![Build Status](https://travis-ci.org/jonkemp/remote-content.svg?branch=master)](https://travis-ci.org/jonkemp/remote-content) [![Coverage Status](https://coveralls.io/repos/jonkemp/remote-content/badge.svg?branch=master&service=github)](https://coveralls.io/github/jonkemp/remote-content?branch=master)
 
 [![NPM](https://nodei.co/npm/remote-content.png?downloads=true)](https://nodei.co/npm/remote-content/)
 

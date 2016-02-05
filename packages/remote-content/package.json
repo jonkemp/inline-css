@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "lint": "gulp lint"
+    "coverage": "nyc npm test && nyc report",
+    "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
@@ -30,10 +31,12 @@
     "superagent": "^1.1.0"
   },
   "devDependencies": {
+    "coveralls": "^2.11.6",
     "gulp": "^3.8.10",
     "gulp-eslint": "^1.1.1",
     "gulp-mocha": "^2.0.0",
     "mocha": "^2.3.4",
+    "nyc": "^5.5.0",
     "should": "^5.2.0"
   }
 }
