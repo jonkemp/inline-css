@@ -11,10 +11,22 @@ var cssom = require('cssom'),
  */
 
 module.exports = function (css) {
-    var rules = cssom.parse(css).cssRules || [];
-    var queries = [];
+    var rules = cssom.parse(css).cssRules || [],
+        queries = [],
+        i,
+        l = rules.length,
+        query,
+        queryString,
+        ii,
+        ll,
+        rule,
+        style,
+        property,
+        value,
+        important,
+        result;
 
-    for (var i = 0, l = rules.length; i < l; i++) {
+    for (i = 0; i < l; i++) {
         /* CSS types
 		  STYLE: 1,
 		  IMPORT: 3,
@@ -23,21 +35,23 @@ module.exports = function (css) {
 		 */
 
         if (rules[i].type === cssom.CSSMediaRule.prototype.type) {
-            var query = rules[i];
-            var queryString = [];
+            query = rules[i];
+            queryString = [];
 
             queryString.push(os.EOL + '@media ' + query.media[0] + ' {');
 
-            for (var ii = 0, ll = query.cssRules.length; ii < ll; ii++) {
-                var rule = query.cssRules[ii];
+            ll = query.cssRules.length;
+
+            for (ii = 0; ii < ll; ii++) {
+                rule = query.cssRules[ii];
 
                 if (rule.type === cssom.CSSStyleRule.prototype.type || rule.type === cssom.CSSFontFaceRule.prototype.type) {
                     queryString.push('  ' + (rule.type === cssom.CSSStyleRule.prototype.type ? rule.selectorText : '@font-face') + ' {');
 
-                    for (var style = 0; style < rule.style.length; style++) {
-                        var property = rule.style[style];
-                        var value = rule.style[property];
-                        var important = rule.style._importants[property] ? ' !important' : '';
+                    for (style = 0; style < rule.style.length; style++) {
+                        property = rule.style[style];
+                        value = rule.style[property];
+                        important = rule.style._importants[property] ? ' !important' : '';
                         queryString.push('    ' + property + ': ' + value + important + ';');
                     }
                     queryString.push('  }');
@@ -45,7 +59,7 @@ module.exports = function (css) {
             }
 
             queryString.push('}');
-            var result = queryString.length ? queryString.join(os.EOL) + os.EOL : '';
+            result = queryString.length ? queryString.join(os.EOL) + os.EOL : '';
 
             queries.push(result);
         }
