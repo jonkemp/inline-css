@@ -26,6 +26,7 @@
   "homepage": "https://github.com/jonkemp/style-data",
   "dependencies": {
     "cheerio": "^0.19.0",
+    "extend": "^3.0.0",
     "mediaquery-text": "^1.0.0"
   },
   "devDependencies": {

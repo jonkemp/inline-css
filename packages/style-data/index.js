@@ -1,13 +1,14 @@
 'use strict';
 
 var mediaQueryText = require('mediaquery-text'),
-    cheerio = require('cheerio');
+    cheerio = require('cheerio'),
+    extend = require('extend');
 
 module.exports = function (html, options, callback) {
     var results = {},
-        $ = cheerio.load(html, {
+        $ = cheerio.load(html, extend(options.cheerioOptions, {
             decodeEntities: false
-        }),
+        })),
         styleDataList,
         styleData;
 
