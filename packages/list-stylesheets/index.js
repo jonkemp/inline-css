@@ -1,12 +1,13 @@
 'use strict';
 
-var cheerio = require('cheerio');
+var cheerio = require('cheerio'),
+    extend = require('extend');
 
 module.exports = function (html, options) {
     var results = {};
-    var $ = cheerio.load(html, {
+    var $ = cheerio.load(html, extend(options.cheerioOptions, {
         decodeEntities: false
-    });
+    }));
 
     results.hrefs = [];
 
