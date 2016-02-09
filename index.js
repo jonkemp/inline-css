@@ -1,24 +1,14 @@
 'use strict';
 
-var Promise = require('bluebird'),
+var extend = require('./lib/extend'),
+    Promise = require('bluebird'),
     inlineContent = require('./lib/inlineContent');
-
-function extend(obj, src) {
-    var key,
-        own = {}.hasOwnProperty;
-
-    for (key in src) {
-        if (own.call(src, key)) {
-            obj[key] = src[key];
-        }
-    }
-    return obj;
-}
 
 module.exports = function (html, options) {
     return new Promise(function (resolve, reject) {
         var opt = extend({
             extraCss: '',
+            cheerioOptions: {},
             applyStyleTags: true,
             removeStyleTags: true,
             applyLinkTags: true,
