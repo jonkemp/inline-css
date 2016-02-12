@@ -4,7 +4,9 @@
   "description": "Get content from link tags in an HTML document.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "coverage": "nyc npm test && nyc report",
+    "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
@@ -26,12 +28,14 @@
     "remote-content": "^1.0.0"
   },
   "devDependencies": {
+    "coveralls": "^2.11.6",
     "gulp": "^3.8.10",
     "gulp-eslint": "^1.1.1",
     "gulp-mocha": "^2.0.0",
     "gulp-util": "^3.0.2",
     "list-stylesheets": "^1.0.0",
     "mocha": "^2.1.0",
+    "nyc": "^5.6.0",
     "should": "^4.6.2"
   }
 }
