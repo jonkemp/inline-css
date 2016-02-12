@@ -5,11 +5,15 @@ var url = require('url'),
     getRemoteContent = require('remote-content');
 
 module.exports = function (destHref, sourceHref, callback) {
+    var resolvedUrl,
+        parsedUrl,
+        toUrl = destHref;
+
     if (url.parse(sourceHref).protocol === 'file:' && destHref[0] === '/') {
-        destHref = destHref.slice(1);
+        toUrl = destHref.slice(1);
     }
-    var resolvedUrl = url.resolve(sourceHref, destHref);
-    var parsedUrl = url.parse(resolvedUrl);
+    resolvedUrl = url.resolve(sourceHref, toUrl);
+    parsedUrl = url.parse(resolvedUrl);
     if (parsedUrl.protocol === 'file:') {
         fs.readFile(decodeURIComponent(parsedUrl.pathname), 'utf8', callback);
     } else {
