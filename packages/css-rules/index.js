@@ -13,27 +13,28 @@ var cssom = require('cssom');
 function extract(selectorText) {
     var attr = 0,
         sels = [],
-        sel = '';
+        sel = '',
+        i,
+        c,
+        l = selectorText.length;
 
-    for (var i = 0, l = selectorText.length; i < l; i++) {
-        var c = selectorText.charAt(i);
+    for (i = 0; i < l; i++) {
+        c = selectorText.charAt(i);
 
         if (attr) {
-            if (']' === c || ')' === c) {
+            if (c === '[' || c === '(') {
                 attr--;
             }
             sel += c;
+        } else if (c === ',') {
+            sels.push(sel);
+            sel = '';
         } else {
-            if (',' === c) {
-                sels.push(sel);
-                sel = '';
-            } else {
-                if ('[' === c || '(' === c) {
-                    attr++;
-                }
-                if (sel.length || (c !== ',' && c !== '\n' && c !== ' ')) {
-                    sel += c;
-                }
+            if (c === '[' || c === '(') {
+                attr++;
+            }
+            if (sel.length || (c !== ',' && c !== '\n' && c !== ' ')) {
+                sel += c;
             }
         }
     }
@@ -56,14 +57,21 @@ function extract(selectorText) {
 
 module.exports = function (css) {
     var rules = cssom.parse(css).cssRules || [],
-        ret = [];
+        ret = [],
+        i,
+        l = rules.length,
+        rule,
+        selectors,
+        ii,
+        ll;
 
-    for (var i = 0, l = rules.length; i < l; i++) {
+    for (i = 0; i < l; i++) {
         if (rules[i].selectorText) { // media queries don't have selectorText
-            var rule = rules[i],
-                selectors = extract(rule.selectorText);
+            rule = rules[i];
+            selectors = extract(rule.selectorText);
+            ll = selectors.length;
 
-            for (var ii = 0, ll = selectors.length; ii < ll; ii++) {
+            for (ii = 0; ii < ll; ii++) {
                 ret.push([ selectors[ii], rule.style ]);
             }
         }
