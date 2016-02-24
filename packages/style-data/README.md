@@ -48,6 +48,9 @@ Default: `false`
 
 Preserves all media queries (and contained styles) within `<style></style>` tags as a refinement when `removeStyleTags` is `true`. Other styles are removed.
 
+### cheerio options
+
+Options to passed to [cheerio](https://github.com/cheeriojs/cheerio).
 
 ## Credit
 

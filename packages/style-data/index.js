@@ -2,13 +2,21 @@
 
 var mediaQueryText = require('mediaquery-text'),
     cheerio = require('cheerio'),
-    extend = require('extend');
+    extend = require('extend'),
+    pick = require('object-pick');
 
 module.exports = function (html, options, callback) {
     var results = {},
-        $ = cheerio.load(html, extend(options.cheerioOptions, {
+        $ = cheerio.load(html, extend({
             decodeEntities: false
-        })),
+        }, pick(options, [
+            'xmlMode',
+            'decodeEntities',
+            'lowerCaseTags',
+            'lowerCaseAttributeNames',
+            'recognizeCDATA',
+            'recognizeSelfClosing'
+        ]))),
         styleDataList,
         styleData;
 
