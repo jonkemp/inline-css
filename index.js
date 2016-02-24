@@ -1,19 +1,8 @@
 'use strict';
 
 var Promise = require('bluebird'),
+    extend = require('extend'),
     inlineContent = require('./lib/inlineContent');
-
-function extend(obj, src) {
-    var key,
-        own = {}.hasOwnProperty;
-
-    for (key in src) {
-        if (own.call(src, key)) {
-            obj[key] = src[key];
-        }
-    }
-    return obj;
-}
 
 module.exports = function (html, options) {
     return new Promise(function (resolve, reject) {
@@ -26,7 +15,13 @@ module.exports = function (html, options) {
             preserveMediaQueries: false,
             removeHtmlSelectors: false,
             applyWidthAttributes: false,
-            applyTableAttributes: false
+            applyTableAttributes: false,
+            xmlMode: false,
+            decodeEntities: false,
+            lowerCaseTags: true,
+            lowerCaseAttributeNames: false,
+            recognizeCDATA: false,
+            recognizeSelfClosing: false
         }, options);
 
         inlineContent(html, opt)
