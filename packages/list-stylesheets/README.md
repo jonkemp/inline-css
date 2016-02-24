@@ -1,4 +1,4 @@
-# list-stylesheets
+# list-stylesheets [![Build Status](https://travis-ci.org/jonkemp/list-stylesheets.svg?branch=master)](https://travis-ci.org/jonkemp/list-stylesheets) [![Coverage Status](https://coveralls.io/repos/jonkemp/list-stylesheets/badge.svg?branch=master&service=github)](https://coveralls.io/github/jonkemp/list-stylesheets?branch=master)
 
 [![NPM](https://nodei.co/npm/list-stylesheets.png?downloads=true)](https://nodei.co/npm/list-stylesheets/)
 
