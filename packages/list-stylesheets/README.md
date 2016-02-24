@@ -41,6 +41,10 @@ Default: `true`
 
 Whether to remove the original `<link rel="stylesheet">` tags after (possibly) inlining the css from them.
 
+### cheerio options
+
+Options to passed to [cheerio](https://github.com/cheeriojs/cheerio).
+
 ## Credit
 
 The code for this module was originally taken from the [Juice](https://github.com/Automattic/juice) library.
