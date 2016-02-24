@@ -1,18 +1,21 @@
 'use strict';
 
 var cheerio = require('cheerio'),
+    extend = require('extend'),
     pick = require('object-pick');
 
 module.exports = function (html, options) {
     var results = {},
-        $ = cheerio.load(html, pick(options, [
+        $ = cheerio.load(html, extend({
+            decodeEntities: false
+        }, pick(options, [
             'xmlMode',
             'decodeEntities',
             'lowerCaseTags',
             'lowerCaseAttributeNames',
             'recognizeCDATA',
             'recognizeSelfClosing'
-        ]));
+        ])));
 
     results.hrefs = [];
 
