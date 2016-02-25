@@ -14,7 +14,7 @@
     "extend": "^3.0.0",
     "extract-css": "^1.0.0",
     "flatten": "0.0.1",
-    "object-pick": "^0.1.2",
+    "object.pick": "^1.1.1",
     "style-selector": "^1.0.0"
   },
   "devDependencies": {
