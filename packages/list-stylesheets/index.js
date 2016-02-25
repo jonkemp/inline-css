@@ -2,7 +2,7 @@
 
 var cheerio = require('cheerio'),
     extend = require('extend'),
-    pick = require('object-pick');
+    pick = require('object.pick');
 
 module.exports = function (html, options) {
     var results = {},
