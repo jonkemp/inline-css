@@ -1,5 +1,4 @@
-/* jshint node: true */
-/* global describe, it */
+/* eslint-disable */
 
 'use strict';
 
@@ -48,5 +47,13 @@ describe('href-content', function() {
         };
         compare(path.join('test', 'fixtures', 'multiple', 'one', 'in.html'), path.join('test', 'fixtures', 'multiple', 'one', 'file.css'), options, function () {});
         compare(path.join('test', 'fixtures', 'multiple', 'two', 'in.html'), path.join('test', 'fixtures', 'multiple', 'two', 'file.css'), options, done);
+    });
+
+    it('Should handle malformed CSS', function(done) {
+        var options = {
+            applyLinkTags: true,
+            removeLinkTags: true
+        };
+        compare(path.join('test', 'fixtures', 'malformed.html'), path.join('test', 'fixtures', 'malformed.css'), options, done);
     });
 });
