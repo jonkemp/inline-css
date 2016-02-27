@@ -1,4 +1,4 @@
-/* jshint node: true */
+/* eslint-disable */
 /* global describe, it */
 
 'use strict';
@@ -35,6 +35,17 @@ describe('css-rules', function() {
             assert.equal(typeof rule[1].__starts, 'number');
             assert.equal(typeof rule[1][rule[1]['0']], 'string');
         });
+        done();
+    });
+
+    it('Should error when passed malformed CSS', function(done) {
+        var css = String(fs.readFileSync(path.join('test', 'fixtures', 'malformed.css')));
+
+        try {
+           parseCSS(css);
+        } catch (err) {
+            assert.equal(err.message, 'Unexpected } (line 3, char 1)');
+        }
         done();
     });
 });
