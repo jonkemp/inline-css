@@ -24,15 +24,15 @@ function compare(fixturePath, expectedPath, options, done) {
     options.url = 'file://' + file.path;
 
     inlineCss(file.contents.toString('utf8'), options)
-    .then(function(html){
-        html.should.be.equal(String(fs.readFileSync(expectedPath)));
-    })
-    .then(function(){
-        done()
-    })
-    .catch(function(err){
-        done(err)
-    });
+        .then(function(html){
+            html.should.be.equal(String(fs.readFileSync(expectedPath)));
+        })
+        .then(function(){
+            done()
+        })
+        .catch(function(err){
+            done(err)
+        });
 }
 
 describe('inline-css', function() {
@@ -228,28 +228,29 @@ describe('inline-css', function() {
     });
 
     it('Should error when passed malformed CSS', function(done) {
-        var options = {
-            url: './'
-        };
         var file = getFile(path.join('test', 'fixtures', 'malformed.html'));
+        var options = {
+            url: 'file://' + file.path
+        };
         inlineCss(file.contents.toString('utf8'), options)
-        .then(function(html) {
-            done(new Error('test should error when options.url is not set'));
-        })
-        .catch(function(err){
-            done();
-        });
+            .then(function(html) {
+                done(new Error('test should error when passed malformed CSS'));
+            })
+            .catch(function(err){
+                err.message.should.be.equal('Error: Unexpected } (line 3, char 1)');
+                done();
+            });
     });
 
     it('Should error when options.url is not set', function(done) {
         var options = {}
         var file = getFile(path.join('test', 'fixtures', 'template.ejs'));
         inlineCss(file.contents.toString('utf8'), options)
-        .then(function(html) {
-            done(new Error('test should error when options.url is not set'));
-        })
-        .catch(function(err){
-            done();
-        });
+            .then(function(html) {
+                done(new Error('test should error when options.url is not set'));
+            })
+            .catch(function(err){
+                done();
+            });
     });
 });
