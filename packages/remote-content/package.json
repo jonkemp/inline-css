@@ -1,6 +1,6 @@
 {
   "name": "remote-content",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Get remote content.",
   "main": "index.js",
   "scripts": {
@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "coveralls": "^2.11.6",
-    "gulp": "^3.8.10",
+    "gulp": "^3.9.0",
     "gulp-eslint": "^1.1.1",
     "gulp-mocha": "^2.0.0",
     "mocha": "^2.3.4",
