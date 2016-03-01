@@ -38,7 +38,8 @@ module.exports = function (html, options, callback) {
             if (options.preserveMediaQueries) {
                 mediaQueries = mediaQueryText(element.childNodes[0].nodeValue);
                 element.childNodes[0].nodeValue = mediaQueries;
-            } else {
+            }
+            if (!mediaQueries) {
                 $(element).remove();
             }
         }
