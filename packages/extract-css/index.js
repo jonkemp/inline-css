@@ -22,12 +22,14 @@ module.exports = function (html, options, callback) {
         });
     });
     batch.end(function (err, results) {
+        var stylesData,
+            css;
+
         if (err) {
             return callback(err);
         }
 
-        var stylesData = results.shift(),
-            css;
+        stylesData = results.shift();
 
         results.forEach(function (content) {
             stylesData.css.push(content);
