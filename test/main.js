@@ -87,10 +87,10 @@ describe('inline-css', function() {
         compare(path.join('test', 'fixtures', 'id.html'), path.join('test', 'expected', 'id.html'), options, done);
         });
 
-    it('Should inline css in edge case', function(done) {
+    it('Should inline last rule if identical rules use important', function(done) {
         var options = {};
         compare(path.join('test', 'fixtures', 'identical-important.html'), path.join('test', 'expected', 'identical-important.html'), options, done);
-        });
+    });
 
     it('Should inline css in edge case', function(done) {
         var options = {};
