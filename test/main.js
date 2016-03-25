@@ -242,6 +242,11 @@ describe('inline-css', function() {
             });
     });
 
+    it('Should handle html character entities correctly', function(done) {
+        var options = {};
+        compare(path.join('test', 'fixtures', 'character-entities.html'), path.join('test', 'expected', 'character-entities.html'), options, done);
+    });
+
     it('Should error when options.url is not set', function(done) {
         var options = {}
         var file = getFile(path.join('test', 'fixtures', 'template.ejs'));
