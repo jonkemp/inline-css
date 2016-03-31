@@ -258,4 +258,12 @@ describe('inline-css', function() {
                 done();
             });
     });
+
+    it('Should move the <style> tag to <body> if options.moveStyleTag is true', function(done) {
+        var options = {
+            moveStyleTag: true,
+            preserveMediaQueries: true
+        };
+        compare(path.join('test', 'fixtures', 'move-style-tag.html'), path.join('test', 'expected', 'move-style-tag.html'), options, done);
+    });
 });

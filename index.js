@@ -21,7 +21,8 @@ module.exports = function (html, options) {
             lowerCaseTags: true,
             lowerCaseAttributeNames: false,
             recognizeCDATA: false,
-            recognizeSelfClosing: false
+            recognizeSelfClosing: false,
+            moveStyleTag: false
         }, options);
 
         inlineContent(html, opt)
