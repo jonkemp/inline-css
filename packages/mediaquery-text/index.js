@@ -13,20 +13,14 @@ var cssom = require('cssom'),
 module.exports = function (css) {
     var rules = cssom.parse(css).cssRules || [],
         queries = [],
-        i,
-        l = rules.length,
-        query,
         queryString,
-        ii,
-        ll,
-        rule,
         style,
         property,
         value,
         important,
         result;
 
-    for (i = 0; i < l; i++) {
+    rules.forEach(function (query) {
         /* CSS types
 		  STYLE: 1,
 		  IMPORT: 3,
@@ -34,17 +28,12 @@ module.exports = function (css) {
 		  FONT_FACE: 5,
 		 */
 
-        if (rules[i].type === cssom.CSSMediaRule.prototype.type) {
-            query = rules[i];
+        if (query.type === cssom.CSSMediaRule.prototype.type) {
             queryString = [];
 
             queryString.push(os.EOL + '@media ' + query.media[0] + ' {');
 
-            ll = query.cssRules.length;
-
-            for (ii = 0; ii < ll; ii++) {
-                rule = query.cssRules[ii];
-
+            query.cssRules.forEach(function (rule) {
                 if (rule.type === cssom.CSSStyleRule.prototype.type || rule.type === cssom.CSSFontFaceRule.prototype.type) {
                     queryString.push('  ' + (rule.type === cssom.CSSStyleRule.prototype.type ? rule.selectorText : '@font-face') + ' {');
 
@@ -56,14 +45,14 @@ module.exports = function (css) {
                     }
                     queryString.push('  }');
                 }
-            }
+            });
 
             queryString.push('}');
             result = queryString.length ? queryString.join(os.EOL) + os.EOL : '';
 
             queries.push(result);
         }
-    }
+    });
 
     return queries.join(os.EOL);
 };
