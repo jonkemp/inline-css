@@ -156,6 +156,13 @@ Default: `false`
 
 Whether to remove the `class` and `id` attributes from the markup.
 
+#### options.moveStyleTag
+
+Type: `Boolean`
+Default: `false`
+
+Whether to move the `<style>` tag out of `<head>` and into the top of `<body>`.
+
 ### cheerio options
 
 Options to passed to [cheerio](https://github.com/cheeriojs/cheerio).
