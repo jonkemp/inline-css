@@ -258,4 +258,11 @@ describe('inline-css', function() {
                 done();
             });
     });
+
+    it('Should handle xhtml documents correctly', function(done) {
+        var options = {
+           xmlMode: true
+        };
+        compare(path.join('test', 'fixtures', 'xhtml.html'), path.join('test', 'expected', 'xhtml.html'), options, done);
+    });
 });
