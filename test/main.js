@@ -213,6 +213,41 @@ describe('inline-css', function() {
         compare(path.join('test', 'fixtures', 'table-attr.html'), path.join('test', 'expected', 'table-attr.html'), options, done);
     });
 
+    it('Should inline css and create attributes on table elements based on provided map', function(done) {
+        var options = {
+            url: './',
+            removeStyleTags: true,
+            applyAttributesTo: {
+              table : {
+                table: {
+                  float: 'align',
+                  'background-color': 'bgcolor',
+                  width: 'width',
+                  height: 'height'
+                },
+                tr: {
+                  'background-color': 'bgcolor',
+                  'vertical-align': 'valign',
+                  'text-align': 'align'
+                },
+                'td,th': {
+                  'background-color': 'bgcolor',
+                  width: 'width',
+                  height: 'height',
+                  'vertical-align': 'valign',
+                  'text-align': 'align',
+                  'white-space': 'nowrap'
+                },
+                'tbody,thead,tfoot': {
+                  'vertical-align': 'valign',
+                  'text-align': 'align'
+                }
+              }
+            }
+        };
+        compare(path.join('test', 'fixtures', 'table-attr.html'), path.join('test', 'expected', 'table-attr.html'), options, done);
+    });
+
     it('Should inline css in HTML templates', function(done) {
         var options = {
             url: './'
