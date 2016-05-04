@@ -249,7 +249,7 @@ describe('inline-css', function() {
         compare(path.join('test', 'fixtures', 'table-attr-manual.html'), path.join('test', 'expected', 'table-attr-manual.html'), options, done);
     });
 
-    it('Should inline css and create attributes on custom tags', function(done) {
+    it('Should inline css and create attributes on custom tags based on map', function(done) {
         var options = {
             url: './',
             removeStyleTags: true,
@@ -263,6 +263,32 @@ describe('inline-css', function() {
                 'font-family': 'font-family',
                 'color': 'color'
               }
+            }
+        };
+        compare(path.join('test', 'fixtures', 'mjml-attr.html'), path.join('test', 'expected', 'mjml-attr.html'), options, done);
+    });
+
+    it('Should inline css in HTML templates', function(done) {
+        var options = {
+            url: './'
+        };
+        compare(path.join('test', 'fixtures', 'template.ejs'), path.join('test', 'fixtures', 'template.ejs'), options, done);
+    });
+
+    it('Should inline css and create 1:1 attributes on custom tags', function(done) {
+        var options = {
+            url: './',
+            removeStyleTags: true,
+            applyAttributesTo: {
+              'mj-section': [
+                'full-width',
+                'text-align',
+                'background-color'
+              ],
+              'mj-section,mj-text': [
+                'font-family',
+                'color'
+              ]
             }
         };
         compare(path.join('test', 'fixtures', 'mjml-attr.html'), path.join('test', 'expected', 'mjml-attr.html'), options, done);
