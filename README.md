@@ -149,6 +149,13 @@ Default: `false`
 
 Whether to apply the `border`, `cellpadding` and `cellspacing` attributes to `table` elements.
 
+#### options.applyAttributesTo
+
+Type: `Object`  
+Default: `null`
+
+One or more maps of rules to be set as attributes, per element. 1:1 maps can be set as arrays, as JSON otherwise _e.g._ `background-color` to `bg-color`.
+
 #### options.removeHtmlSelectors
 
 Type: `Boolean`  
