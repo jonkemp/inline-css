@@ -127,12 +127,12 @@ describe('inline-css', function() {
         compare(path.join('test', 'fixtures', 'regression-selector-newline.html'), path.join('test', 'expected', 'regression-selector-newline.html'), options, done);
     });
 
-    it('Should inline css in edge case', function(done) {
+    it('Should compare properties and inline the most specific', function(done) {
         var options = {};
         compare(path.join('test', 'fixtures', 'specificity.html'), path.join('test', 'expected', 'specificity.html'), options, done);
     });
 
-    it('Should inline css in edge case', function(done) {
+    it('Should preserve existing inline styles ', function(done) {
         var options = {};
         compare(path.join('test', 'fixtures', 'style-preservation.html'), path.join('test', 'expected', 'style-preservation.html'), options, done);
     });
