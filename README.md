@@ -128,6 +128,18 @@ Default: `filePath`
 
 How to resolve hrefs. **Required**.
 
+Relative links will have this value prepended to them. So these links `<a href="page-relative">Page</a>` and `<a href="/root-relative">Root</a>`
+
+
+With this option:
+```js
+inlineCss(html, { url: 'http://example.com/mushroom'})
+    .then(function(html) { console.log(html); });
+
+```
+
+Will result in `<a href="http://example.com/mushroom/page-relative">Page</a>` and `<a href="http://example.com/root-relative">Root</a>`
+
 #### options.preserveMediaQueries
 
 Type: `Boolean`  
