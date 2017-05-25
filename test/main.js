@@ -213,6 +213,87 @@ describe('inline-css', function() {
         compare(path.join('test', 'fixtures', 'table-attr.html'), path.join('test', 'expected', 'table-attr.html'), options, done);
     });
 
+    it('Should inline css and create attributes on table elements based on a series of maps', function(done) {
+        var options = {
+            url: './',
+            removeStyleTags: true,
+            applyAttributesTo: {
+              table: {
+                float: 'align',
+                'background-color': 'bgcolor',
+                width: 'width',
+                height: 'height',
+                padding: 'cellpadding',
+                border: 'border',
+                'border-spacing': 'cellspacing'
+              },
+              tr: {
+                'background-color': 'bgcolor',
+                'vertical-align': 'valign',
+                'text-align': 'align'
+              },
+              'td,th': {
+                'background-color': 'bgcolor',
+                width: 'width',
+                height: 'height',
+                'vertical-align': 'valign',
+                'text-align': 'align',
+                'white-space': 'nowrap'
+              },
+              'tbody,thead,tfoot': {
+                'vertical-align': 'valign',
+                'text-align': 'align'
+              }
+            }
+        };
+        compare(path.join('test', 'fixtures', 'table-attr-manual.html'), path.join('test', 'expected', 'table-attr-manual.html'), options, done);
+    });
+
+    it('Should inline css and create attributes on custom tags based on map', function(done) {
+        var options = {
+            url: './',
+            removeStyleTags: true,
+            applyAttributesTo: {
+              'mj-section': {
+                'full-width': 'full-width',
+                'text-align': 'text-align',
+                'background-color': 'background-color'
+              },
+              'mj-section,mj-text': {
+                'font-family': 'font-family',
+                'color': 'color'
+              }
+            }
+        };
+        compare(path.join('test', 'fixtures', 'mjml-attr.html'), path.join('test', 'expected', 'mjml-attr.html'), options, done);
+    });
+
+    it('Should inline css in HTML templates', function(done) {
+        var options = {
+            url: './'
+        };
+        compare(path.join('test', 'fixtures', 'template.ejs'), path.join('test', 'fixtures', 'template.ejs'), options, done);
+    });
+
+    it('Should inline css and create 1:1 attributes on custom tags', function(done) {
+        var options = {
+            url: './',
+            removeStyleTags: true,
+            applyAttributesTo: {
+              'mj-section': [
+                'full-width',
+                'text-align',
+                'background-color'
+              ],
+              'mj-section,mj-text': [
+                'font-family',
+                'color'
+              ]
+            }
+        };
+        compare(path.join('test', 'fixtures', 'mjml-attr.html'), path.join('test', 'expected', 'mjml-attr.html'), options, done);
+    });
+
     it('Should inline css in HTML templates', function(done) {
         var options = {
             url: './'

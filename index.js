@@ -16,6 +16,7 @@ module.exports = function (html, options) {
             removeHtmlSelectors: false,
             applyWidthAttributes: false,
             applyTableAttributes: false,
+            applyAttributesTo: null,
             xmlMode: false,
             decodeEntities: false,
             lowerCaseTags: true,
