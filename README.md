@@ -126,7 +126,25 @@ Whether to remove the original `<link rel="stylesheet">` tags after (possibly) i
 Type: `String`  
 Default: `filePath`
 
-How to resolve hrefs. **Required**.
+How to resolve hrefs. Must be a string of one character or more. **Required**.
+
+Relative urls in links will have this value prepended to them. So these links:
+* `<a href="page-relative">Page</a>`
+* `<a href="/root-relative">Root</a>` <- _note leading /_
+
+
+With this option:
+```js
+inlineCss(html, { url: 'http://example.com/mushroom'})
+    .then(function(html) { console.log(html); });
+```
+
+Will result in
+
+* `<a href="http://example.com/mushroom/page-relative">Page</a>`
+* `<a href="http://example.com/root-relative">Root</a>`
+
+If you don't need this feature, simply set the property to a short string eg `{url: ' '}` (one space) and everything will work.
 
 #### options.preserveMediaQueries
 
