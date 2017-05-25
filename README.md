@@ -144,7 +144,7 @@ Will result in
 * `<a href="http://example.com/mushroom/page-relative">Page</a>`
 * `<a href="http://example.com/root-relative">Root</a>`
 
-If you don't need this feature, simply set the property to a short string eg `{url: 'x'}` and everything will work.
+If you don't need this feature, simply set the property to a short string eg `{url: ' '}` (one space) and everything will work.
 
 #### options.preserveMediaQueries
 
