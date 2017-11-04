@@ -28,12 +28,12 @@
     "cssom": "^0.3.0"
   },
   "devDependencies": {
-    "coveralls": "^2.11.6",
+    "coveralls": "^3.0.0",
     "gulp": "^3.9.0",
-    "gulp-eslint": "^2.0.0",
-    "gulp-mocha": "^2.2.0",
+    "gulp-eslint": "^4.0.0",
+    "gulp-mocha": "^4.3.1",
     "mocha": "*",
-    "nyc": "^5.6.0",
+    "nyc": "^11.3.0",
     "should": "*"
   }
 }
