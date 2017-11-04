@@ -22,19 +22,19 @@
   },
   "homepage": "https://github.com/jonkemp/extract-css",
   "dependencies": {
-    "batch": "^0.5.2",
+    "batch": "^0.6.1",
     "href-content": "^1.0.0",
     "list-stylesheets": "^1.1.0",
     "style-data": "^1.1.0"
   },
   "devDependencies": {
-    "coveralls": "^2.11.6",
+    "coveralls": "^3.0.0",
     "gulp": "^3.9.0",
-    "gulp-eslint": "^1.1.1",
-    "gulp-mocha": "^2.0.0",
+    "gulp-eslint": "^4.0.0",
+    "gulp-mocha": "^4.3.1",
     "gulp-util": "^3.0.2",
-    "mocha": "^2.1.0",
-    "nyc": "^5.6.0",
-    "should": "^5.2.0"
+    "mocha": "^4.0.1",
+    "nyc": "^11.3.0",
+    "should": "^13.1.3"
   }
 }
