@@ -192,7 +192,12 @@ describe('inline-css', function() {
             removeStyleTags: true,
             preserveMediaQueries: true
         };
-        compare(path.join('test', 'fixtures', 'media-preserve.html'), path.join('test', 'expected', 'media-preserve.html'), options, done);
+        compare(
+            path.join('test', 'fixtures', 'media-preserve.html'),
+            path.join('test', 'expected', 'media-preserve.html'),
+            options,
+            done
+        );
     });
 
     it('Should inline css and create width attributes on elements', function(done) {
