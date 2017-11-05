@@ -2,7 +2,7 @@
 
 var cssom = require('cssom'),
     os = require('os'),
-    CSSFontFaceRule = require('./node_modules/cssom/lib/CSSFontFaceRule').CSSFontFaceRule;
+    CSSFontFaceRule = require('cssom/lib/CSSFontFaceRule').CSSFontFaceRule;
 
 /**
  * Returns Media Query text for a CSS source.
