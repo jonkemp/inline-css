@@ -1,0 +1,15 @@
+p {
+    color: blue;
+}
+@media screen {
+    a {
+        color: blue !important;
+        background: red;
+    }
+    @font-face {
+        font-family: 'Arial2';
+    }
+}        
+@font-face {
+    font-family: 'Tahoma2';
+}
