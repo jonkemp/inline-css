@@ -39,7 +39,13 @@ describe('extract-css', function() {
             removeLinkTags: true,
             preserveMediaQueries: false
         };
-        compare(path.join('test', 'fixtures', 'in.html'), path.join('test', 'expected', 'out.html'), path.join('test', 'expected', 'file.css'), options, done);
+        compare(
+            path.join('test', 'fixtures', 'in.html'),
+            path.join('test', 'expected', 'out.html'),
+            path.join('test', 'expected', 'file.css'),
+            options,
+            done
+        );
     });
 
     it('Should handle malformed CSS', function(done) {
@@ -50,6 +56,12 @@ describe('extract-css', function() {
             removeLinkTags: true,
             preserveMediaQueries: false
         };
-        compare(path.join('test', 'fixtures', 'malformed.html'), path.join('test', 'expected', 'malformed.html'), path.join('test', 'expected', 'malformed.css'), options, done);
+        compare(
+            path.join('test', 'fixtures', 'malformed.html'),
+            path.join('test', 'expected', 'malformed.html'),
+            path.join('test', 'expected', 'malformed.css'),
+            options,
+            done
+        );
     });
 });
