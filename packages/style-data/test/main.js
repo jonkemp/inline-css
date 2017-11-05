@@ -34,7 +34,13 @@ describe('style-data', function() {
             removeStyleTags: true,
             preserveMediaQueries: false
         };
-        compare(path.join('test', 'fixtures', 'in.html'), path.join('test', 'expected', 'out.html'), [ '\n      h1 {\n        border: 1px solid #ccc;\n      }\n    ' ], options, done);
+        compare(
+            path.join('test', 'fixtures', 'in.html'),
+            path.join('test', 'expected', 'out.html'),
+            [ '\n      h1 {\n        border: 1px solid #ccc;\n      }\n    ' ],
+            options,
+            done
+        );
     });
 
     it('Should leave html from no style html', function(done) {
@@ -43,7 +49,13 @@ describe('style-data', function() {
             removeStyleTags: true,
             preserveMediaQueries: false
         };
-        compare(path.join('test', 'fixtures', 'no-style-tag', 'in.html'), path.join('test', 'expected', 'no-style-tag', 'out.html'), [], options, done);
+        compare(
+            path.join('test', 'fixtures', 'no-style-tag', 'in.html'),
+            path.join('test', 'expected', 'no-style-tag', 'out.html'),
+            [],
+            options,
+            done
+        );
     });
 
     it('Should leave style blocks if they contain media queries', function(done) {
@@ -52,6 +64,12 @@ describe('style-data', function() {
             removeStyleTags: true,
             preserveMediaQueries: true
         };
-        compare(path.join('test', 'fixtures', 'media-queries', 'in.html'), path.join('test', 'expected', 'media-queries', 'out.html'), [ '\n      h1 {\n        border: 1px solid #ccc;\n      }\n    ', '\n      @media only screen and (min-width: 640px) {\n        .headline {\n          color: blue;\n        }\n      }\n    '], options, done);
+        compare(
+            path.join('test', 'fixtures', 'media-queries', 'in.html'),
+            path.join('test', 'expected', 'media-queries', 'out.html'),
+            [ '\n      h1 {\n        border: 1px solid #ccc;\n      }\n    ', '\n      @media only screen and (min-width: 640px) {\n        .headline {\n          color: blue;\n        }\n      }\n    '],
+            options,
+            done
+        );
     });
 });
