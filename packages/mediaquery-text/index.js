@@ -1,7 +1,8 @@
 'use strict';
 
 var cssom = require('cssom'),
-    os = require('os');
+    os = require('os'),
+    CSSFontFaceRule = require('./node_modules/cssom/lib/CSSFontFaceRule').CSSFontFaceRule;
 
 /**
  * Returns Media Query text for a CSS source.
@@ -34,7 +35,7 @@ module.exports = function (css) {
             queryString.push(os.EOL + '@media ' + query.media[0] + ' {');
 
             query.cssRules.forEach(function (rule) {
-                if (rule.type === cssom.CSSStyleRule.prototype.type || rule.type === cssom.CSSFontFaceRule.prototype.type) {
+                if (rule.type === cssom.CSSStyleRule.prototype.type || rule.type === CSSFontFaceRule.prototype.type) {
                     queryString.push('  ' + (rule.type === cssom.CSSStyleRule.prototype.type ? rule.selectorText : '@font-face') + ' {');
 
                     for (style = 0; style < rule.style.length; style++) {
