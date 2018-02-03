@@ -8,11 +8,11 @@
   },
   "dependencies": {
     "bluebird": "^3.5.1",
-    "cheerio": "0.19.0",
+    "cheerio": "0.22.0",
     "css-rules": "^1.0.0",
     "extend": "^3.0.0",
     "extract-css": "^1.0.0",
-    "flatten": "0.0.1",
+    "flatten": "^1.0.2",
     "object.pick": "^1.1.1",
     "slick": "^1.12.1",
     "specificity": "^0.3.2"
@@ -21,9 +21,9 @@
     "coveralls": "^3.0.0",
     "gulp": "^3.9.0",
     "gulp-eslint": "^4.0.0",
-    "gulp-mocha": "^4.3.1",
+    "gulp-mocha": "^5.0.0",
     "gulp-util": "^3.0.2",
-    "mocha": "^4.0.1",
+    "mocha": "^5.0.0",
     "nyc": "^11.3.0",
     "should": "*"
   },
