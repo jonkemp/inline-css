@@ -92,7 +92,7 @@ describe('inline-css', function() {
         compare(path.join('test', 'fixtures', 'identical-important.html'), path.join('test', 'expected', 'identical-important.html'), options, done);
     });
 
-    it('Should inline css in edge case', function(done) {
+    it('Should ignore psuedo selectors', function(done) {
         var options = {};
         compare(path.join('test', 'fixtures', 'ignore-pseudos.html'), path.join('test', 'expected', 'ignore-pseudos.html'), options, done);
     });
