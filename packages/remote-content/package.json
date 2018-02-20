@@ -1,6 +1,6 @@
 {
   "name": "remote-content",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Get remote content.",
   "main": "index.js",
   "scripts": {
