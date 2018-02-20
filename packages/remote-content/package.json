@@ -28,15 +28,15 @@
   },
   "homepage": "https://github.com/jonkemp/remote-content",
   "dependencies": {
-    "superagent": "^1.1.0"
+    "superagent": "^3.8.2"
   },
   "devDependencies": {
-    "coveralls": "^2.11.6",
-    "gulp": "^3.9.0",
-    "gulp-eslint": "^1.1.1",
-    "gulp-mocha": "^2.0.0",
-    "mocha": "^2.3.4",
-    "nyc": "^5.5.0",
-    "should": "^5.2.0"
+    "coveralls": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-eslint": "^4.0.2",
+    "gulp-mocha": "^5.0.0",
+    "mocha": "^5.0.1",
+    "nyc": "^11.4.1",
+    "should": "^13.2.1"
   }
 }
