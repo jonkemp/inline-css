@@ -35,6 +35,7 @@ module.exports = function (html, options, callback) {
             stylesData.css.push(content);
         });
         css = stylesData.css.join('\n');
-        callback(null, stylesData.html, css);
+
+        return callback(null, stylesData.html, css);
     });
 };
