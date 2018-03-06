@@ -41,6 +41,13 @@ Default: `true`
 
 Whether to remove the original `<link rel="stylesheet">` tags after (possibly) inlining the css from them.
 
+#### options.codeBlocks
+
+Type: `Object`  
+Default: `{ EJS: { start: '<%', end: '%>' }, HBS: { start: '{{', end: '}}' } }`
+
+An object where each value has a `start` and `end` to specify fenced code blocks that should be ignored during parsing. For example, Handlebars (hbs) templates are `HBS: {start: '{{', end: '}}'}`. Note that `codeBlocks` is a dictionary which can contain many different code blocks, so don't do `codeBlocks: {...}` do `codeBlocks.myBlock = {...}`.
+
 ### cheerio options
 
 Options to passed to [cheerio](https://github.com/cheeriojs/cheerio).

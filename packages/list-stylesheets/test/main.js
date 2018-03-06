@@ -18,21 +18,58 @@ function getFile(filePath) {
     });
 }
 
-function compare(fixturePath, expectedHTML, options, done) {
-    var file = getFile(fixturePath);
-
-    var data = getStylesheetList(file.contents.toString('utf8'), options);
-    data.hrefs[0].should.be.equal('file.css');
-    data.html.should.be.equal(String(fs.readFileSync(expectedHTML)));
-    done();
-}
-
-describe('list-stylesheets', function() {
-    it('Should list stylesheets from an html file', function(done) {
+describe('list-stylesheets', function () {
+    it('Should list stylesheets from an html file', function (done) {
         var options = {
             applyLinkTags: true,
             removeLinkTags: true
         };
+
+        function compare(fixturePath, expectedHTML) {
+            var file = getFile(fixturePath),
+                data = getStylesheetList(file.contents.toString('utf8'), options);
+
+            data.hrefs[0].should.be.equal('file.css');
+            data.html.should.be.equal(String(fs.readFileSync(expectedHTML)));
+            done();
+        }
+
         compare(path.join('test', 'fixtures', 'in.html'), path.join('test', 'expected', 'out.html'), options, done);
+    });
+
+    it('Should ignore hbs code blocks', function (done) {
+        var options = {
+            applyLinkTags: true,
+            removeLinkTags: true
+        };
+
+        function compare(fixturePath, expectedHTML) {
+            var file = getFile(fixturePath),
+                data = getStylesheetList(file.contents.toString('utf8'), options);
+
+            data.hrefs[0].should.be.equal('codeblocks.css');
+            data.html.should.be.equal(String(fs.readFileSync(expectedHTML)));
+            done();
+        }
+
+        compare(path.join('test', 'fixtures', 'codeblocks.html'), path.join('test', 'expected', 'codeblocks.html'), options, done);
+    });
+
+    it('Should ignore ejs code blocks', function (done) {
+        var options = {
+            applyLinkTags: true,
+            removeLinkTags: true
+        };
+
+        function compare(fixturePath, expectedHTML) {
+            var file = getFile(fixturePath),
+                data = getStylesheetList(file.contents.toString('utf8'), options);
+
+            data.hrefs[0].should.be.equal('ejs.css');
+            data.html.should.be.equal(String(fs.readFileSync(expectedHTML)));
+            done();
+        }
+
+        compare(path.join('test', 'fixtures', 'ejs.html'), path.join('test', 'expected', 'ejs.html'), options, done);
     });
 });
