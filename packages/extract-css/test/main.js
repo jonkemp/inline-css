@@ -64,4 +64,21 @@ describe('extract-css', function() {
             done
         );
     });
+
+    it('Should ignore code blocks', function(done) {
+        var options = {
+            applyStyleTags: true,
+            removeStyleTags: true,
+            applyLinkTags: true,
+            removeLinkTags: true,
+            preserveMediaQueries: false
+        };
+        compare(
+            path.join('test', 'fixtures', 'codeblocks.html'),
+            path.join('test', 'expected', 'codeblocks.html'),
+            path.join('test', 'expected', 'codeblocks.css'),
+            options,
+            done
+        );
+    });
 });
