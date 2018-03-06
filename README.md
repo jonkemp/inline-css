@@ -6,7 +6,7 @@
 
 Inspired by the [juice](https://github.com/Automattic/juice) library.
 
-## Why inline-css instead of Juice?
+## Features
 - Uses [cheerio](https://github.com/cheeriojs/cheerio) instead of jsdom
 - Works on Windows
 - Preserves Doctype
@@ -173,6 +173,13 @@ Type: `Boolean`
 Default: `false`
 
 Whether to remove the `class` and `id` attributes from the markup.
+
+#### options.codeBlocks
+
+Type: `Object`  
+Default: `{ EJS: { start: '<%', end: '%>' }, HBS: { start: '{{', end: '}}' } }`
+
+An object where each value has a `start` and `end` to specify fenced code blocks that should be ignored during parsing and inlining. For example, Handlebars (hbs) templates are `HBS: {start: '{{', end: '}}'}`. `codeBlocks` can fix problems where otherwise inline-css might interpret code like `<=` as HTML, when it is meant to be template language code. Note that `codeBlocks` is a dictionary which can contain many different code blocks, so don't do `codeBlocks: {...}` do `codeBlocks.myBlock = {...}`.
 
 ### cheerio options
 

@@ -16,6 +16,10 @@ module.exports = function (html, options) {
             removeHtmlSelectors: false,
             applyWidthAttributes: false,
             applyTableAttributes: false,
+            codeBlocks: {
+                EJS: { start: '<%', end: '%>' },
+                HBS: { start: '{{', end: '}}' }
+            },
             xmlMode: false,
             decodeEntities: false,
             lowerCaseTags: true,

@@ -270,4 +270,18 @@ describe('inline-css', function() {
         };
         compare(path.join('test', 'fixtures', 'xhtml.html'), path.join('test', 'expected', 'xhtml.html'), options, done);
     });
+
+    it('Should ignore hbs code blocks', function(done) {
+        var options = {
+           xmlMode: true
+        };
+        compare(path.join('test', 'fixtures', 'codeblocks.html'), path.join('test', 'expected', 'codeblocks.html'), options, done);
+    });
+
+    it('Should ignore ejs code blocks', function(done) {
+        var options = {
+           xmlMode: false
+        };
+        compare(path.join('test', 'fixtures', 'ejs.html'), path.join('test', 'expected', 'ejs.html'), options, done);
+    });
 });
