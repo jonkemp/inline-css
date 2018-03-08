@@ -1757,9 +1757,9 @@ liftoff@^2.1.0:
     rechoir "^0.6.2"
     resolve "^1.1.7"
 
-list-stylesheets@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/list-stylesheets/-/list-stylesheets-1.2.0.tgz#e3126a5a0a50e5b96b5e3665c19238d591b184f4"
+list-stylesheets@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/list-stylesheets/-/list-stylesheets-1.2.1.tgz#797f36c5a454f3113691973def42e4f0cc66dfeb"
   dependencies:
     cheerio "^0.22.0"
     extend "^3.0.1"
@@ -2886,9 +2886,9 @@ strip-json-comments@~2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
 
-style-data@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/style-data/-/style-data-1.2.0.tgz#7414f2b6308916984194b325f63df72e07d750a1"
+style-data@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/style-data/-/style-data-1.2.1.tgz#1f7279c8f40c2133bedf0bbb338df99742965d09"
   dependencies:
     cheerio "^0.22.0"
     extend "^3.0.1"

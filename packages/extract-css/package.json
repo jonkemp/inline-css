@@ -24,8 +24,8 @@
   "dependencies": {
     "batch": "^0.6.1",
     "href-content": "^1.0.2",
-    "list-stylesheets": "^1.2.0",
-    "style-data": "^1.2.0"
+    "list-stylesheets": "^1.2.1",
+    "style-data": "^1.2.1"
   },
   "devDependencies": {
     "coveralls": "^3.0.0",
