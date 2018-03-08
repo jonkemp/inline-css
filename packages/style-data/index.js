@@ -20,7 +20,7 @@ module.exports = function (html, options, callback) {
         codeBlockLookup = [],
         encodeCodeBlocks = function (_html) {
             var __html = _html,
-                blocks = options.codeBlocks || codeBlocks;
+                blocks = extend(codeBlocks, options.codeBlocks);
 
             Object.keys(blocks).forEach(function (key) {
                 var re = new RegExp(blocks[key].start + '([\\S\\s]*?)' + blocks[key].end, 'g');
