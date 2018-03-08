@@ -284,4 +284,14 @@ describe('inline-css', function() {
         };
         compare(path.join('test', 'fixtures', 'ejs.html'), path.join('test', 'expected', 'ejs.html'), options, done);
     });
+
+    it('Should ignore user defined code blocks', function(done) {
+        var options = {
+            xmlMode: true,
+            codeBlocks: {
+                craze: { start: '<<', end: '>>' }
+            }
+        };
+        compare(path.join('test', 'fixtures', 'codeblocks-external.html'), path.join('test', 'expected', 'codeblocks-external.html'), options, done);
+    });
 });

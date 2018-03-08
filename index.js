@@ -6,7 +6,7 @@ var Promise = require('bluebird'),
 
 module.exports = function (html, options) {
     return new Promise(function (resolve, reject) {
-        var opt = extend({
+        var opt = extend(true, {
             extraCss: '',
             applyStyleTags: true,
             removeStyleTags: true,
