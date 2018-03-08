@@ -72,4 +72,22 @@ describe('list-stylesheets', function () {
 
         compare(path.join('test', 'fixtures', 'ejs.html'), path.join('test', 'expected', 'ejs.html'), options, done);
     });
+
+    it('Should ignore user defined code blocks', function (done) {
+        var options = {
+            codeBlocks: {
+                craze: { start: '<<', end: '>>' }
+            }
+        };
+
+        function compare(fixturePath, expectedHTML) {
+            var file = getFile(fixturePath),
+                data = getStylesheetList(file.contents.toString('utf8'), options);
+
+            data.html.should.be.equal(String(fs.readFileSync(expectedHTML)));
+            done();
+        }
+
+        compare(path.join('test', 'fixtures', 'codeblocks-external.html'), path.join('test', 'expected', 'codeblocks-external.html'), options, done);
+    });
 });
