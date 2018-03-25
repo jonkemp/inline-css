@@ -68,7 +68,7 @@ describe('style-data', function () {
         compare(
             path.join('test', 'fixtures', 'media-queries', 'in.html'),
             path.join('test', 'expected', 'media-queries', 'out.html'),
-            [ '\n      h1 {\n        border: 1px solid #ccc;\n      }\n    ', '\n      @media only screen and (min-width: 640px) {\n        .headline {\n          color: blue;\n        }\n      }\n    '],
+            [ '\n      h1 {\n        border: 1px solid #ccc;\n      }\n    ', '\n      @media only screen and (min-width: 640px) {\n        .headline {\n          color: blue;\n        }\n      }\n    ' ],
             options,
             done
         );
@@ -132,7 +132,7 @@ describe('style-data', function () {
         compare(
             path.join('test', 'fixtures', 'data-embed', 'in.html'),
             path.join('test', 'expected', 'data-embed', 'out.html'),
-            [ '\n      h1 {\n        border: 1px solid #ccc;\n      }\n    '],
+            [ '\n      h1 {\n        border: 1px solid #ccc;\n      }\n    ' ],
             options,
             done
         );

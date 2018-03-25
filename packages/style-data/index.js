@@ -66,8 +66,8 @@ module.exports = function (html, options, callback) {
     $('style').each(function (index, element) {
         var mediaQueries;
 
-        // if data-embed property exists, skip inlining and removing 
-        if(typeof $(element).data("embed") !== 'undefined') {
+        // if data-embed property exists, skip inlining and removing
+        if (typeof $(element).data('embed') !== 'undefined') {
             return;
         }
 
