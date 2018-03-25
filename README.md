@@ -181,6 +181,14 @@ Default: `{ EJS: { start: '<%', end: '%>' }, HBS: { start: '{{', end: '}}' } }`
 
 An object where each value has a `start` and `end` to specify fenced code blocks that should be ignored during parsing and inlining. For example, Handlebars (hbs) templates are `HBS: {start: '{{', end: '}}'}`. `codeBlocks` can fix problems where otherwise inline-css might interpret code like `<=` as HTML, when it is meant to be template language code. Note that `codeBlocks` is a dictionary which can contain many different code blocks, so don't do `codeBlocks: {...}` do `codeBlocks.myBlock = {...}`.
 
+### Special markup
+
+#### data-embed
+
+When a data-embed attribute is present on a <style></style> tag, inline-css will not inline the styles and will not remove the <style></style> tags.
+
+This can be used to embed email client support hacks that rely on css selectors into your email templates.
+
 ### cheerio options
 
 Options to passed to [cheerio](https://github.com/cheeriojs/cheerio).
