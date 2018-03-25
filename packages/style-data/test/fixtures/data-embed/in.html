@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      h1 {
+        border: 1px solid #ccc;
+      }
+    </style>
+    <link rel="stylesheet" href="file.css"/>
+  </head>
+  <body>
+    <style data-embed>
+        .headline {
+          color: blue;
+        }
+    </style>
+    <style data-embed="">
+        .headline {
+          color: green;
+        }
+    </style>
+    <style data-embed="false">
+        .headline {
+          color: red;
+        }
+    </style>
+    <style data-embed="undefined">
+        .headline {
+          color: yellow;
+        }
+    </style>
+    <style data-embed="null">
+        .headline {
+          color: cyan;
+        }
+    </style>
+    <h1>Hi</h1>
+    <table>
+      <tr>
+        <td class="headline">Some Headline</td>
+      </tr>
+    </table>
+  </body>
+</html>

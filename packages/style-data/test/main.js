@@ -121,4 +121,20 @@ describe('style-data', function () {
             done
         );
     });
+
+    it('Should ignore style blocks if data-embed attribute is present on them', function (done) {
+        var options = {
+            applyStyleTags: true,
+            removeStyleTags: true,
+            preserveMediaQueries: true
+        };
+
+        compare(
+            path.join('test', 'fixtures', 'data-embed', 'in.html'),
+            path.join('test', 'expected', 'data-embed', 'out.html'),
+            [ '\n      h1 {\n        border: 1px solid #ccc;\n      }\n    '],
+            options,
+            done
+        );
+    });
 });
