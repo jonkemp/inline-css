@@ -28,7 +28,9 @@
   },
   "homepage": "https://github.com/jonkemp/remote-content",
   "dependencies": {
-    "superagent": "^3.8.2"
+    "proxy-from-env": "^1.0.0",
+    "superagent": "^3.8.2",
+    "superagent-proxy": "^1.0.3"
   },
   "devDependencies": {
     "coveralls": "^3.0.0",
