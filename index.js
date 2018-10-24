@@ -28,7 +28,7 @@ module.exports = function (html, options) {
             recognizeSelfClosing: false
         }, options);
 
-        inlineContent(html, opt)
+        inlineContent(String(html), opt)
             .then(function (data) {
                 resolve(data);
             })
