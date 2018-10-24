@@ -30,12 +30,12 @@
   "devDependencies": {
     "coveralls": "^3.0.0",
     "gulp": "^3.9.1",
-    "gulp-eslint": "^4.0.2",
-    "gulp-mocha": "^5.0.0",
+    "gulp-eslint": "^5.0.0",
+    "gulp-mocha": "^6.0.0",
     "gulp-util": "^3.0.8",
     "list-stylesheets": "^1.1.0",
     "mocha": "^5.0.1",
-    "nyc": "^11.4.1",
+    "nyc": "^13.1.0",
     "should": "^13.2.1"
   }
 }
