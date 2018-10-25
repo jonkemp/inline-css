@@ -27,7 +27,7 @@
   "dependencies": {
     "cheerio": "^0.22.0",
     "extend": "^3.0.1",
-    "mediaquery-text": "^1.0.5",
+    "mediaquery-text": "^1.0.6",
     "object.pick": "^1.3.0"
   },
   "devDependencies": {
