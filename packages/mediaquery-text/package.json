@@ -25,15 +25,15 @@
   },
   "homepage": "https://github.com/jonkemp/mediaquery-text",
   "dependencies": {
-    "cssom": "^0.3.0"
+    "cssom": "0.3.2"
   },
   "devDependencies": {
-    "coveralls": "^3.0.0",
+    "coveralls": "^3.0.2",
     "gulp": "^3.9.0",
     "gulp-eslint": "^5.0.0",
     "gulp-mocha": "^6.0.0",
     "mocha": "^5.0.1",
     "nyc": "^13.1.0",
-    "should": "*"
+    "should": "^13.2.3"
   }
 }
