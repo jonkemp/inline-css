@@ -5,12 +5,12 @@
 var should = require('should'),
     fs = require('fs'),
     path = require('path'),
-    gutil = require('gulp-util'),
+    Vinyl = require('vinyl'),
     getStylesheetList = require('list-stylesheets'),
     getHrefContent = require('../index');
 
 function getFile(filePath) {
-    return new gutil.File({
+    return new Vinyl({
         path: path.resolve(filePath),
         cwd: './test/',
         base: path.dirname(filePath),
