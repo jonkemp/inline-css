@@ -32,6 +32,7 @@
   },
   "devDependencies": {
     "coveralls": "^3.0.0",
+    "cryptiles": ">=4.1.2",
     "gulp": "^4.0.0",
     "gulp-eslint": "^5.0.0",
     "gulp-mocha": "^6.0.0",
