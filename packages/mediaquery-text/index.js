@@ -14,6 +14,7 @@ var cssom = require('cssom'),
 module.exports = function (css) {
     var rules = cssom.parse(css).cssRules || [],
         queries = [],
+        queryMedia,
         queryString,
         style,
         property,
@@ -30,9 +31,10 @@ module.exports = function (css) {
 		 */
 
         if (query.type === cssom.CSSMediaRule.prototype.type) {
+            queryMedia = Array.prototype.slice.call(query.media).join(', ');
             queryString = [];
 
-            queryString.push(os.EOL + '@media ' + query.media[0] + ' {');
+            queryString.push(os.EOL + '@media ' + queryMedia + ' {');
 
             query.cssRules.forEach(function (rule) {
                 if (rule.type === cssom.CSSStyleRule.prototype.type || rule.type === CSSFontFaceRule.prototype.type) {
