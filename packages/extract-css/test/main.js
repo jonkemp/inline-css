@@ -13,7 +13,7 @@ function getFile(filePath) {
         path: path.resolve(filePath),
         cwd: './test/',
         base: path.dirname(filePath),
-        contents: new Buffer(String(fs.readFileSync(filePath)))
+        contents: Buffer.from(String(fs.readFileSync(filePath)))
     });
 }
 
