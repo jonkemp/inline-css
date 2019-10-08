@@ -28,12 +28,12 @@
     "remote-content": "^1.0.5"
   },
   "devDependencies": {
-    "coveralls": "^3.0.3",
+    "coveralls": "^3.0.6",
     "gulp": "^4.0.2",
-    "gulp-eslint": "^5.0.0",
-    "gulp-mocha": "^6.0.0",
-    "list-stylesheets": "^1.2.2",
-    "mocha": "^6.1.4",
+    "gulp-eslint": "^6.0.0",
+    "gulp-mocha": "^7.0.2",
+    "list-stylesheets": "^1.2.3",
+    "mocha": "^6.2.1",
     "nyc": "^14.1.1",
     "should": "^13.2.3",
     "vinyl": "^2.2.0"
