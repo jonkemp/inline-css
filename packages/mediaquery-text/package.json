@@ -1,6 +1,6 @@
 {
   "name": "mediaquery-text",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Returns Media Query text for a CSS source.",
   "main": "index.js",
   "scripts": {
