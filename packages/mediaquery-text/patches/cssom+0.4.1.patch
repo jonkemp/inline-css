@@ -1,0 +1,13 @@
+diff --git a/node_modules/cssom/lib/parse.js b/node_modules/cssom/lib/parse.js
+index 563fa72..4aaf629 100644
+--- a/node_modules/cssom/lib/parse.js
++++ b/node_modules/cssom/lib/parse.js
+@@ -399,7 +399,7 @@ CSSOM.parse = function parse(token) {
+ 							prevScope = currentScope;
+ 							currentScope = parentRule;
+ 							currentScope.cssRules.push(prevScope);
+-							break;
++							// break;
+ 						}
+ 
+ 						if (ancestorRules.length === 0) {
