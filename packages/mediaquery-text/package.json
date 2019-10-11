@@ -6,8 +6,7 @@
   "scripts": {
     "test": "mocha",
     "coverage": "nyc npm test && nyc report",
-    "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
-    "postinstall": "patch-package"
+    "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
@@ -26,8 +25,7 @@
   },
   "homepage": "https://github.com/jonkemp/mediaquery-text",
   "dependencies": {
-    "cssom": "0.4.1",
-    "patch-package": "^6.2.0"
+    "cssom": "0.3.2"
   },
   "devDependencies": {
     "coveralls": "^3.0.6",
