@@ -8,21 +8,21 @@
   },
   "dependencies": {
     "array-flatten": "^2.1.2",
-    "bluebird": "^3.5.5",
+    "bluebird": "^3.7.1",
     "cheerio": "^0.22.0",
-    "css-rules": "^1.0.4",
+    "css-rules": "^1.0.5",
     "extend": "^3.0.2",
-    "extract-css": "^1.2.3",
+    "extract-css": "^1.2.4",
     "object.pick": "^1.3.0",
     "slick": "^1.12.2",
     "specificity": "^0.4.1"
   },
   "devDependencies": {
-    "coveralls": "^3.0.3",
+    "coveralls": "^3.0.7",
     "gulp": "^4.0.2",
-    "gulp-eslint": "^5.0.0",
-    "gulp-mocha": "^6.0.0",
-    "mocha": "^6.1.4",
+    "gulp-eslint": "^6.0.0",
+    "gulp-mocha": "^7.0.2",
+    "mocha": "^6.2.2",
     "nyc": "^14.1.1",
     "should": "^13.2.3",
     "vinyl": "^2.2.0"
