@@ -1,7 +1,6 @@
 'use strict';
 
-var Promise = require('bluebird'),
-    extend = require('extend'),
+var extend = require('extend'),
     inlineContent = require('./lib/inlineContent');
 
 module.exports = function (html, options) {

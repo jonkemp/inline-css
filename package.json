@@ -8,7 +8,6 @@
   },
   "dependencies": {
     "array-flatten": "^2.1.2",
-    "bluebird": "^3.7.1",
     "cheerio": "^0.22.0",
     "css-rules": "^1.0.5",
     "extend": "^3.0.2",
