@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/jonkemp/mediaquery-text",
   "dependencies": {
-    "cssom": "0.3.2"
+    "cssom": "^0.4.2"
   },
   "devDependencies": {
     "coveralls": "^3.0.6",
