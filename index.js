@@ -14,6 +14,8 @@ module.exports = function (html, options) {
             preserveMediaQueries: false,
             removeHtmlSelectors: false,
             applyWidthAttributes: false,
+            applyHeightAttributes: false,
+            applyCenterAttributes: false,
             applyTableAttributes: false,
             codeBlocks: {
                 EJS: { start: '<%', end: '%>' },
