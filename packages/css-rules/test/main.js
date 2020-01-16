@@ -1,21 +1,19 @@
 /* eslint-disable */
 /* global describe, it */
 
-'use strict';
+const assert = require('assert');
+const fs = require('fs');
+const path = require('path');
+const parseCSS = require('../index');
 
-var assert = require('assert'),
-    fs = require('fs'),
-    path = require('path'),
-    parseCSS = require('../index');
-
-describe('css-rules', function() {
-    it('Should return a parse tree for a CSS source', function(done) {
-        var css = String(fs.readFileSync(path.join('test', 'fixtures', 'file.css')));
-        var rules = parseCSS(css);
+describe('css-rules', () => {
+    it('Should return a parse tree for a CSS source', done => {
+        const css = String(fs.readFileSync(path.join('test', 'fixtures', 'file.css')));
+        const rules = parseCSS(css);
 
         assert.ok(rules);
         assert.equal(rules.length, 4);
-        rules.forEach(function (rule) {
+        rules.forEach(rule => {
             assert.ok(rule);
             assert.equal(rule.length, 2);
 
@@ -38,8 +36,8 @@ describe('css-rules', function() {
         done();
     });
 
-    it('Should error when passed malformed CSS', function(done) {
-        var css = String(fs.readFileSync(path.join('test', 'fixtures', 'malformed.css')));
+    it('Should error when passed malformed CSS', done => {
+        const css = String(fs.readFileSync(path.join('test', 'fixtures', 'malformed.css')));
 
         try {
            parseCSS(css);

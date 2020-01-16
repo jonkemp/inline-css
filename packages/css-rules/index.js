@@ -1,6 +1,4 @@
-'use strict';
-
-var cssom = require('cssom');
+const cssom = require('cssom');
 
 /**
 * Returns an array of the selectors.
@@ -11,12 +9,12 @@ var cssom = require('cssom');
 */
 
 function extract(selectorText) {
-    var attr = 0,
-        sels = [],
-        sel = '',
-        i,
-        c,
-        l = selectorText.length;
+    let attr = 0;
+    const sels = [];
+    let sel = '';
+    let i;
+    let c;
+    const l = selectorText.length;
 
     for (i = 0; i < l; i++) {
         c = selectorText.charAt(i);
@@ -55,15 +53,15 @@ function extract(selectorText) {
  * @api public
  */
 
-module.exports = function (css) {
-    var rules = cssom.parse(css).cssRules || [],
-        ret = [],
-        i,
-        l = rules.length,
-        rule,
-        selectors,
-        ii,
-        ll;
+module.exports = css => {
+    const rules = cssom.parse(css).cssRules || [];
+    const ret = [];
+    let i;
+    const l = rules.length;
+    let rule;
+    let selectors;
+    let ii;
+    let ll;
 
     for (i = 0; i < l; i++) {
         if (rules[i].selectorText) { // media queries don't have selectorText

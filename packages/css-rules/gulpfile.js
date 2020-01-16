@@ -1,23 +1,19 @@
-'use strict';
-var gulp = require('gulp'),
-    eslint = require('gulp-eslint'),
-    mocha = require('gulp-mocha'),
-    paths = {
-        scripts: [ './*.js', '!./gulpfile.js' ]
-    };
+const gulp = require('gulp');
+const eslint = require('gulp-eslint');
+const mocha = require('gulp-mocha');
 
-gulp.task('lint', function () {
-    return gulp.src(paths.scripts)
-        .pipe(eslint())
-        .pipe(eslint.format());
-});
+const paths = {
+    scripts: [ './*.js', '!./gulpfile.js' ]
+};
 
-gulp.task('test', function () {
-    return gulp.src('./test/*.js')
-        .pipe(mocha());
-});
+gulp.task('lint', () => gulp.src(paths.scripts)
+    .pipe(eslint())
+    .pipe(eslint.format()));
 
-gulp.task('watch', function () {
+gulp.task('test', () => gulp.src('./test/*.js')
+    .pipe(mocha()));
+
+gulp.task('watch', () => {
     gulp.watch(paths.scripts, gulp.parallel('lint', 'test'));
 });
 
