@@ -1,53 +1,46 @@
-'use strict';
-
-var cheerio = require('cheerio'),
-    extend = require('extend'),
-    pick = require('object.pick');
+const cheerio = require('cheerio');
+const extend = require('extend');
+const pick = require('object.pick');
 
 function replaceCodeBlock(html, re, block) {
-    return html.replace(re, function () {
-        return block;
-    });
+    return html.replace(re, () => block);
 }
 
-module.exports = function (html, options) {
-    var results = {},
-        codeBlocks = {
-            EJS: { start: '<%', end: '%>' },
-            HBS: { start: '{{', end: '}}' }
-        },
-        codeBlockLookup = [],
-        encodeCodeBlocks = function (_html) {
-            var __html = _html,
-                blocks = extend(codeBlocks, options.codeBlocks);
+module.exports = (html, options) => {
+    const results = {};
+    const codeBlocks = {
+        EJS: { start: '<%', end: '%>' },
+        HBS: { start: '{{', end: '}}' }
+    };
+    const codeBlockLookup = [];
+    const encodeCodeBlocks = _html => {
+        let __html = _html;
+        const blocks = extend(codeBlocks, options.codeBlocks);
 
-            Object.keys(blocks).forEach(function (key) {
-                var re = new RegExp(blocks[key].start + '([\\S\\s]*?)' + blocks[key].end, 'g');
+        Object.keys(blocks).forEach(key => {
+            const re = new RegExp(blocks[key].start + '([\\S\\s]*?)' + blocks[key].end, 'g');
 
-                __html = __html.replace(re, function (match) {
-                    codeBlockLookup.push(match);
-                    return 'EXCS_CODE_BLOCK_' + (codeBlockLookup.length - 1) + '_';
-                });
+            __html = __html.replace(re, match => {
+                codeBlockLookup.push(match);
+                return 'EXCS_CODE_BLOCK_' + (codeBlockLookup.length - 1) + '_';
             });
-            return __html;
-        },
-        decodeCodeBlocks = function (_html) {
-            var index, re,
-                __html = _html;
+        });
+        return __html;
+    };
+    const decodeCodeBlocks = _html => {
+        let index;
+        let re;
+        let __html = _html;
 
-            for (index = 0; index < codeBlockLookup.length; index++) {
-                re = new RegExp('EXCS_CODE_BLOCK_' + index + '_(="")?', 'gi');
-                __html = replaceCodeBlock(__html, re, codeBlockLookup[index]);
-            }
-            return __html;
-        },
-        encodeEntities = function (_html) {
-            return encodeCodeBlocks(_html);
-        },
-        decodeEntities = function (_html) {
-            return decodeCodeBlocks(_html);
-        },
-        $;
+        for (index = 0; index < codeBlockLookup.length; index++) {
+            re = new RegExp('EXCS_CODE_BLOCK_' + index + '_(="")?', 'gi');
+            __html = replaceCodeBlock(__html, re, codeBlockLookup[index]);
+        }
+        return __html;
+    };
+    const encodeEntities = _html => encodeCodeBlocks(_html);
+    const decodeEntities = _html => decodeCodeBlocks(_html);
+    let $;
 
     $ = cheerio.load(encodeEntities(html), extend({
         decodeEntities: false
@@ -62,8 +55,8 @@ module.exports = function (html, options) {
 
     results.hrefs = [];
 
-    $('link').each(function (index, element) {
-        var $el = $(element);
+    $('link').each((index, element) => {
+        const $el = $(element);
 
         if ($el.attr('rel') && $el.attr('rel').toLowerCase() === 'stylesheet') {
             if (options.applyLinkTags) {
