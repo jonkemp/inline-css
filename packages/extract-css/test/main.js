@@ -1,12 +1,10 @@
 /* eslint-disable */
 
-'use strict';
-
-var should = require('should'),
-    fs = require('fs'),
-    path = require('path'),
-    Vinyl = require('vinyl'),
-    extractCss = require('../index');
+const should = require('should');
+const fs = require('fs');
+const path = require('path');
+const Vinyl = require('vinyl');
+const extractCss = require('../index');
 
 function getFile(filePath) {
     return new Vinyl({
@@ -18,11 +16,11 @@ function getFile(filePath) {
 }
 
 function compare(fixturePath, expectedHTML, expectedCSS, options, done) {
-    var file = getFile(fixturePath);
+    const file = getFile(fixturePath);
 
-    options.url = 'file://' + file.path;
+    options.url = `file://${file.path}`;
 
-    extractCss(file.contents.toString('utf8'), options, function (err, html, css) {
+    extractCss(file.contents.toString('utf8'), options, (err, html, css) => {
         html.should.be.equal(String(fs.readFileSync(expectedHTML)));
         css.should.be.equal(String(fs.readFileSync(expectedCSS)));
 
@@ -30,9 +28,9 @@ function compare(fixturePath, expectedHTML, expectedCSS, options, done) {
     });
 }
 
-describe('extract-css', function() {
-    it('Should separate css and html', function(done) {
-        var options = {
+describe('extract-css', () => {
+    it('Should separate css and html', done => {
+        const options = {
             applyStyleTags: true,
             removeStyleTags: true,
             applyLinkTags: true,
@@ -48,8 +46,8 @@ describe('extract-css', function() {
         );
     });
 
-    it('Should handle malformed CSS', function(done) {
-        var options = {
+    it('Should handle malformed CSS', done => {
+        const options = {
             applyStyleTags: true,
             removeStyleTags: true,
             applyLinkTags: true,
@@ -65,8 +63,8 @@ describe('extract-css', function() {
         );
     });
 
-    it('Should ignore code blocks', function(done) {
-        var options = {
+    it('Should ignore code blocks', done => {
+        const options = {
             applyStyleTags: true,
             removeStyleTags: true,
             applyLinkTags: true,
