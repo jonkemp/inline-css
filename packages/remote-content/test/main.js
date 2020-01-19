@@ -1,14 +1,12 @@
 /*eslint-disable */
 
-'use strict';
-
-var should = require('should'),
-    fs = require('fs'),
-    path = require('path'),
-    getRemoteContent = require('../index');
+const should = require('should');
+const fs = require('fs');
+const path = require('path');
+const getRemoteContent = require('../index');
 
 function compare(remotePath, fixturePath, done) {
-    getRemoteContent(remotePath, function (err, css) {
+    getRemoteContent(remotePath, (err, css) => {
         css.should.be.equal(String(fs.readFileSync(fixturePath)));
 
         done();
@@ -18,7 +16,7 @@ function compare(remotePath, fixturePath, done) {
 describe('remote-content', function() {
     this.timeout(15000);
 
-    it('Should get remote content from link tags in an HTML document', function(done) {
+    it('Should get remote content from link tags in an HTML document', done => {
         compare('https://raw.githubusercontent.com/jonkemp/remote-content/master/test/fixtures/file.css', path.join('test', 'fixtures', 'file.css'), done);
     });
 });
