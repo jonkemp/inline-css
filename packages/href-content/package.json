@@ -25,16 +25,17 @@
   },
   "homepage": "https://github.com/jonkemp/href-content",
   "dependencies": {
-    "remote-content": "^1.0.5"
+    "remote-content": "^1.1.0"
   },
   "devDependencies": {
-    "coveralls": "^3.0.6",
+    "babel-eslint": "^10.0.3",
+    "coveralls": "^3.0.9",
     "gulp": "^4.0.2",
     "gulp-eslint": "^6.0.0",
     "gulp-mocha": "^7.0.2",
-    "list-stylesheets": "^1.2.3",
-    "mocha": "^6.2.1",
-    "nyc": "^14.1.1",
+    "list-stylesheets": "^1.2.4",
+    "mocha": "^7.0.0",
+    "nyc": "^15.0.0",
     "should": "^13.2.3",
     "vinyl": "^2.2.0"
   }

@@ -1,13 +1,11 @@
-'use strict';
+const url = require('url');
+const fs = require('fs');
+const getRemoteContent = require('remote-content');
 
-var url = require('url'),
-    fs = require('fs'),
-    getRemoteContent = require('remote-content');
-
-module.exports = function (destHref, sourceHref, callback) {
-    var resolvedUrl,
-        parsedUrl,
-        toUrl = destHref;
+module.exports = (destHref, sourceHref, callback) => {
+    let resolvedUrl;
+    let parsedUrl;
+    let toUrl = destHref;
 
     if (url.parse(sourceHref).protocol === 'file:' && destHref[0] === '/') {
         toUrl = destHref.slice(1);
