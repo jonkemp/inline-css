@@ -1,6 +1,6 @@
 {
   "name": "href-content",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Get content from link tags in an HTML document.",
   "main": "index.js",
   "scripts": {
