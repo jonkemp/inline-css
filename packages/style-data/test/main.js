@@ -1,10 +1,8 @@
-'use strict';
-
-var should = require('should'),
-    fs = require('fs'),
-    path = require('path'),
-    Vinyl = require('vinyl'),
-    getStylesData = require('../index');
+const should = require('should');
+const fs = require('fs');
+const path = require('path');
+const Vinyl = require('vinyl');
+const getStylesData = require('../index');
 
 function getFile(filePath) {
     return new Vinyl({
@@ -16,18 +14,18 @@ function getFile(filePath) {
 }
 
 function compare(fixturePath, expectedHTML, css, options, done) {
-    var file = getFile(fixturePath);
+    const file = getFile(fixturePath);
 
-    getStylesData(file.contents.toString('utf8'), options, function (err, results) {
+    getStylesData(file.contents.toString('utf8'), options, (err, results) => {
         results.html.should.be.equal(String(fs.readFileSync(expectedHTML)));
         should.deepEqual(results.css, css);
         done();
     });
 }
 
-describe('style-data', function () {
-    it('Should separate css and html', function (done) {
-        var options = {
+describe('style-data', () => {
+    it('Should separate css and html', done => {
+        const options = {
             applyStyleTags: true,
             removeStyleTags: true,
             preserveMediaQueries: false
@@ -42,8 +40,8 @@ describe('style-data', function () {
         );
     });
 
-    it('Should leave html from no style html', function (done) {
-        var options = {
+    it('Should leave html from no style html', done => {
+        const options = {
             applyStyleTags: true,
             removeStyleTags: true,
             preserveMediaQueries: false
@@ -58,8 +56,8 @@ describe('style-data', function () {
         );
     });
 
-    it('Should leave style blocks if they contain media queries', function (done) {
-        var options = {
+    it('Should leave style blocks if they contain media queries', done => {
+        const options = {
             applyStyleTags: true,
             removeStyleTags: true,
             preserveMediaQueries: true
@@ -74,8 +72,8 @@ describe('style-data', function () {
         );
     });
 
-    it('Should ignore hbs code blocks', function (done) {
-        var options = {
+    it('Should ignore hbs code blocks', done => {
+        const options = {
             applyStyleTags: true,
             removeStyleTags: true,
             preserveMediaQueries: true
@@ -90,8 +88,8 @@ describe('style-data', function () {
         );
     });
 
-    it('Should ignore ejs code blocks', function (done) {
-        var options = {
+    it('Should ignore ejs code blocks', done => {
+        const options = {
             applyStyleTags: true,
             removeStyleTags: true,
             preserveMediaQueries: true
@@ -106,8 +104,8 @@ describe('style-data', function () {
         );
     });
 
-    it('Should ignore user defined code blocks', function (done) {
-        var options = {
+    it('Should ignore user defined code blocks', done => {
+        const options = {
             codeBlocks: {
                 craze: { start: '<<', end: '>>' }
             }
@@ -122,8 +120,8 @@ describe('style-data', function () {
         );
     });
 
-    it('Should ignore style blocks if data-embed attribute is present on them', function (done) {
-        var options = {
+    it('Should ignore style blocks if data-embed attribute is present on them', done => {
+        const options = {
             applyStyleTags: true,
             removeStyleTags: true,
             preserveMediaQueries: true
