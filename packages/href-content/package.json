@@ -8,10 +8,10 @@
     "coverage": "nyc npm test && nyc report",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/jonkemp/href-content"
-  },
+  "files": [
+    "index.js"
+  ],
+  "repository": "https://github.com/jonkemp/inline-css/tree/master/packages/href-content",
   "keywords": [
     "inline",
     "css",
@@ -20,10 +20,7 @@
   ],
   "author": "Jonathan Kemp <kempdogg@gmail.com> (http://jonkemp.com/)",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/jonkemp/href-content/issues"
-  },
-  "homepage": "https://github.com/jonkemp/href-content",
+  "homepage": "https://github.com/jonkemp/inline-css/tree/master/packages/href-content",
   "dependencies": {
     "remote-content": "^1.2.1"
   },

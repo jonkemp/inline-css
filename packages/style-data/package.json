@@ -8,10 +8,10 @@
     "coverage": "nyc npm test && nyc report",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/jonkemp/style-data"
-  },
+  "files": [
+    "index.js"
+  ],
+  "repository": "https://github.com/jonkemp/inline-css/tree/master/packages/style-data",
   "keywords": [
     "inline",
     "css",
@@ -20,10 +20,7 @@
   ],
   "author": "Jonathan Kemp <kempdogg@gmail.com> (http://jonkemp.com/)",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/jonkemp/style-data/issues"
-  },
-  "homepage": "https://github.com/jonkemp/style-data",
+  "homepage": "https://github.com/jonkemp/inline-css/tree/master/packages/style-data",
   "dependencies": {
     "cheerio": "^0.22.0",
     "extend": "^3.0.2",

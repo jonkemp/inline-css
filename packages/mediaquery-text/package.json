@@ -8,10 +8,10 @@
     "coverage": "nyc npm test && nyc report",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/jonkemp/mediaquery-text"
-  },
+  "files": [
+    "index.js"
+  ],
+  "repository": "https://github.com/jonkemp/inline-css/tree/master/packages/mediaquery-text",
   "keywords": [
     "mediaqueries",
     "css",
@@ -20,10 +20,7 @@
   ],
   "author": "Jonathan Kemp <kempdogg@gmail.com> (http://jonkemp.com/)",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/jonkemp/mediaquery-text/issues"
-  },
-  "homepage": "https://github.com/jonkemp/mediaquery-text",
+  "homepage": "https://github.com/jonkemp/inline-css/tree/master/packages/mediaquery-text",
   "dependencies": {
     "cssom": "^0.4.4"
   },
