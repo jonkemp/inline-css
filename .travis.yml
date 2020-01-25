@@ -6,6 +6,9 @@ before_script:
   - npm install -g gulp
   - gulp lint
 after_success: npm run coveralls
+dependencies:
+  post:
+    - npm run bootstrap
 
 # whitelist
 branches:
