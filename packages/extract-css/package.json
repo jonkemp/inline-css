@@ -1,6 +1,6 @@
 {
   "name": "extract-css",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "Extract the CSS from an HTML document.",
   "main": "index.js",
   "scripts": {
@@ -23,9 +23,9 @@
   "homepage": "https://github.com/jonkemp/extract-css",
   "dependencies": {
     "batch": "^0.6.1",
-    "href-content": "^1.2.0",
-    "list-stylesheets": "^1.2.4",
-    "style-data": "^1.4.1"
+    "href-content": "^1.2.1",
+    "list-stylesheets": "^1.2.5",
+    "style-data": "^1.4.2"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.3",
