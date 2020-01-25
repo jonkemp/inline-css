@@ -7,13 +7,13 @@ require('superagent-proxy')(superagent);
 module.exports = (remoteUrl, callback) => {
     const proxyUrl = getProxyForUrl(remoteUrl);
 
-    const superagentCallback = (err, {ok, text, status}) => {
+    const superagentCallback = (err, resp) => {
         if (err) {
             return callback(err);
-        } else if (ok) {
-            return callback(null, text);
+        } else if (resp.ok) {
+            return callback(null, resp.text);
         }
-        return callback(new Error(`GET ${remoteUrl} ${status}`));
+        return callback(new Error(`GET ${remoteUrl} ${resp.status}`));
     };
 
     if (proxyUrl) {
