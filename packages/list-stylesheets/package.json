@@ -1,6 +1,6 @@
 {
   "name": "list-stylesheets",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "Get a list of stylesheets from an HTML document.",
   "main": "index.js",
   "scripts": {

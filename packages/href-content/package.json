@@ -1,6 +1,6 @@
 {
   "name": "href-content",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Get content from link tags in an HTML document.",
   "main": "index.js",
   "scripts": {
@@ -22,7 +22,7 @@
   "license": "MIT",
   "homepage": "https://github.com/jonkemp/inline-css/tree/master/packages/href-content",
   "dependencies": {
-    "remote-content": "^1.2.1"
+    "remote-content": "^1.2.2"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.3",
@@ -30,7 +30,7 @@
     "gulp": "^4.0.2",
     "gulp-eslint": "^6.0.0",
     "gulp-mocha": "^7.0.2",
-    "list-stylesheets": "^1.2.5",
+    "list-stylesheets": "^1.2.6",
     "mocha": "^7.0.0",
     "nyc": "^15.0.0",
     "should": "^13.2.3",
