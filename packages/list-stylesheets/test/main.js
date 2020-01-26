@@ -1,4 +1,4 @@
-/* jshint node: true */
+/* eslint-disable */
 
 const should = require('should');
 const fs = require('fs');
@@ -31,7 +31,12 @@ describe('list-stylesheets', () => {
             done();
         }
 
-        compare(path.join('test', 'fixtures', 'in.html'), path.join('test', 'expected', 'out.html'), options, done);
+        compare(
+            path.join(__dirname, 'fixtures', 'in.html'),
+            path.join(__dirname, 'expected', 'out.html'),
+            options,
+            done
+        );
     });
 
     it('Should ignore hbs code blocks', done => {
@@ -49,7 +54,12 @@ describe('list-stylesheets', () => {
             done();
         }
 
-        compare(path.join('test', 'fixtures', 'codeblocks.html'), path.join('test', 'expected', 'codeblocks.html'), options, done);
+        compare(
+            path.join(__dirname, 'fixtures', 'codeblocks.html'),
+            path.join(__dirname, 'expected', 'codeblocks.html'),
+            options,
+            done
+        );
     });
 
     it('Should ignore ejs code blocks', done => {
@@ -67,7 +77,12 @@ describe('list-stylesheets', () => {
             done();
         }
 
-        compare(path.join('test', 'fixtures', 'ejs.html'), path.join('test', 'expected', 'ejs.html'), options, done);
+        compare(
+            path.join(__dirname, 'fixtures', 'ejs.html'),
+            path.join(__dirname, 'expected', 'ejs.html'),
+            options,
+            done
+        );
     });
 
     it('Should ignore user defined code blocks', done => {
@@ -85,6 +100,11 @@ describe('list-stylesheets', () => {
             done();
         }
 
-        compare(path.join('test', 'fixtures', 'codeblocks-external.html'), path.join('test', 'expected', 'codeblocks-external.html'), options, done);
+        compare(
+            path.join(__dirname, 'fixtures', 'codeblocks-external.html'),
+            path.join(__dirname, 'expected', 'codeblocks-external.html'),
+            options,
+            done
+        );
     });
 });

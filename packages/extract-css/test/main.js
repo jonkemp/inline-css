@@ -38,9 +38,9 @@ describe('extract-css', () => {
             preserveMediaQueries: false
         };
         compare(
-            path.join('test', 'fixtures', 'in.html'),
-            path.join('test', 'expected', 'out.html'),
-            path.join('test', 'expected', 'file.css'),
+            path.join(__dirname, 'fixtures', 'in.html'),
+            path.join(__dirname, 'expected', 'out.html'),
+            path.join(__dirname, 'expected', 'file.css'),
             options,
             done
         );
@@ -55,9 +55,9 @@ describe('extract-css', () => {
             preserveMediaQueries: false
         };
         compare(
-            path.join('test', 'fixtures', 'malformed.html'),
-            path.join('test', 'expected', 'malformed.html'),
-            path.join('test', 'expected', 'malformed.css'),
+            path.join(__dirname, 'fixtures', 'malformed.html'),
+            path.join(__dirname, 'expected', 'malformed.html'),
+            path.join(__dirname, 'expected', 'malformed.css'),
             options,
             done
         );
@@ -72,9 +72,9 @@ describe('extract-css', () => {
             preserveMediaQueries: false
         };
         compare(
-            path.join('test', 'fixtures', 'codeblocks.html'),
-            path.join('test', 'expected', 'codeblocks.html'),
-            path.join('test', 'expected', 'codeblocks.css'),
+            path.join(__dirname, 'fixtures', 'codeblocks.html'),
+            path.join(__dirname, 'expected', 'codeblocks.html'),
+            path.join(__dirname, 'expected', 'codeblocks.css'),
             options,
             done
         );

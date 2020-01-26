@@ -32,8 +32,8 @@ describe('style-data', () => {
         };
 
         compare(
-            path.join('test', 'fixtures', 'in.html'),
-            path.join('test', 'expected', 'out.html'),
+            path.join(__dirname, 'fixtures', 'in.html'),
+            path.join(__dirname, 'expected', 'out.html'),
             [ '\n      h1 {\n        border: 1px solid #ccc;\n      }\n    ' ],
             options,
             done
@@ -48,8 +48,8 @@ describe('style-data', () => {
         };
 
         compare(
-            path.join('test', 'fixtures', 'no-style-tag', 'in.html'),
-            path.join('test', 'expected', 'no-style-tag', 'out.html'),
+            path.join(__dirname, 'fixtures', 'no-style-tag', 'in.html'),
+            path.join(__dirname, 'expected', 'no-style-tag', 'out.html'),
             [],
             options,
             done
@@ -64,8 +64,8 @@ describe('style-data', () => {
         };
 
         compare(
-            path.join('test', 'fixtures', 'media-queries', 'in.html'),
-            path.join('test', 'expected', 'media-queries', 'out.html'),
+            path.join(__dirname, 'fixtures', 'media-queries', 'in.html'),
+            path.join(__dirname, 'expected', 'media-queries', 'out.html'),
             [ '\n      h1 {\n        border: 1px solid #ccc;\n      }\n    ', '\n      @media only screen and (min-width: 640px) {\n        .headline {\n          color: blue;\n        }\n      }\n    ' ],
             options,
             done
@@ -80,8 +80,8 @@ describe('style-data', () => {
         };
 
         compare(
-            path.join('test', 'fixtures', 'codeblocks.html'),
-            path.join('test', 'expected', 'codeblocks.html'),
+            path.join(__dirname, 'fixtures', 'codeblocks.html'),
+            path.join(__dirname, 'expected', 'codeblocks.html'),
             [],
             options,
             done
@@ -96,8 +96,8 @@ describe('style-data', () => {
         };
 
         compare(
-            path.join('test', 'fixtures', 'ejs.html'),
-            path.join('test', 'expected', 'ejs.html'),
+            path.join(__dirname, 'fixtures', 'ejs.html'),
+            path.join(__dirname, 'expected', 'ejs.html'),
             [],
             options,
             done
@@ -112,8 +112,8 @@ describe('style-data', () => {
         };
 
         compare(
-            path.join('test', 'fixtures', 'codeblocks-external.html'),
-            path.join('test', 'expected', 'codeblocks-external.html'),
+            path.join(__dirname, 'fixtures', 'codeblocks-external.html'),
+            path.join(__dirname, 'expected', 'codeblocks-external.html'),
             [],
             options,
             done
@@ -128,8 +128,8 @@ describe('style-data', () => {
         };
 
         compare(
-            path.join('test', 'fixtures', 'data-embed', 'in.html'),
-            path.join('test', 'expected', 'data-embed', 'out.html'),
+            path.join(__dirname, 'fixtures', 'data-embed', 'in.html'),
+            path.join(__dirname, 'expected', 'data-embed', 'out.html'),
             [ '\n      h1 {\n        border: 1px solid #ccc;\n      }\n    ' ],
             options,
             done
