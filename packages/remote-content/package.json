@@ -3,11 +3,6 @@
   "version": "1.2.2",
   "description": "Get remote content.",
   "main": "index.js",
-  "scripts": {
-    "test": "mocha",
-    "coverage": "nyc npm test && nyc report",
-    "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
-  },
   "files": [
     "index.js"
   ],
@@ -28,15 +23,5 @@
     "proxy-from-env": "^1.0.0",
     "superagent": "^5.2.1",
     "superagent-proxy": "^2.0.0"
-  },
-  "devDependencies": {
-    "babel-eslint": "^10.0.3",
-    "coveralls": "^3.0.9",
-    "gulp": "^4.0.2",
-    "gulp-eslint": "^6.0.0",
-    "gulp-mocha": "^7.0.2",
-    "mocha": "^7.0.0",
-    "nyc": "^15.0.0",
-    "should": "^13.2.3"
   }
 }

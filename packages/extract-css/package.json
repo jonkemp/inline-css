@@ -3,11 +3,6 @@
   "version": "1.5.2",
   "description": "Extract the CSS from an HTML document.",
   "main": "index.js",
-  "scripts": {
-    "test": "mocha",
-    "coverage": "nyc npm test && nyc report",
-    "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
-  },
   "files": [
     "index.js"
   ],
@@ -23,16 +18,5 @@
     "href-content": "^1.2.2",
     "list-stylesheets": "^1.2.6",
     "style-data": "^1.4.3"
-  },
-  "devDependencies": {
-    "babel-eslint": "^10.0.3",
-    "coveralls": "^3.0.9",
-    "gulp": "^4.0.2",
-    "gulp-eslint": "^6.0.0",
-    "gulp-mocha": "^7.0.2",
-    "mocha": "^7.0.0",
-    "nyc": "^15.0.0",
-    "should": "^13.2.3",
-    "vinyl": "^2.2.0"
   }
 }
