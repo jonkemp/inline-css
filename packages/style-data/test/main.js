@@ -1,3 +1,5 @@
+/*eslint-disable */
+
 const should = require('should');
 const fs = require('fs');
 const path = require('path');
