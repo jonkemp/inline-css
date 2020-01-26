@@ -1,6 +1,6 @@
 {
   "name": "inline-css",
-  "version": "2.6.1",
+  "version": "2.6.2",
   "description": "Inline css into an html file.",
   "main": "index.js",
   "dependencies": {
