@@ -2,9 +2,7 @@ language: node_js
 node_js:
   - '12'
   - '10'
-before_script:
-  - npm install -g gulp
-  - gulp lint
+before_script: npm run lint
 after_success: npm run coveralls
 dependencies:
   post:
