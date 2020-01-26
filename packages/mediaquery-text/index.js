@@ -20,7 +20,7 @@ module.exports = css => {
     let important;
     let result;
 
-    rules.forEach(({type, media, cssRules}) => {
+    rules.forEach(({ type, media, cssRules }) => {
         /* CSS types
 		  STYLE: 1,
 		  IMPORT: 3,
