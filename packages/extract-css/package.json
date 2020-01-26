@@ -1,6 +1,6 @@
 {
   "name": "extract-css",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "description": "Extract the CSS from an HTML document.",
   "main": "index.js",
   "files": [
@@ -17,6 +17,6 @@
     "batch": "^0.6.1",
     "href-content": "^1.2.3",
     "list-stylesheets": "^1.2.7",
-    "style-data": "^1.4.4"
+    "style-data": "^1.4.5"
   }
 }
