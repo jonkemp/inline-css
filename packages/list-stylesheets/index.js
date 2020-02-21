@@ -1,6 +1,5 @@
 const cheerio = require('cheerio');
-const extend = require('extend');
-const pick = require('object.pick');
+const pick = require('pick-util');
 
 function replaceCodeBlock(html, re, block) {
     return html.replace(re, () => block);
@@ -15,7 +14,7 @@ module.exports = (html, options) => {
     const codeBlockLookup = [];
     const encodeCodeBlocks = _html => {
         let __html = _html;
-        const blocks = extend(codeBlocks, options.codeBlocks);
+        const blocks = Object.assign(codeBlocks, options.codeBlocks);
 
         Object.keys(blocks).forEach(key => {
             const re = new RegExp(blocks[key].start + '([\\S\\s]*?)' + blocks[key].end, 'g');
@@ -42,7 +41,7 @@ module.exports = (html, options) => {
     const decodeEntities = _html => decodeCodeBlocks(_html);
     let $;
 
-    $ = cheerio.load(encodeEntities(html), extend({
+    $ = cheerio.load(encodeEntities(html), Object.assign({
         decodeEntities: false
     }, pick(options, [
         'xmlMode',

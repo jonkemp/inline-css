@@ -18,8 +18,7 @@
   "homepage": "https://github.com/jonkemp/inline-css/tree/master/packages/style-data",
   "dependencies": {
     "cheerio": "^0.22.0",
-    "extend": "^3.0.2",
     "mediaquery-text": "^1.1.5",
-    "object.pick": "^1.3.0"
+    "pick-util": "^1.0.1"
   }
 }
