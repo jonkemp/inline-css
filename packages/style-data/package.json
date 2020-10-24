@@ -19,6 +19,6 @@
   "dependencies": {
     "cheerio": "^0.22.0",
     "mediaquery-text": "^1.1.5",
-    "pick-util": "^1.0.1"
+    "pick-util": "^1.1.3"
   }
 }
