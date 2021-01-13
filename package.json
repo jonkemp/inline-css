@@ -37,6 +37,9 @@
     "index.js",
     "lib/"
   ],
+  "bin": {
+    "inline-css": "bin/cli.js"
+  },
   "repository": "jonkemp/inline-css",
   "keywords": [
     "inline",
