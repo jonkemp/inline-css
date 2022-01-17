@@ -5,8 +5,8 @@
   "main": "index.js",
   "dependencies": {
     "cheerio": "^0.22.0",
-    "css-rules": "^1.0.9",
-    "extract-css": "^2.0.0",
+    "css-rules": "^1.1.0",
+    "extract-css": "^2.0.1",
     "flat-util": "^1.1.8",
     "pick-util": "^1.1.4",
     "slick": "^1.12.2",
