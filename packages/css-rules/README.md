@@ -1,4 +1,4 @@
-# css-rules [![Build Status](https://github.com/jonkemp/css-rules.svg?branch=master)](https://github.com/jonkemp/css-rules) [![Coverage Status](https://coveralls.io/repos/jonkemp/css-rules/badge.svg?branch=master&service=github)](https://coveralls.io/github/jonkemp/css-rules?branch=master)
+# css-rules
 
 [![NPM](https://nodei.co/npm/css-rules.png?downloads=true)](https://nodei.co/npm/css-rules/)
 

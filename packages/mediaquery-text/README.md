@@ -1,4 +1,4 @@
-# mediaquery-text [![Build Status](https://github.com/jonkemp/mediaquery-text.svg?branch=master)](https://github.com/jonkemp/mediaquery-text) [![Coverage Status](https://coveralls.io/repos/jonkemp/mediaquery-text/badge.svg?branch=master&service=github)](https://coveralls.io/github/jonkemp/mediaquery-text?branch=master)
+# mediaquery-text
 
 [![NPM](https://nodei.co/npm/mediaquery-text.png?downloads=true)](https://nodei.co/npm/mediaquery-text/)
 
