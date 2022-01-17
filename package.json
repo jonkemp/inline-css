@@ -31,7 +31,7 @@
     "lint": "eslint index.js lib/ packages/",
     "lint:fix": "eslint --fix index.js lib/ packages/",
     "coverage": "nyc npm test && nyc report",
-    "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
+    "coveralls": "nyc npm test && nyc report --reporter=lcov"
   },
   "files": [
     "index.js",
