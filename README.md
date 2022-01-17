@@ -1,4 +1,4 @@
-# inline-css [![npm](http://img.shields.io/npm/v/inline-css.svg?style=flat)](https://badge.fury.io/js/inline-css) [![Build Status](https://github.com/jonkemp/inline-css.svg?branch=master)](https://github.com/jonkemp/inline-css) [![Coverage Status](https://coveralls.io/repos/jonkemp/inline-css/badge.svg?branch=master&service=github)](https://coveralls.io/github/jonkemp/inline-css?branch=master)
+# inline-css [![npm](http://img.shields.io/npm/v/inline-css.svg?style=flat)](https://badge.fury.io/js/inline-css) ![Build Status](https://github.com/jonkemp/inline-css/actions/workflows/main.yml/badge.svg?branch=master) [![Coverage Status](https://coveralls.io/repos/jonkemp/inline-css/badge.svg?branch=master&service=github)](https://coveralls.io/github/jonkemp/inline-css?branch=master)
 
 [![NPM](https://nodei.co/npm/inline-css.png?downloads=true)](https://nodei.co/npm/inline-css/)
 
