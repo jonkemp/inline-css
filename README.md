@@ -7,7 +7,6 @@
 Inspired by the [juice](https://github.com/Automattic/juice) library.
 
 ## Features
-- Uses [cheerio](https://github.com/cheeriojs/cheerio) instead of jsdom
 - Works on Windows
 - Preserves Doctype
 - Modular
@@ -170,10 +169,6 @@ An object where each value has a `start` and `end` to specify fenced code blocks
 When a data-embed attribute is present on a <style></style> tag, inline-css will not inline the styles and will not remove the <style></style> tags.
 
 This can be used to embed email client support hacks that rely on css selectors into your email templates.
-
-### cheerio options
-
-Options to passed to [cheerio](https://github.com/cheeriojs/cheerio).
 
 ## Contributing
 
