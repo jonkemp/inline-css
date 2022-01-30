@@ -4,6 +4,7 @@ const should = require('should');
 const fs = require('fs');
 const path = require('path');
 const Vinyl = require('vinyl');
+const beautify = require('js-beautify').html;
 const extractCss = require('../index');
 
 function getFile(filePath) {
@@ -21,7 +22,7 @@ function compare(fixturePath, expectedHTML, expectedCSS, options, done) {
     options.url = `file://${file.path}`;
 
     extractCss(file.contents.toString('utf8'), options, (err, html, css) => {
-        html.should.be.equal(String(fs.readFileSync(expectedHTML)));
+        beautify(html).should.be.equal(beautify(String(fs.readFileSync(expectedHTML))));
         css.should.be.equal(String(fs.readFileSync(expectedCSS)));
 
         done();
