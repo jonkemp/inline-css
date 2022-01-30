@@ -1,9 +1,15 @@
 const mediaQueryText = require('mediaquery-text');
-const cheerio = require('cheerio');
-const pick = require('pick-util');
+const jsdom = require('jsdom');
+const { JSDOM } = jsdom;
+
+// const pick = require('pick-util');
 
 function replaceCodeBlock(html, re, block) {
     return html.replace(re, () => block);
+}
+
+function decodeHTMLEntities(str) {
+    return String(str).replace(/&amp;/g, '&');
 }
 
 module.exports = (html, options, callback) => {
@@ -45,28 +51,20 @@ module.exports = (html, options, callback) => {
 
     const encodeEntities = _html => encodeCodeBlocks(_html);
     const decodeEntities = _html => decodeCodeBlocks(_html);
-    let $;
     let styleDataList;
     let styleData;
 
-    $ = cheerio.load(encodeEntities(html), Object.assign({
-        decodeEntities: false
-    }, pick(options, [
-        'xmlMode',
-        'decodeEntities',
-        'lowerCaseTags',
-        'lowerCaseAttributeNames',
-        'recognizeCDATA',
-        'recognizeSelfClosing'
-    ])));
+    const dom = new JSDOM(encodeEntities(html));
 
     results.css = [];
 
-    $('style').each((index, element) => {
+    const styleTags = dom.window.document.querySelectorAll('style');
+
+    Array.prototype.forEach.call(styleTags, element => {
         let mediaQueries;
 
         // if data-embed property exists, skip inlining and removing
-        if (typeof $(element).data('embed') !== 'undefined') {
+        if (typeof element.dataset.embed !== 'undefined') {
             return;
         }
 
@@ -85,12 +83,12 @@ module.exports = (html, options, callback) => {
                 element.childNodes[0].nodeValue = mediaQueries;
             }
             if (!mediaQueries) {
-                $(element).remove();
+                element.parentNode.removeChild(element);
             }
         }
     });
 
-    results.html = decodeEntities($.html());
+    results.html = decodeEntities(decodeHTMLEntities(dom.serialize()));
 
     callback(null, results);
 };
