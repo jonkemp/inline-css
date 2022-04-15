@@ -4,7 +4,7 @@
   "description": "Inline css into an html file.",
   "main": "index.js",
   "dependencies": {
-    "cheerio": "^0.22.0",
+    "cheerio": "^1.0.0-rc.10",
     "css-rules": "^1.1.0",
     "extract-css": "^2.0.1",
     "flat-util": "^1.1.8",
