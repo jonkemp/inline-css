@@ -19,7 +19,9 @@ function compare(fixturePath, expectedHTML, css, options, done) {
     const file = getFile(fixturePath);
 
     getStylesData(file.contents.toString('utf8'), options, (err, results) => {
-        results.html.should.be.equal(String(fs.readFileSync(expectedHTML)));
+        results.html.replace(/(\r\n|\n|\r)/gm, "")
+            .should.be.equal(
+            String(fs.readFileSync(expectedHTML)).replace(/(\r\n|\n|\r)/gm, ""));
         should.deepEqual(results.css, css);
         done();
     });

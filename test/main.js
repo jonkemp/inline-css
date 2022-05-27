@@ -23,7 +23,8 @@ function compare(fixturePath, expectedPath, options, done) {
 
     inlineCss(file.contents.toString('utf8'), options)
         .then(html => {
-            html.should.be.equal(String(fs.readFileSync(expectedPath)));
+            const expected = String(fs.readFileSync(expectedPath)).replace(/(\r\n|\n|\r)/gm, "");
+            html.replace(/(\r\n|\n|\r)/gm, "").should.be.equal(expected);
         })
         .then(() => {
             done()
