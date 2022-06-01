@@ -4,6 +4,7 @@ const should = require('should');
 const fs = require('fs');
 const path = require('path');
 const Vinyl = require('vinyl');
+const beautify = require('js-beautify').html;
 const getStylesheetList = require('../index');
 
 function getFile(filePath) {
@@ -27,7 +28,7 @@ describe('list-stylesheets', () => {
             const data = getStylesheetList(file.contents.toString('utf8'), options);
 
             data.hrefs[0].should.be.equal('file.css');
-            data.html.should.be.equal(String(fs.readFileSync(expectedHTML)));
+            beautify(data.html).should.be.equal(beautify(String(fs.readFileSync(expectedHTML))));
             done();
         }
 
@@ -50,7 +51,7 @@ describe('list-stylesheets', () => {
             const data = getStylesheetList(file.contents.toString('utf8'), options);
 
             data.hrefs[0].should.be.equal('codeblocks.css');
-            data.html.should.be.equal(String(fs.readFileSync(expectedHTML)));
+            beautify(data.html).should.be.equal(beautify(String(fs.readFileSync(expectedHTML))));
             done();
         }
 
@@ -73,7 +74,7 @@ describe('list-stylesheets', () => {
             const data = getStylesheetList(file.contents.toString('utf8'), options);
 
             data.hrefs[0].should.be.equal('ejs.css');
-            data.html.should.be.equal(String(fs.readFileSync(expectedHTML)));
+            beautify(data.html).should.be.equal(beautify(String(fs.readFileSync(expectedHTML))));
             done();
         }
 
@@ -96,7 +97,7 @@ describe('list-stylesheets', () => {
             const file = getFile(fixturePath);
             const data = getStylesheetList(file.contents.toString('utf8'), options);
 
-            data.html.should.be.equal(String(fs.readFileSync(expectedHTML)));
+            beautify(data.html).should.be.equal(beautify(String(fs.readFileSync(expectedHTML))));
             done();
         }
 
