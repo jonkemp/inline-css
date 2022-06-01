@@ -2,8 +2,6 @@ const mediaQueryText = require('mediaquery-text');
 const jsdom = require('jsdom');
 const { JSDOM } = jsdom;
 
-// const pick = require('pick-util');
-
 function replaceCodeBlock(html, re, block) {
     return html.replace(re, () => block);
 }
@@ -13,6 +11,7 @@ function decodeHTMLEntities(str) {
 }
 
 module.exports = (html, options, callback) => {
+    const opts = options || {};
     const results = {};
 
     const codeBlocks = {
@@ -54,7 +53,9 @@ module.exports = (html, options, callback) => {
     let styleDataList;
     let styleData;
 
-    const dom = new JSDOM(encodeEntities(html));
+    const dom = new JSDOM(encodeEntities(html), {
+        contentType: opts.xmlMode ? 'application/xhtml+xml' : 'text/html'
+    });
 
     results.css = [];
 

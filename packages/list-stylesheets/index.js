@@ -10,6 +10,7 @@ function decodeHTMLEntities(str) {
 }
 
 module.exports = (html, options) => {
+    const opts = options || {};
     const results = {};
     const codeBlocks = {
         EJS: { start: '<%', end: '%>' },
@@ -44,7 +45,9 @@ module.exports = (html, options) => {
     const encodeEntities = _html => encodeCodeBlocks(_html);
     const decodeEntities = _html => decodeCodeBlocks(_html);
 
-    const dom = new JSDOM(encodeEntities(html));
+    const dom = new JSDOM(encodeEntities(html), {
+        contentType: opts.xmlMode ? 'application/xhtml+xml' : 'text/html'
+    });
 
     results.hrefs = [];
 
