@@ -3,6 +3,7 @@
   "version": "3.0.0",
   "description": "Inline css into an html file.",
   "main": "index.js",
+  "workspaces": ["./packages/*"],
   "dependencies": {
     "css-rules": "^1.1.0",
     "extract-css": "^2.0.1",
