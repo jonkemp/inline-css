@@ -4,6 +4,7 @@ const should = require('should');
 const fs = require('fs');
 const path = require('path');
 const Vinyl = require('vinyl');
+const beautify = require('js-beautify').html;
 const getStylesData = require('../index');
 
 function getFile(filePath) {
@@ -19,7 +20,13 @@ function compare(fixturePath, expectedHTML, css, options, done) {
     const file = getFile(fixturePath);
 
     getStylesData(file.contents.toString('utf8'), options, (err, results) => {
-        results.html.should.be.equal(String(fs.readFileSync(expectedHTML)));
+        beautify(results.html, {
+            "preserve-newlines": false
+        }).should.be.equal(
+            beautify(String(fs.readFileSync(expectedHTML)), {
+                "preserve-newlines": false
+            })
+        );
         should.deepEqual(results.css, css);
         done();
     });
