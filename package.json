@@ -3,6 +3,7 @@
   "version": "3.0.0",
   "description": "Inline css into an html file.",
   "main": "index.js",
+  "workspaces": ["./packages/*"],
   "dependencies": {
     "cheerio": "^1.0.0-rc.10",
     "css-rules": "^1.1.0",
