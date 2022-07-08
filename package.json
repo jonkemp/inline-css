@@ -1,12 +1,14 @@
 {
   "name": "inline-css",
-  "version": "3.0.0",
+  "version": "4.0.1",
   "description": "Inline css into an html file.",
   "main": "index.js",
-  "workspaces": ["./packages/*"],
+  "workspaces": [
+    "./packages/*"
+  ],
   "dependencies": {
     "css-rules": "^1.1.0",
-    "extract-css": "^2.0.1",
+    "extract-css": "^3.0.0",
     "flat-util": "^1.1.8",
     "jsdom": "^19.0.0",
     "slick": "^1.12.2",
