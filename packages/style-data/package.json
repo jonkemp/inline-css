@@ -1,6 +1,6 @@
 {
   "name": "style-data",
-  "version": "1.4.8",
+  "version": "2.0.0",
   "description": "Get the content of style tags.",
   "main": "index.js",
   "files": [
