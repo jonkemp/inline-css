@@ -1,6 +1,6 @@
 {
   "name": "extract-css",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "description": "Extract the CSS from an HTML document.",
   "main": "index.js",
   "files": [
@@ -16,7 +16,7 @@
   "dependencies": {
     "batch": "^0.6.1",
     "href-content": "^2.0.1",
-    "list-stylesheets": "^1.2.10",
-    "style-data": "^1.4.8"
+    "list-stylesheets": "^2.0.0",
+    "style-data": "^2.0.0"
   }
 }
