@@ -1,6 +1,6 @@
 {
   "name": "inline-css",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Inline css into an html file.",
   "main": "index.js",
   "workspaces": [
