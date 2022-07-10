@@ -28,9 +28,7 @@ describe('list-stylesheets', () => {
             const data = getStylesheetList(file.contents.toString('utf8'), options);
 
             data.hrefs[0].should.be.equal('file.css');
-            beautify(data.html).should.be.equal(
-                beautify(String(fs.readFileSync(expectedHTML)))
-            );
+            beautify(data.html).should.be.equal(beautify(String(fs.readFileSync(expectedHTML))));
             done();
         }
 
@@ -53,9 +51,7 @@ describe('list-stylesheets', () => {
             const data = getStylesheetList(file.contents.toString('utf8'), options);
 
             data.hrefs[0].should.be.equal('codeblocks.css');
-            data.html.replace(/(\r\n|\n|\r)/gm, "")
-                .should.be.equal(
-                    String(fs.readFileSync(expectedHTML)).replace(/(\r\n|\n|\r)/gm, ""));
+            beautify(data.html).should.be.equal(beautify(String(fs.readFileSync(expectedHTML))));
             done();
         }
 
@@ -78,9 +74,7 @@ describe('list-stylesheets', () => {
             const data = getStylesheetList(file.contents.toString('utf8'), options);
 
             data.hrefs[0].should.be.equal('ejs.css');
-            data.html.replace(/(\r\n|\n|\r)/gm, "")
-                .should.be.equal(
-                    String(fs.readFileSync(expectedHTML)).replace(/(\r\n|\n|\r)/gm, ""));
+            beautify(data.html).should.be.equal(beautify(String(fs.readFileSync(expectedHTML))));
             done();
         }
 
@@ -103,9 +97,7 @@ describe('list-stylesheets', () => {
             const file = getFile(fixturePath);
             const data = getStylesheetList(file.contents.toString('utf8'), options);
 
-            data.html.replace(/(\r\n|\n|\r)/gm, "")
-                .should.be.equal(
-                    String(fs.readFileSync(expectedHTML)).replace(/(\r\n|\n|\r)/gm, ""));
+            beautify(data.html).should.be.equal(beautify(String(fs.readFileSync(expectedHTML))));
             done();
         }
 

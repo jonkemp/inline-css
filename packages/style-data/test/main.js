@@ -20,13 +20,7 @@ function compare(fixturePath, expectedHTML, css, options, done) {
     const file = getFile(fixturePath);
 
     getStylesData(file.contents.toString('utf8'), options, (err, results) => {
-        beautify(results.html, {
-            "preserve-newlines": false
-        }).should.be.equal(
-            beautify(String(fs.readFileSync(expectedHTML)), {
-                "preserve-newlines": false
-            })
-        );
+        beautify(results.html).should.be.equal(beautify(String(fs.readFileSync(expectedHTML))));
         should.deepEqual(results.css, css);
         done();
     });

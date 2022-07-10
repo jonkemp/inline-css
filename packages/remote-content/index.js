@@ -17,8 +17,8 @@ module.exports = (remoteUrl, callback) => {
     };
 
     if (proxyUrl) {
-        superagent.get(remoteUrl).proxy(proxyUrl).buffer().end(superagentCallback);
+        superagent.get(remoteUrl).proxy(proxyUrl).end(superagentCallback);
     } else {
-        superagent.get(remoteUrl).buffer().end(superagentCallback);
+        superagent.get(remoteUrl).end(superagentCallback);
     }
 };

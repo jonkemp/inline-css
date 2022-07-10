@@ -16,11 +16,6 @@ module.exports = (html, options) => new Promise((resolve, reject) => {
             HBS: { start: '{{', end: '}}' }
         },
         xmlMode: false,
-        decodeEntities: false,
-        lowerCaseTags: true,
-        lowerCaseAttributeNames: false,
-        recognizeCDATA: false,
-        recognizeSelfClosing: false
     }, options);
 
     inlineContent(String(html), opt)

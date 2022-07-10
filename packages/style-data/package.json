@@ -17,8 +17,7 @@
   "license": "MIT",
   "homepage": "https://github.com/jonkemp/inline-css/tree/master/packages/style-data",
   "dependencies": {
-    "cheerio": "^1.0.0-rc.10",
-    "mediaquery-text": "^1.2.0",
-    "pick-util": "^1.1.4"
+    "jsdom": "^19.0.0",
+    "mediaquery-text": "^1.2.0"
   }
 }

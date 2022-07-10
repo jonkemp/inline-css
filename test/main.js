@@ -24,12 +24,7 @@ function compare(fixturePath, expectedPath, options, done) {
 
     inlineCss(file.contents.toString('utf8'), options)
         .then(html => {
-            const expected = beautify(String(fs.readFileSync(expectedPath)), {
-                "preserve-newlines": false
-            });
-            beautify(html, {
-                "preserve-newlines": false
-            }).should.be.equal(expected);
+            beautify(html).should.be.equal(beautify(String(fs.readFileSync(expectedPath))));
         })
         .then(() => {
             done()
@@ -276,22 +271,15 @@ describe('inline-css', () => {
     });
 
     it('Should ignore hbs code blocks', done => {
-        const options = {
-           xmlMode: true
-        };
-        compare(path.join('test', 'fixtures', 'codeblocks.html'), path.join('test', 'expected', 'codeblocks.html'), options, done);
+        compare(path.join('test', 'fixtures', 'codeblocks.html'), path.join('test', 'expected', 'codeblocks.html'), {}, done);
     });
 
     it('Should ignore ejs code blocks', done => {
-        const options = {
-           xmlMode: false
-        };
-        compare(path.join('test', 'fixtures', 'ejs.html'), path.join('test', 'expected', 'ejs.html'), options, done);
+        compare(path.join('test', 'fixtures', 'ejs.html'), path.join('test', 'expected', 'ejs.html'), {}, done);
     });
 
     it('Should ignore user defined code blocks', done => {
         const options = {
-            xmlMode: true,
             codeBlocks: {
                 craze: { start: '<<', end: '>>' }
             }

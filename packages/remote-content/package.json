@@ -21,7 +21,7 @@
   "homepage": "https://github.com/jonkemp/inline-css/tree/master/packages/remote-content",
   "dependencies": {
     "proxy-from-env": "^1.1.0",
-    "superagent": "^7.0.2",
+    "superagent": "^7.1.1",
     "superagent-proxy": "^3.0.0"
   }
 }

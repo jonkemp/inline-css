@@ -7,6 +7,7 @@ const cssom = require('cssom');
 * @param {String} selectorText from cssom
 * @api public
 */
+
 function extract(selectorText) {
     let attr = 0;
     const sels = [];

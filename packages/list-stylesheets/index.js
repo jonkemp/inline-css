@@ -1,11 +1,16 @@
-const cheerio = require('cheerio');
-const pick = require('pick-util');
+const jsdom = require('jsdom');
+const { JSDOM } = jsdom;
 
 function replaceCodeBlock(html, re, block) {
     return html.replace(re, () => block);
 }
 
+function decodeHTMLEntities(str) {
+    return String(str).replace(/&amp;/g, '&');
+}
+
 module.exports = (html, options) => {
+    const opts = options || {};
     const results = {};
     const codeBlocks = {
         EJS: { start: '<%', end: '%>' },
@@ -39,35 +44,29 @@ module.exports = (html, options) => {
     };
     const encodeEntities = _html => encodeCodeBlocks(_html);
     const decodeEntities = _html => decodeCodeBlocks(_html);
-    let $;
 
-    $ = cheerio.load(encodeEntities(html), Object.assign({
-        decodeEntities: false
-    }, pick(options, [
-        'xmlMode',
-        'decodeEntities',
-        'lowerCaseTags',
-        'lowerCaseAttributeNames',
-        'recognizeCDATA',
-        'recognizeSelfClosing'
-    ])));
+    const dom = new JSDOM(encodeEntities(html), {
+        contentType: opts.xmlMode ? 'application/xhtml+xml' : 'text/html'
+    });
 
     results.hrefs = [];
 
-    $('link').each((index, element) => {
-        const $el = $(element);
+    const linkTags = dom.window.document.querySelectorAll('link');
 
-        if ($el.attr('rel') && $el.attr('rel').toLowerCase() === 'stylesheet') {
+    Array.prototype.forEach.call(linkTags, element => {
+        if (element.getAttribute('rel') && element.getAttribute('rel').toLowerCase() === 'stylesheet') {
             if (options.applyLinkTags) {
-                results.hrefs.push($el.attr('href'));
+                results.hrefs.push(element.getAttribute('href'));
             }
             if (options.removeLinkTags) {
-                $el.remove();
+                if (element.parentNode !== null) {
+                    element.parentNode.removeChild(element);
+                }
             }
         }
     });
 
-    results.html = decodeEntities($.html());
+    results.html = decodeEntities(decodeHTMLEntities(dom.serialize()));
 
     return results;
 };
