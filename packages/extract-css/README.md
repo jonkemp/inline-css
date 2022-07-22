@@ -1,4 +1,4 @@
-# extract-css [![Build Status](https://travis-ci.org/jonkemp/extract-css.svg?branch=master)](https://travis-ci.org/jonkemp/extract-css) [![Coverage Status](https://coveralls.io/repos/jonkemp/extract-css/badge.svg?branch=master&service=github)](https://coveralls.io/github/jonkemp/extract-css?branch=master)
+# extract-css
 
 [![NPM](https://nodei.co/npm/extract-css.png?downloads=true)](https://nodei.co/npm/extract-css/)
 

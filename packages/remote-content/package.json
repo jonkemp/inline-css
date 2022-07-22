@@ -1,6 +1,6 @@
 {
   "name": "remote-content",
-  "version": "1.2.3",
+  "version": "3.0.0",
   "description": "Get remote content.",
   "main": "index.js",
   "files": [
@@ -20,8 +20,8 @@
   "license": "MIT",
   "homepage": "https://github.com/jonkemp/inline-css/tree/master/packages/remote-content",
   "dependencies": {
-    "proxy-from-env": "^1.0.0",
-    "superagent": "^5.2.1",
-    "superagent-proxy": "^2.0.0"
+    "proxy-from-env": "^1.1.0",
+    "superagent": "^7.0.2",
+    "superagent-proxy": "^3.0.0"
   }
 }

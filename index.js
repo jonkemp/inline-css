@@ -1,8 +1,7 @@
-const extend = require('extend');
 const inlineContent = require('./lib/inlineContent');
 
 module.exports = (html, options) => new Promise((resolve, reject) => {
-    const opt = extend(true, {
+    const opt = Object.assign({}, {
         extraCss: '',
         applyStyleTags: true,
         removeStyleTags: true,

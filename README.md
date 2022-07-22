@@ -1,4 +1,4 @@
-# inline-css [![npm](http://img.shields.io/npm/v/inline-css.svg?style=flat)](https://badge.fury.io/js/inline-css) [![Build Status](https://travis-ci.org/jonkemp/inline-css.svg?branch=master)](https://travis-ci.org/jonkemp/inline-css) [![Coverage Status](https://coveralls.io/repos/jonkemp/inline-css/badge.svg?branch=master&service=github)](https://coveralls.io/github/jonkemp/inline-css?branch=master)
+# inline-css [![npm](http://img.shields.io/npm/v/inline-css.svg?style=flat)](https://badge.fury.io/js/inline-css) ![Build Status](https://github.com/jonkemp/inline-css/actions/workflows/main.yml/badge.svg?branch=master) [![Coverage Status](https://coveralls.io/repos/jonkemp/inline-css/badge.svg?branch=master&service=github)](https://coveralls.io/github/jonkemp/inline-css?branch=master)
 
 [![NPM](https://nodei.co/npm/inline-css.png?downloads=true)](https://nodei.co/npm/inline-css/)
 
@@ -126,25 +126,7 @@ Whether to remove the original `<link rel="stylesheet">` tags after (possibly) i
 Type: `String`  
 Default: `filePath`
 
-How to resolve hrefs. Must be a string of one character or more. **Required**.
-
-Relative urls in links will have this value prepended to them. So these links:
-* `<a href="page-relative">Page</a>`
-* `<a href="/root-relative">Root</a>` <- _note leading /_
-
-
-With this option:
-```js
-inlineCss(html, { url: 'http://example.com/mushroom'})
-    .then(function(html) { console.log(html); });
-```
-
-Will result in
-
-* `<a href="http://example.com/mushroom/page-relative">Page</a>`
-* `<a href="http://example.com/root-relative">Root</a>`
-
-If you don't need this feature, simply set the property to a short string eg `{url: ' '}` (one space) and everything will work.
+How to resolve hrefs. **Required**.
 
 #### options.preserveMediaQueries
 
