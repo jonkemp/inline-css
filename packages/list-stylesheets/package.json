@@ -14,7 +14,7 @@
   "license": "MIT",
   "homepage": "https://github.com/jonkemp/inline-css/tree/master/packages/list-stylesheets",
   "dependencies": {
-    "cheerio": "1.0.0-rc.10",
-    "pick-util": "^1.1.4"
+    "cheerio": "1.0.0-rc.12",
+    "pick-util": "^1.1.5"
   }
 }
