@@ -10,12 +10,17 @@
   // Stop ESLint from looking for a configuration file in parent folders
   "root": true,
 
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
   "parserOptions": {
     "ecmaVersion": 8,
     "sourceType": "script",
     "ecmaFeatures": {
       "experimentalObjectRestSpread": true
+    },
+    "requireConfigFile": false,
+    "babelOptions": {
+      "babelrc": false,
+      "configFile": false
     }
   },
   "rules": {
