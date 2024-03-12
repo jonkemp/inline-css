@@ -163,6 +163,13 @@ Default: `{ EJS: { start: '<%', end: '%>' }, HBS: { start: '{{', end: '}}' } }`
 
 An object where each value has a `start` and `end` to specify fenced code blocks that should be ignored during parsing and inlining. For example, Handlebars (hbs) templates are `HBS: {start: '{{', end: '}}'}`. `codeBlocks` can fix problems where otherwise inline-css might interpret code like `<=` as HTML, when it is meant to be template language code. Note that `codeBlocks` is a dictionary which can contain many different code blocks, so don't do `codeBlocks: {...}` do `codeBlocks.myBlock = {...}`.
 
+#### options.isDocument
+
+Type: `Boolean`  
+Default: `true`
+
+Whether to wrap given html fragment with html, head, and body elements if necessary. It is directly passed to [cheerio.load](https://github.com/cheeriojs/cheerio#loading).
+
 ### Special markup
 
 #### data-embed
