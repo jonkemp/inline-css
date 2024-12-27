@@ -1,6 +1,6 @@
 {
   "name": "list-stylesheets",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Get a list of stylesheets from an HTML document.",
   "main": "index.js",
   "files": [
@@ -14,7 +14,7 @@
   "license": "MIT",
   "homepage": "https://github.com/jonkemp/inline-css/tree/master/packages/list-stylesheets",
   "dependencies": {
-    "cheerio": "1.0.0-rc.12",
+    "cheerio": "1.0.0",
     "pick-util": "^1.1.5"
   }
 }

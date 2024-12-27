@@ -1,6 +1,6 @@
 {
   "name": "style-data",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Get the content of style tags.",
   "main": "index.js",
   "files": [
@@ -17,7 +17,7 @@
   "license": "MIT",
   "homepage": "https://github.com/jonkemp/inline-css/tree/master/packages/style-data",
   "dependencies": {
-    "cheerio": "^1.0.0-rc.12",
+    "cheerio": "^1.0.0",
     "mediaquery-text": "^1.2.0",
     "pick-util": "^1.1.5"
   }

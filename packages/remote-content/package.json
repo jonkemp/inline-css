@@ -1,6 +1,6 @@
 {
   "name": "remote-content",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Get remote content.",
   "main": "index.js",
   "files": [
@@ -20,7 +20,7 @@
   "license": "MIT",
   "homepage": "https://github.com/jonkemp/inline-css/tree/master/packages/remote-content",
   "dependencies": {
-    "axios": "^1.6.2",
+    "axios": "^1.7.9",
     "proxy-from-env": "^1.1.0"
   }
 }
