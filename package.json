@@ -4,7 +4,7 @@
   "description": "Inline css into an html file.",
   "main": "index.js",
   "workspaces": [
-    "./packages/*"
+    "packages/*"
   ],
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",
@@ -18,23 +18,26 @@
   "devDependencies": {
     "@babel/core": "^7.20.12",
     "@babel/eslint-parser": "^7.19.1",
+    "@changesets/cli": "^2.27.11",
     "eslint": "^8.33.0",
     "js-beautify": "^1.14.7",
-    "lerna": "^6.4.1",
     "mocha": "^10.2.0",
     "nyc": "^15.1.0",
     "should": "^13.2.3",
+    "turbo": "^2.3.3",
     "vinyl": "^3.0.0"
   },
   "engines": {
     "node": ">=8"
   },
   "scripts": {
-    "bootstrap": "lerna bootstrap",
     "test": "mocha test packages/**/test",
     "lint": "eslint index.js lib/ packages/",
     "lint:fix": "eslint --fix index.js lib/ packages/",
-    "coverage": "nyc npm test && nyc report"
+    "coverage": "nyc npm test && nyc report",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "turbo run deploy && changeset publish"
   },
   "files": [
     "index.js",
