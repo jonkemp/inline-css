@@ -1,6 +1,6 @@
 {
   "name": "extract-css",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Extract the CSS from an HTML document.",
   "main": "index.js",
   "files": [
@@ -14,8 +14,8 @@
   "license": "MIT",
   "homepage": "https://github.com/jonkemp/inline-css/tree/master/packages/extract-css",
   "dependencies": {
-    "batch": "^0.6.1",
-    "href-content": "^2.0.2",
+    "async": "^3.2.6",
+    "href-content": "^2.0.3",
     "list-stylesheets": "^2.0.1",
     "style-data": "^2.0.1"
   }

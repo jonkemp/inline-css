@@ -1,25 +1,26 @@
 const assert = require('assert');
-const Batch = require('batch');
+const async = require('async');
 const getStylesData = require('style-data');
 const getStylesheetList = require('list-stylesheets');
 const getHrefContent = require('href-content');
 
 module.exports = (html, options, callback) => {
-    const batch = new Batch();
+    const tasks = [];
     const data = getStylesheetList(html, options);
 
-    batch.push(cb => {
+    tasks.push(cb => {
         getStylesData(data.html, options, cb);
     });
     if (data.hrefs.length) {
         assert.ok(options.url, 'options.url is required');
     }
     data.hrefs.forEach(stylesheetHref => {
-        batch.push(cb => {
+        tasks.push(cb => {
             getHrefContent(stylesheetHref, options.url, cb);
         });
     });
-    batch.end((err, results) => {
+
+    async.parallel(tasks, (err, results) => {
         let stylesData;
         let css;
 
