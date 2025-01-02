@@ -20,7 +20,8 @@ module.exports = (html, options) => new Promise((resolve, reject) => {
         lowerCaseTags: true,
         lowerCaseAttributeNames: false,
         recognizeCDATA: false,
-        recognizeSelfClosing: false
+        recognizeSelfClosing: false,
+        isDocument: true
     }, options);
 
     inlineContent(String(html), opt)

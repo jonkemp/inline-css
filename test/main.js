@@ -298,4 +298,13 @@ describe('inline-css', () => {
         };
         compare(path.join('test', 'fixtures', 'codeblocks-external.html'), path.join('test', 'expected', 'codeblocks-external.html'), options, done);
     });
+
+    it('Should insert html root elements if isDocument not set', done => {
+        const options = {
+            url: './',
+            isDocument: false
+        };
+
+        compare(path.join('test', 'fixtures', 'test-117.html'), path.join('test', 'expected', 'test-117.html'), options, done);
+    })
 });
