@@ -6,7 +6,16 @@ module.exports = (destHref, sourceHref, callback) => {
     let resolvedUrl;
     let parsedUrl;
     let toUrl = destHref;
+    let dataUrlRegex = /^data:\w+\/\w+;base64,([^\"]*)/;
 
+    if ((dataUrlMatch = dataUrlRegex.exec(destHref)) != null) {
+        try {
+            let buf = Buffer.from(dataUrlMatch[1], "base64");
+            callback(null, buf.toString());
+        } catch (error) {
+            callback(error, null);
+        };
+    }
     if (url.parse(sourceHref).protocol === 'file:' && destHref[0] === '/') {
         toUrl = destHref.slice(1);
     }
