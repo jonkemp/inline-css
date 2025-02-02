@@ -10,21 +10,23 @@
     "cheerio": "^1.0.0",
     "css-rules": "^1.1.0",
     "extract-css": "^3.0.2",
-    "flat-util": "^1.1.9",
+    "flat-util": "^1.1.11",
     "pick-util": "^1.1.5",
     "slick": "^1.12.2",
     "specificity": "^0.4.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.26.0",
-    "@babel/eslint-parser": "^7.25.9",
-    "@changesets/cli": "^2.27.11",
-    "eslint": "^8.33.0",
+    "@babel/core": "^7.26.7",
+    "@babel/eslint-parser": "^7.26.5",
+    "@changesets/cli": "^2.27.12",
+    "@eslint/js": "^9.19.0",
+    "eslint": "^9.19.0",
+    "globals": "^15.14.0",
     "js-beautify": "^1.15.1",
-    "mocha": "^11.0.1",
+    "mocha": "^11.1.0",
     "nyc": "^17.1.0",
     "should": "^13.2.3",
-    "turbo": "^2.3.3",
+    "turbo": "^2.4.0",
     "vinyl": "^3.0.0"
   },
   "engines": {
@@ -52,5 +54,5 @@
   ],
   "author": "Jonathan Kemp <kempdogg@gmail.com> (http://jonkemp.com/)",
   "license": "MIT",
-  "packageManager": "npm@11.0.0"
+  "packageManager": "npm@11.1.0"
 }
