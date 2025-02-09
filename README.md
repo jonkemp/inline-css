@@ -77,6 +77,21 @@ inlineCss(html, options)
     .then(function(html) { console.log(html); });
 ```
 
+## CLI
+```console
+$ inline-css -h
+Usage: inline-css [FILE]
+
+Description:
+  Inline css into an html file.
+
+Options:
+  -h, --help     Show this message.
+  -v, --version  Print version information.
+
+With no FILE, or when FILE is -, read standard input.
+```
+
 ## API
 
 ### inlineCss(html, options)
