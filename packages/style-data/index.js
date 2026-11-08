@@ -2,6 +2,8 @@ const mediaQueryText = require('mediaquery-text');
 const cheerio = require('cheerio');
 const pick = require('pick-util');
 
+const isDocument = html => /<(?:!doctype|html|head|body)[\s>]/i.test(html);
+
 function replaceCodeBlock(html, re, block) {
     return html.replace(re, () => block);
 }
@@ -49,7 +51,9 @@ module.exports = (html, options, callback) => {
     let styleDataList;
     let styleData;
 
-    $ = cheerio.load(encodeEntities(html), Object.assign({
+    const encoded = encodeEntities(html);
+
+    $ = cheerio.load(encoded, Object.assign({
         decodeEntities: false
     }, pick(options, [
         'xmlMode',
@@ -58,7 +62,7 @@ module.exports = (html, options, callback) => {
         'lowerCaseAttributeNames',
         'recognizeCDATA',
         'recognizeSelfClosing'
-    ])));
+    ])), isDocument(encoded));
 
     results.css = [];
 
