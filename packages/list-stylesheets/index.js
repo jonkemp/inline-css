@@ -1,6 +1,8 @@
 const cheerio = require('cheerio');
 const pick = require('pick-util');
 
+const isDocument = html => /<(?:!doctype|html|head|body)[\s>]/i.test(html);
+
 function replaceCodeBlock(html, re, block) {
     return html.replace(re, () => block);
 }
@@ -41,7 +43,9 @@ module.exports = (html, options) => {
     const decodeEntities = _html => decodeCodeBlocks(_html);
     let $;
 
-    $ = cheerio.load(encodeEntities(html), Object.assign({
+    const encoded = encodeEntities(html);
+
+    $ = cheerio.load(encoded, Object.assign({
         decodeEntities: false
     }, pick(options, [
         'xmlMode',
@@ -50,7 +54,7 @@ module.exports = (html, options) => {
         'lowerCaseAttributeNames',
         'recognizeCDATA',
         'recognizeSelfClosing'
-    ])));
+    ])), isDocument(encoded));
 
     results.hrefs = [];
 

@@ -116,4 +116,11 @@ describe('list-stylesheets', () => {
             done
         );
     });
+
+    it('Should leave an html fragment without html, head and body tags', () => {
+        const data = getStylesheetList('<link rel="stylesheet" href="file.css"><p>Hi</p>', { applyLinkTags: true, removeLinkTags: true });
+
+        data.hrefs.should.be.eql(['file.css']);
+        data.html.should.be.equal('<p>Hi</p>');
+    });
 });

@@ -298,4 +298,13 @@ describe('inline-css', () => {
         };
         compare(path.join('test', 'fixtures', 'codeblocks-external.html'), path.join('test', 'expected', 'codeblocks-external.html'), options, done);
     });
+
+    it('Should leave an html fragment without html, head and body tags', done => {
+        inlineCss('<div class="a">Hi</div><style>.a { color: red; }</style>', { url: `file://${path.resolve('test')}/` })
+            .then(html => {
+                html.should.be.equal('<div class="a" style="color: red;">Hi</div>');
+                done();
+            })
+            .catch(done);
+    });
 });

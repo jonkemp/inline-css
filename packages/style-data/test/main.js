@@ -144,4 +144,12 @@ describe('style-data', () => {
             done
         );
     });
+
+    it('Should leave an html fragment without html, head and body tags', done => {
+        getStylesData('<style>.a { color: red; }</style><p class="a">Hi</p>', { applyStyleTags: true, removeStyleTags: true }, (err, results) => {
+            results.html.should.be.equal('<p class="a">Hi</p>');
+            should.deepEqual(results.css, ['.a { color: red; }']);
+            done();
+        });
+    });
 });
