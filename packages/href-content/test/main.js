@@ -22,7 +22,8 @@ function compare(fixturePath, expectedPath, options, done) {
 
     const url = `file://${file.path}`;
 
-    getHrefContent(data.hrefs[0], url, (err, css) => {
+    getHrefContent(data.hrefs[0], url, { resourcePolicy: { fileRoot: path.resolve("test/fixtures") } }, (err, css) => {
+        if (err) return done(err);
         css.should.be.equal(String(fs.readFileSync(expectedPath)));
 
         done();

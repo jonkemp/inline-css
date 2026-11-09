@@ -2,54 +2,17 @@ const mediaQueryText = require('mediaquery-text');
 const cheerio = require('cheerio');
 const pick = require('pick-util');
 
-function replaceCodeBlock(html, re, block) {
-    return html.replace(re, () => block);
-}
+const { protect } = require('inline-css-template-blocks');
 
-module.exports = (html, options, callback) => {
+const extract = (html, options) => {
     const results = {};
 
-    const codeBlocks = {
-        EJS: { start: '<%', end: '%>' },
-        HBS: { start: '{{', end: '}}' }
-    };
-
-    const codeBlockLookup = [];
-
-    const encodeCodeBlocks = _html => {
-        let __html = _html;
-        const blocks = Object.assign(codeBlocks, options.codeBlocks);
-
-        Object.keys(blocks).forEach(key => {
-            const re = new RegExp(`${blocks[key].start}([\\S\\s]*?)${blocks[key].end}`, 'g');
-
-            __html = __html.replace(re, match => {
-                codeBlockLookup.push(match);
-                return `EXCS_CODE_BLOCK_${codeBlockLookup.length - 1}_`;
-            });
-        });
-        return __html;
-    };
-
-    const decodeCodeBlocks = _html => {
-        let index;
-        let re;
-        let __html = _html;
-
-        for (index = 0; index < codeBlockLookup.length; index++) {
-            re = new RegExp(`EXCS_CODE_BLOCK_${index}_(="")?`, 'gi');
-            __html = replaceCodeBlock(__html, re, codeBlockLookup[index]);
-        }
-        return __html;
-    };
-
-    const encodeEntities = _html => encodeCodeBlocks(_html);
-    const decodeEntities = _html => decodeCodeBlocks(_html);
+    const protectedHtml = protect(html, options.codeBlocks);
+    const decodeEntities = protectedHtml.restore;
     let $;
-    let styleDataList;
     let styleData;
 
-    $ = cheerio.load(encodeEntities(html), Object.assign({
+    $ = cheerio.load(protectedHtml.html, Object.assign({
         decodeEntities: false
     }, pick(options, [
         'xmlMode',
@@ -70,19 +33,23 @@ module.exports = (html, options, callback) => {
             return;
         }
 
-        styleDataList = element.childNodes;
-        if (styleDataList.length !== 1) {
-            callback(new Error('empty style element'));
+        styleData = $(element).html() || '';
+        if (!styleData.trim()) {
+            if (options.removeStyleTags) {
+                $(element).remove();
+            }
             return;
         }
-        styleData = styleDataList[0].data;
+        const media = $(element).attr('media');
+        const qualified = media && media.trim() && media.trim().toLowerCase() !== 'all';
+
         if (options.applyStyleTags) {
-            results.css.push(styleData);
+            results.css.push(decodeEntities(qualified ? `@media ${media} {\n${styleData}\n}` : styleData));
         }
         if (options.removeStyleTags) {
             if (options.preserveMediaQueries) {
-                mediaQueries = mediaQueryText(element.childNodes[0].nodeValue);
-                element.childNodes[0].nodeValue = mediaQueries;
+                mediaQueries = qualified ? `@media ${media} {\n${styleData}\n}` : mediaQueryText(styleData);
+                $(element).removeAttr('media').text(mediaQueries);
             }
             if (!mediaQueries) {
                 $(element).remove();
@@ -92,5 +59,17 @@ module.exports = (html, options, callback) => {
 
     results.html = decodeEntities($.html());
 
-    callback(null, results);
+    return results;
+};
+
+module.exports = (html, options, callback) => {
+    let result;
+
+    try {
+        result = extract(html, options);
+    } catch (cause) {
+        callback(cause);
+        return;
+    }
+    callback(null, result);
 };

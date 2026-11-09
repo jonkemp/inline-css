@@ -1,0 +1,15 @@
+{
+  "name": "inline-css-template-blocks",
+  "version": "1.0.0-rc.1",
+  "description": "Protect literal template blocks during HTML parsing.",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "lib/"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "dependencies": {}
+}
