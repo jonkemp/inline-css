@@ -35,7 +35,7 @@ describe('resource policy', () => {
             fs.writeFileSync(path.join(dir, 'root', 'inside.css'), 'p{}');
             fs.symlinkSync(path.join(dir, 'outside.css'), path.join(dir, 'root', 'escape.css'));
             const p = policy.normalizePolicy({ fileRoot: path.join(dir, 'root') });
-            assert.equal(await policy.authorizeFile(pathToFileURL(path.join(dir, 'root/inside.css')), p), fs.realpathSync(path.join(dir, 'root/inside.css')));
+            assert.equal(await policy.authorizeFile(pathToFileURL(path.join(dir, 'root/inside.css')), p), fs.realpathSync.native(path.join(dir, 'root/inside.css')));
             await assert.rejects(policy.authorizeFile(pathToFileURL(path.join(dir, 'root/escape.css')), p), { code: 'ERR_INLINE_CSS_RESOURCE_DENIED' });
             await assert.rejects(policy.authorizeFile(pathToFileURL(path.join(dir, 'outside.css')), p), { code: 'ERR_INLINE_CSS_RESOURCE_DENIED' });
         } finally { fs.rmSync(dir, { recursive: true, force: true }); }
