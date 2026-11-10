@@ -1,0 +1,18 @@
+{
+  "mode": "pre",
+  "tag": "rc",
+  "initialVersions": {
+    "css-rules": "1.1.0",
+    "extract-css": "3.0.2",
+    "href-content": "2.0.3",
+    "inline-css-template-blocks": "0.0.0",
+    "list-stylesheets": "2.0.2",
+    "mediaquery-text": "1.2.0",
+    "remote-content": "4.0.1",
+    "resource-policy": "0.0.0",
+    "style-data": "2.0.2"
+  },
+  "changesets": [
+    "release-five"
+  ]
+}

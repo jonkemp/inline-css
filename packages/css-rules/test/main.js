@@ -1,49 +1,13 @@
 /* eslint-disable */
-/* global describe, it */
-
-const assert = require('assert');
-const fs = require('fs');
-const path = require('path');
-const parseCSS = require('../index');
-
-describe('css-rules', () => {
-    it('Should return a parse tree for a CSS source', done => {
-        const css = String(fs.readFileSync(path.join('test', 'fixtures', 'file.css')));
-        const rules = parseCSS(css);
-
-        assert.ok(rules);
-        assert.equal(rules.length, 4);
-        rules.forEach(rule => {
-            assert.ok(rule);
-            assert.equal(rule.length, 2);
-
-            assert.equal(typeof rule[0], 'string');
-
-            assert.ok(rule[1].hasOwnProperty('0'));
-            assert.ok(rule[1].hasOwnProperty('length'));
-            assert.ok(rule[1].hasOwnProperty('parentRule'));
-            assert.ok(rule[1].hasOwnProperty('_importants'));
-            assert.ok(rule[1].hasOwnProperty('__starts'));
-            assert.ok(rule[1].hasOwnProperty(rule[1]['0']));
-
-            assert.equal(typeof rule[1]['0'], 'string');
-            assert.equal(typeof rule[1].length, 'number');
-            assert.equal(typeof rule[1].parentRule, 'object');
-            assert.equal(typeof rule[1]._importants, 'object');
-            assert.equal(typeof rule[1].__starts, 'number');
-            assert.equal(typeof rule[1][rule[1]['0']], 'string');
-        });
-        done();
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const parse=require('../');
+describe('css-rules',()=>{
+    it('returns selectors and ordered declaration records',()=>{
+        const rules=parse(fs.readFileSync('test/fixtures/file.css','utf8'));
+        assert.equal(rules.length,4);
+        assert.equal(rules[0].selector,'body');
+        assert.ok(rules.every(rule=>typeof rule.selector==='string'&&rule.declarations.length>0));
     });
-
-    it('Should error when passed malformed CSS', done => {
-        const css = String(fs.readFileSync(path.join('test', 'fixtures', 'malformed.css')));
-
-        try {
-           parseCSS(css);
-        } catch (err) {
-            assert.equal(err.message, 'Unexpected } (line 3, char 1)');
-        }
-        done();
-    });
+    it('rejects malformed CSS',()=>assert.throws(()=>parse(fs.readFileSync('test/fixtures/malformed.css','utf8'))));
 });
