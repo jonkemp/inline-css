@@ -9,7 +9,8 @@ const root = path.resolve(__dirname, '..');
 const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'inline-css-packed-'));
 const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
 const run = (command, args, cwd) => new Promise((resolve, reject) => {
-    const child = spawn(command, args, { cwd, shell: process.platform === 'win32', stdio: [ 'ignore', 'pipe', 'pipe' ] });
+    // npm.cmd needs a shell on Windows; Node's -e programs must stay opaque arguments.
+    const child = spawn(command, args, { cwd, shell: process.platform === 'win32' && command === npm, stdio: [ 'ignore', 'pipe', 'pipe' ] });
     let output = '';
 
     child.stdout.on('data', data => {
