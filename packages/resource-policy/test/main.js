@@ -41,3 +41,26 @@ describe('resource policy', () => {
         } finally { fs.rmSync(dir, { recursive: true, force: true }); }
     });
 });
+
+describe('native root canonicalization', () => {
+    it('authorizes a root alias when legacy and native realpath spell it differently', async () => {
+        const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'inline-native-root-'));
+        const root = path.join(dir, 'long-root');
+        const alias = path.join(dir, 'short-root');
+        const legacy = fs.realpathSync;
+        try {
+            fs.mkdirSync(root);
+            fs.writeFileSync(path.join(root, 'inside.css'), 'p{}');
+            fs.writeFileSync(path.join(dir, 'outside.css'), 'p{}');
+            fs.symlinkSync(root, alias, 'junction');
+            // Model Windows legacy realpath retaining an 8.3 alias while native expands it.
+            fs.realpathSync = Object.assign(input => path.resolve(input) === alias ? alias : legacy(input), { native: legacy.native });
+            const p = policy.normalizePolicy({ fileRoot: alias });
+            assert.equal(await policy.authorizeFile(pathToFileURL(path.join(alias, 'inside.css')), p), legacy.native(path.join(root, 'inside.css')));
+            await assert.rejects(policy.authorizeFile(pathToFileURL(path.join(dir, 'outside.css')), p), { code: 'ERR_INLINE_CSS_RESOURCE_DENIED' });
+        } finally {
+            fs.realpathSync = legacy;
+            fs.rmSync(dir, { recursive: true, force: true });
+        }
+    });
+});

@@ -26,7 +26,7 @@ function compare(fixturePath, expectedHTML, expectedCSS, options, done) {
         if (err) return done(err);
         try {
         beautify(html).should.be.equal(beautify(String(fs.readFileSync(expectedHTML))));
-        css.should.be.equal(String(fs.readFileSync(expectedCSS)));
+        css.replace(/\r\n/g, '\n').should.be.equal(String(fs.readFileSync(expectedCSS)).replace(/\r\n/g, '\n'));
 
         done();
         } catch (cause) { done(cause); }

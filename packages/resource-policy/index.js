@@ -46,7 +46,8 @@ const normalizePolicy = (input = {}) => {
                 throw new Error('Invalid directory');
             }
             policy[ROOT_PATH] = input[ROOT_PATH] || path.resolve(policy.fileRoot);
-            policy.fileRoot = fs.realpathSync(policy.fileRoot);
+            // Match fs.promises.realpath below, including Windows 8.3 expansion.
+            policy.fileRoot = fs.realpathSync.native(policy.fileRoot);
         } catch (cause) {
             throw error('INVALID_OPTIONS', 'fileRoot must be an existing absolute directory', cause);
         }

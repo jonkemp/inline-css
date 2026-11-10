@@ -34,7 +34,7 @@
     "node": ">=22.12.0"
   },
   "scripts": {
-    "test": "mocha test packages/**/test",
+    "test": "mocha \"test/*.test.js\" test/main.js \"packages/*/test/**/*.js\"",
     "lint": "eslint index.js lib/ packages/",
     "lint:fix": "eslint --fix index.js lib/ packages/",
     "coverage": "nyc npm test && nyc report",
