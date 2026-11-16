@@ -29,3 +29,7 @@ The code for this module was originally taken from the [Juice](https://github.co
 ## License
 
 MIT
+
+## 5.0 release family
+
+Requires Node.js 22.12 or later. See the [inline-css migration guide](https://github.com/jonkemp/inline-css/blob/master/docs/migration-5.md) for the release policy and error codes.

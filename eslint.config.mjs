@@ -3,6 +3,7 @@ import js from '@eslint/js';
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
+    { ignores: ["lib/internal/**", "packages/*/lib/internal/**"] },
 	{
 		...js.configs.recommended,
 	},

@@ -10,8 +10,8 @@ describe('mediaquery-text', () => {
         const mediaQueries = mediaQueryText(
             String(fs.readFileSync(path.join(__dirname, 'fixtures', 'file.css')))
         );
-        mediaQueries.should.be.equal(
-            String(fs.readFileSync(path.join(__dirname, 'expected', 'file.css')))
+        mediaQueries.replace(/\r\n/g, '\n').should.be.equal(
+            String(fs.readFileSync(path.join(__dirname, 'expected', 'file.css'))).replace(/\r\n/g, '\n')
         );
         done();
     });
@@ -20,8 +20,8 @@ describe('mediaquery-text', () => {
         const mediaQueries = mediaQueryText(
             String(fs.readFileSync(path.join(__dirname, 'fixtures', 'font-face.css')))
         );
-        mediaQueries.should.be.equal(
-            String(fs.readFileSync(path.join(__dirname, 'expected', 'font-face.css')))
+        mediaQueries.replace(/\r\n/g, '\n').should.be.equal(
+            String(fs.readFileSync(path.join(__dirname, 'expected', 'font-face.css'))).replace(/\r\n/g, '\n')
         );
         done();
     });

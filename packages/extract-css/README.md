@@ -17,7 +17,8 @@ npm install --save extract-css
 ```js
 var extractCss = require('extract-css');
 var options = {
-      url: './',
+      url: 'file:///srv/templates/email.html',
+      resourcePolicy: { fileRoot: '/srv/templates' },
       applyStyleTags: true,
       removeStyleTags: true,
       applyLinkTags: true,
@@ -97,3 +98,9 @@ The code for this module was originally taken from the [Juice](https://github.co
 ## License
 
 MIT © [Jonathan Kemp](http://jonkemp.com)
+
+## 5.0 release family
+
+Requires Node.js 22.12 or later. See the [inline-css migration guide](https://github.com/jonkemp/inline-css/blob/master/docs/migration-5.md) for the release policy and error codes.
+
+The callback adds an optional fourth metadata argument `{hasRetainedCss}` after `(err, html, css)`. Use explicit `options.resourcePolicy` for linked resources. Unconditional CSS retains document order; preserved conditional CSS remains in the returned HTML.

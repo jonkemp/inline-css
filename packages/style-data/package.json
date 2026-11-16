@@ -1,10 +1,11 @@
 {
   "name": "style-data",
-  "version": "2.0.2",
+  "version": "3.0.0-rc.1",
   "description": "Get the content of style tags.",
   "main": "index.js",
   "files": [
-    "index.js"
+    "index.js",
+    "lib/internal/"
   ],
   "repository": "https://github.com/jonkemp/inline-css/tree/master/packages/style-data",
   "keywords": [
@@ -17,8 +18,14 @@
   "license": "MIT",
   "homepage": "https://github.com/jonkemp/inline-css/tree/master/packages/style-data",
   "dependencies": {
-    "cheerio": "^1.0.0",
-    "mediaquery-text": "^1.2.0",
+    "cheerio": "^1.2.0",
+    "mediaquery-text": "^2.0.0-rc.1",
     "pick-util": "^1.1.5"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "prepack": "node ../../scripts/build-internals.js style-data"
   }
 }

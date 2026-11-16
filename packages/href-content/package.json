@@ -1,10 +1,11 @@
 {
   "name": "href-content",
-  "version": "2.0.3",
+  "version": "3.0.0-rc.1",
   "description": "Get content from link tags in an HTML document.",
   "main": "index.js",
   "files": [
-    "index.js"
+    "index.js",
+    "lib/internal/"
   ],
   "repository": "https://github.com/jonkemp/inline-css/tree/master/packages/href-content",
   "keywords": [
@@ -17,6 +18,13 @@
   "license": "MIT",
   "homepage": "https://github.com/jonkemp/inline-css/tree/master/packages/href-content",
   "dependencies": {
-    "remote-content": "^4.0.0"
+    "remote-content": "^5.0.0-rc.1",
+    "ipaddr.js": "^2.5.0"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "prepack": "node ../../scripts/build-internals.js href-content"
   }
 }

@@ -145,3 +145,24 @@ describe('style-data', () => {
         );
     });
 });
+
+describe('style-data 5.0 callbacks and conditions', () => {
+    it('reports invalid delimiters through its callback once', done => {
+        let calls = 0;
+        require('../')('<p>x</p>', { codeBlocks: { X: { start: '', end: ']' } } }, err => {
+            calls++;
+            require('node:assert/strict').equal(err.code, 'ERR_INLINE_CSS_INVALID_OPTIONS');
+            setImmediate(() => { require('node:assert/strict').equal(calls, 1); done(); });
+        });
+    });
+    it('keeps media-qualified CSS conditional for standalone consumers', done => {
+        require('../')('<style media="print">p{color:red}</style>', { applyStyleTags: true, removeStyleTags: true, preserveMediaQueries: true }, (err, result) => {
+            if (err) return done(err);
+            try {
+                require('node:assert/strict').match(result.css[0], /@media print/);
+                require('node:assert/strict').match(result.html, /@media print/);
+                done();
+            } catch (e) { done(e); }
+        });
+    });
+});

@@ -7,6 +7,7 @@ const path = require('path');
 const Vinyl = require('vinyl');
 const beautify = require('js-beautify').html;
 const inlineCss = require('../index');
+const browser = require('./helpers/browser');
 
 function getFile(filePath) {
     return new Vinyl({
@@ -21,15 +22,12 @@ function compare(fixturePath, expectedPath, options, done) {
     const file = getFile(fixturePath);
 
     options.url = `file://${file.path}`;
+    options.resourcePolicy = { fileRoot: path.resolve("test/fixtures") };
 
     inlineCss(file.contents.toString('utf8'), options)
-        .then(html => {
-            const expected = beautify(String(fs.readFileSync(expectedPath)), {
-                "preserve-newlines": false
-            });
-            beautify(html, {
-                "preserve-newlines": false
-            }).should.be.equal(expected);
+        .then(async html => {
+            const expected = String(fs.readFileSync(expectedPath));
+            await browser.compare(html, expected);
         })
         .then(() => {
             done()
@@ -39,7 +37,10 @@ function compare(fixturePath, expectedPath, options, done) {
         });
 }
 
-describe('inline-css', () => {
+describe('inline-css', function () {
+    this.timeout(15000);
+    before(async () => { await browser.start(); });
+    after(async () => { await browser.close(); });
     it('Should convert linked css to inline css', done => {
         const options = {};
         compare(path.join('test', 'fixtures', 'in.html'), path.join('test', 'expected', 'out.html'), options, done);
@@ -161,10 +162,15 @@ describe('inline-css', () => {
         compare(path.join('test', 'fixtures', 'no_css.html'), path.join('test', 'expected', 'no_css.html'), options, done);
     });
 
-    it('Should inline css with remote url', function(done) {
-        this.timeout(10000);
-        const options = {};
-        compare(path.join('test', 'fixtures', 'remote_url.html'), path.join('test', 'expected', 'remote_url.html'), options, done);
+    it('Should inline css with remote url', async () => {
+        const http = require('node:http');
+        const server = http.createServer((req, res) => res.end('h1{color:red}'));
+        await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
+        const origin = `http://127.0.0.1:${server.address().port}`;
+        try {
+            const html = await inlineCss(`<link rel="stylesheet" href="${origin}/style.css"><h1>hello</h1>`, { url: origin, resourcePolicy: { allowedOrigins: [origin], allowPrivateNetworks: true } });
+            require('node:assert/strict').match(html, /color: red/);
+        } finally { server.closeAllConnections(); await new Promise(resolve => server.close(resolve)); }
     });
 
     it('Should inline css in with spaces in path', done => {
@@ -236,19 +242,11 @@ describe('inline-css', () => {
       compare(path.join('test', 'fixtures', 'remove-html-selectors.html'), path.join('test', 'expected', 'remove-html-selectors.html'), options, done);
     });
 
-    it('Should error when passed malformed CSS', done => {
+    it('Should error when passed malformed CSS', async () => {
         const file = getFile(path.join('test', 'fixtures', 'malformed.html'));
-        const options = {
-            url: `file://${file.path}`
-        };
-        inlineCss(file.contents.toString('utf8'), options)
-            .then(html => {
-                done(new Error('test should error when passed malformed CSS'));
-            })
-            .catch(({message}) => {
-                message.should.be.equal('Error: Unexpected } (line 3, char 1)');
-                done();
-            });
+        await require('node:assert/strict').rejects(inlineCss(file.contents.toString('utf8'), {
+            url: `file://${file.path}`, resourcePolicy: { fileRoot: path.resolve('test/fixtures') }
+        }), { name: 'CssSyntaxError' });
     });
 
     it('Should handle html character entities correctly', done => {

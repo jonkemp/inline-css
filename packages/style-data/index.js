@@ -2,54 +2,55 @@ const mediaQueryText = require('mediaquery-text');
 const cheerio = require('cheerio');
 const pick = require('pick-util');
 
-function replaceCodeBlock(html, re, block) {
-    return html.replace(re, () => block);
-}
+const { protect } = require('./lib/internal/template-blocks');
 
-module.exports = (html, options, callback) => {
+const qualifiedMedia = media => media && media.trim() && media.trim().toLowerCase() !== 'all';
+const wrapMedia = (styleData, media) => qualifiedMedia(media) ? `@media ${media} {\n${styleData}\n}` : styleData;
+const removeStyle = (el, styleData, options) => {
+    let mediaQueries;
+
+    if (options.preserveMediaQueries) {
+        const media = el.attr('media');
+
+        mediaQueries = qualifiedMedia(media) ? wrapMedia(styleData, media) : mediaQueryText(styleData);
+        el.removeAttr('media').text(mediaQueries);
+    }
+    if (!mediaQueries) {
+        el.remove();
+    }
+};
+const collectStyle = (el, styleData, { options, results, decodeEntities }) => {
+    if (options.applyStyleTags) {
+        results.css.push(decodeEntities(wrapMedia(styleData, el.attr('media'))));
+    }
+    if (options.removeStyleTags) {
+        removeStyle(el, styleData, options);
+    }
+};
+
+const processStyle = (el, { options, results, decodeEntities }) => {
+    // Embedded styles are intentionally preserved without applying them.
+    if (typeof el.data('embed') !== 'undefined') {
+        return;
+    }
+    const styleData = el.html() || '';
+
+    if (!styleData.trim()) {
+        if (options.removeStyleTags) {
+            el.remove();
+        }
+        return;
+    }
+    collectStyle(el, styleData, { options, results, decodeEntities });
+};
+const extract = (html, options) => {
     const results = {};
 
-    const codeBlocks = {
-        EJS: { start: '<%', end: '%>' },
-        HBS: { start: '{{', end: '}}' }
-    };
-
-    const codeBlockLookup = [];
-
-    const encodeCodeBlocks = _html => {
-        let __html = _html;
-        const blocks = Object.assign(codeBlocks, options.codeBlocks);
-
-        Object.keys(blocks).forEach(key => {
-            const re = new RegExp(`${blocks[key].start}([\\S\\s]*?)${blocks[key].end}`, 'g');
-
-            __html = __html.replace(re, match => {
-                codeBlockLookup.push(match);
-                return `EXCS_CODE_BLOCK_${codeBlockLookup.length - 1}_`;
-            });
-        });
-        return __html;
-    };
-
-    const decodeCodeBlocks = _html => {
-        let index;
-        let re;
-        let __html = _html;
-
-        for (index = 0; index < codeBlockLookup.length; index++) {
-            re = new RegExp(`EXCS_CODE_BLOCK_${index}_(="")?`, 'gi');
-            __html = replaceCodeBlock(__html, re, codeBlockLookup[index]);
-        }
-        return __html;
-    };
-
-    const encodeEntities = _html => encodeCodeBlocks(_html);
-    const decodeEntities = _html => decodeCodeBlocks(_html);
+    const protectedHtml = protect(html, options.codeBlocks);
+    const decodeEntities = protectedHtml.restore;
     let $;
-    let styleDataList;
-    let styleData;
 
-    $ = cheerio.load(encodeEntities(html), Object.assign({
+    $ = cheerio.load(protectedHtml.html, Object.assign({
         decodeEntities: false
     }, pick(options, [
         'xmlMode',
@@ -62,35 +63,21 @@ module.exports = (html, options, callback) => {
 
     results.css = [];
 
-    $('style').each((index, element) => {
-        let mediaQueries;
-
-        // if data-embed property exists, skip inlining and removing
-        if (typeof $(element).data('embed') !== 'undefined') {
-            return;
-        }
-
-        styleDataList = element.childNodes;
-        if (styleDataList.length !== 1) {
-            callback(new Error('empty style element'));
-            return;
-        }
-        styleData = styleDataList[0].data;
-        if (options.applyStyleTags) {
-            results.css.push(styleData);
-        }
-        if (options.removeStyleTags) {
-            if (options.preserveMediaQueries) {
-                mediaQueries = mediaQueryText(element.childNodes[0].nodeValue);
-                element.childNodes[0].nodeValue = mediaQueries;
-            }
-            if (!mediaQueries) {
-                $(element).remove();
-            }
-        }
-    });
+    $('style').each((index, element) => processStyle($(element), { options, results, decodeEntities }));
 
     results.html = decodeEntities($.html());
 
-    callback(null, results);
+    return results;
+};
+
+module.exports = (html, options, callback) => {
+    let result;
+
+    try {
+        result = extract(html, options);
+    } catch (cause) {
+        callback(cause);
+        return;
+    }
+    callback(null, result);
 };

@@ -1,0 +1,71 @@
+{
+  "methodology": "Six independent direct curl requests (three per real stylesheet), compressed transfer enabled, ten-second request cap. These are point-in-time observations, not production tail-latency or inliner enforcement tests.",
+  "results": [
+    {
+      "url": "https://raw.githubusercontent.com/foundation/foundation-emails/7a37ae4cad4f97068f8257ba92a67a261080e3c5/dist/foundation-emails.css",
+      "attempt": 1,
+      "returnCode": 0,
+      "status": 200,
+      "totalSeconds": 0.331459,
+      "redirects": 0,
+      "wireBytes": 5217,
+      "decodedBytes": 33835,
+      "error": null
+    },
+    {
+      "url": "https://raw.githubusercontent.com/foundation/foundation-emails/7a37ae4cad4f97068f8257ba92a67a261080e3c5/dist/foundation-emails.css",
+      "attempt": 2,
+      "returnCode": 0,
+      "status": 200,
+      "totalSeconds": 0.225891,
+      "redirects": 0,
+      "wireBytes": 5217,
+      "decodedBytes": 33835,
+      "error": null
+    },
+    {
+      "url": "https://raw.githubusercontent.com/foundation/foundation-emails/7a37ae4cad4f97068f8257ba92a67a261080e3c5/dist/foundation-emails.css",
+      "attempt": 3,
+      "returnCode": 0,
+      "status": 200,
+      "totalSeconds": 0.204609,
+      "redirects": 0,
+      "wireBytes": 5217,
+      "decodedBytes": 33835,
+      "error": null
+    },
+    {
+      "url": "https://raw.githubusercontent.com/mailgun/transactional-email-templates/e05e59e8c1e0fa7ffbacc7a165a609fd37c590b5/templates/styles.css",
+      "attempt": 1,
+      "returnCode": 0,
+      "status": 200,
+      "totalSeconds": 0.312184,
+      "redirects": 0,
+      "wireBytes": 1524,
+      "decodedBytes": 5218,
+      "error": null
+    },
+    {
+      "url": "https://raw.githubusercontent.com/mailgun/transactional-email-templates/e05e59e8c1e0fa7ffbacc7a165a609fd37c590b5/templates/styles.css",
+      "attempt": 2,
+      "returnCode": 0,
+      "status": 200,
+      "totalSeconds": 0.228485,
+      "redirects": 0,
+      "wireBytes": 1524,
+      "decodedBytes": 5218,
+      "error": null
+    },
+    {
+      "url": "https://raw.githubusercontent.com/mailgun/transactional-email-templates/e05e59e8c1e0fa7ffbacc7a165a609fd37c590b5/templates/styles.css",
+      "attempt": 3,
+      "returnCode": 0,
+      "status": 200,
+      "totalSeconds": 0.168972,
+      "redirects": 0,
+      "wireBytes": 1524,
+      "decodedBytes": 5218,
+      "error": null
+    }
+  ]
+}

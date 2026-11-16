@@ -32,3 +32,9 @@ The code for this module was originally taken from the [Juice](https://github.co
 ## License
 
 MIT
+
+## 5.0 release family
+
+Requires Node.js 22.12 or later. See the [inline-css migration guide](https://github.com/jonkemp/inline-css/blob/master/docs/migration-5.md) for the release policy and error codes.
+
+The parser now returns `[{ selector, declarations: [{ property, value, important, order }] }]`. It preserves duplicate declarations and splits selector lists using an AST. Media rules are not returned as unconditional styles.

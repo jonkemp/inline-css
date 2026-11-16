@@ -1,10 +1,11 @@
 {
   "name": "list-stylesheets",
-  "version": "2.0.2",
+  "version": "3.0.0-rc.1",
   "description": "Get a list of stylesheets from an HTML document.",
   "main": "index.js",
   "files": [
-    "index.js"
+    "index.js",
+    "lib/internal/"
   ],
   "repository": "https://github.com/jonkemp/inline-css/tree/master/packages/list-stylesheets",
   "keywords": [
@@ -14,7 +15,13 @@
   "license": "MIT",
   "homepage": "https://github.com/jonkemp/inline-css/tree/master/packages/list-stylesheets",
   "dependencies": {
-    "cheerio": "1.0.0",
+    "cheerio": "^1.2.0",
     "pick-util": "^1.1.5"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "prepack": "node ../../scripts/build-internals.js list-stylesheets"
   }
 }

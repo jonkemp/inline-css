@@ -1,10 +1,11 @@
 {
   "name": "extract-css",
-  "version": "3.0.2",
+  "version": "4.0.0-rc.1",
   "description": "Extract the CSS from an HTML document.",
   "main": "index.js",
   "files": [
-    "index.js"
+    "index.js",
+    "lib/internal/"
   ],
   "repository": "https://github.com/jonkemp/inline-css/tree/master/packages/extract-css",
   "keywords": [
@@ -15,8 +16,17 @@
   "homepage": "https://github.com/jonkemp/inline-css/tree/master/packages/extract-css",
   "dependencies": {
     "async": "^3.2.6",
-    "href-content": "^2.0.3",
-    "list-stylesheets": "^2.0.1",
-    "style-data": "^2.0.1"
+    "href-content": "^3.0.0-rc.1",
+    "list-stylesheets": "^3.0.0-rc.1",
+    "style-data": "^3.0.0-rc.1",
+    "cheerio": "^1.2.0",
+    "postcss": "^8.5.32",
+    "ipaddr.js": "^2.5.0"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "prepack": "node ../../scripts/build-internals.js extract-css"
   }
 }

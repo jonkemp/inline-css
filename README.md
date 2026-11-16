@@ -124,7 +124,7 @@ Whether to remove the original `<link rel="stylesheet">` tags after (possibly) i
 #### options.url
 
 Type: `String`  
-Default: `filePath`
+Default: none
 
 How to resolve hrefs. **Required**.
 
@@ -182,3 +182,11 @@ See the [CONTRIBUTING Guidelines](https://github.com/jonkemp/inline-css/blob/mas
 ## License
 
 MIT © [Jonathan Kemp](http://jonkemp.com)
+
+## Migrating to 5.0
+
+Requires Node.js **22.12+**. External stylesheets now require explicit permissions; linked resources have finite configurable limits, and built-in fetching is direct-only. See the [5.0 migration guide](docs/migration-5.md) for examples, media/selector behavior, error codes, and standalone package changes.
+
+## Internal helper build
+
+Shared policy and template code lives in `internal/` and is bundled into the existing package tarballs. No additional helper packages are published. Run `npm run build` for direct use from a checkout; `npm test` and the package prepack hooks build automatically. Generated `lib/internal/` files are ignored by Git.
