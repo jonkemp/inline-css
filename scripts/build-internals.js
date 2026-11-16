@@ -11,20 +11,19 @@ const consumers = {
     'style-data': [ 'template-blocks' ]
 };
 
-const build = (selected = Object.keys(consumers)) => {
-    for (const name of selected) {
-        if (!Object.hasOwn(consumers, name)) {
-            throw new Error(`Unknown internal-helper consumer: ${name}`);
-        }
-        const dir = name === 'inline-css' ? root : path.join(root, 'packages', name);
-        const output = path.join(dir, 'lib', 'internal');
+const buildConsumer = name => {
+    if (!Object.hasOwn(consumers, name)) {
+        throw new Error(`Unknown internal-helper consumer: ${name}`);
+    }
+    const dir = name === 'inline-css' ? root : path.join(root, 'packages', name);
+    const output = path.join(dir, 'lib', 'internal');
 
-        fs.mkdirSync(output, { recursive: true });
-        for (const helper of consumers[name]) {
-            fs.copyFileSync(path.join(root, 'internal', `${helper}.js`), path.join(output, `${helper}.js`));
-        }
+    fs.mkdirSync(output, { recursive: true });
+    for (const helper of consumers[name]) {
+        fs.copyFileSync(path.join(root, 'internal', `${helper}.js`), path.join(output, `${helper}.js`));
     }
 };
+const build = (selected = Object.keys(consumers)) => selected.forEach(buildConsumer);
 
 module.exports = build;
 if (require.main === module) {

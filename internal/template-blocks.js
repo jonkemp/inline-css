@@ -2,33 +2,39 @@ const { randomUUID } = require('node:crypto');
 
 const defaults = { EJS: { start: '<%', end: '%>' }, HBS: { start: '{{', end: '}}' } };
 const invalid = () => Object.assign(new Error('codeBlocks must contain nonempty literal start/end strings'), { code: 'ERR_INLINE_CSS_INVALID_OPTIONS' });
-
-exports.protect = (html, codeBlocks = {}) => {
+const isDelimiter = value => typeof value === 'string' && value.length > 0;
+const validateBlock = block => {
+    if (!block || !isDelimiter(block.start) || !isDelimiter(block.end)) {
+        throw invalid();
+    }
+    return block;
+};
+const getBlocks = codeBlocks => {
     if (!codeBlocks || typeof codeBlocks !== 'object' || Array.isArray(codeBlocks)) {
         throw invalid();
     }
-    const blocks = Object.values({ ...defaults, ...codeBlocks });
-
-    for (const block of blocks) {
-        if (!block || typeof block.start !== 'string' || !block.start || typeof block.end !== 'string' || !block.end) {
-            throw invalid();
-        }
-    }
+    return Object.values({ ...defaults, ...codeBlocks }).map(validateBlock);
+};
+const createPrefix = html => {
     let prefix;
 
     do {
         prefix = `excsblock${randomUUID().replaceAll('-', '')}`;
     } while (html.toLowerCase().includes(prefix));
+    return prefix;
+};
+const nextBlock = (html, blocks, position) => blocks
+    .map((block, order) => ({ ...block, order, index: html.indexOf(block.start, position) }))
+    .filter(block => block.index !== -1)
+    .sort((a, b) => a.index - b.index || b.start.length - a.start.length || a.order - b.order)[0];
+
+const encode = (html, blocks, prefix) => {
     const saved = [];
     let position = 0;
     let output = '';
 
     while (position < html.length) {
-        const cursor = position;
-        const candidates = blocks.map((block, order) => ({ ...block, order, index: html.indexOf(block.start, cursor) }))
-            .filter(block => block.index !== -1)
-            .sort((a, b) => a.index - b.index || b.start.length - a.start.length || a.order - b.order);
-        const block = candidates[0];
+        const block = nextBlock(html, blocks, position);
 
         if (!block) {
             output += html.slice(position);
@@ -46,6 +52,14 @@ exports.protect = (html, codeBlocks = {}) => {
         output += `${prefix}n${saved.length - 1}end`;
         position = end + block.end.length;
     }
+    return { output, saved };
+};
+
+exports.protect = (html, codeBlocks = {}) => {
+    const blocks = getBlocks(codeBlocks);
+    const prefix = createPrefix(html);
+    const { output, saved } = encode(html, blocks, prefix);
+
     return {
         html: output,
         restore: value => value.replace(new RegExp(`${prefix}n(\\d+)end(?:="")?`, 'gi'), (match, index) => saved[Number(index)] ?? match)

@@ -4,13 +4,51 @@ const pick = require('pick-util');
 
 const { protect } = require('./lib/internal/template-blocks');
 
+const qualifiedMedia = media => media && media.trim() && media.trim().toLowerCase() !== 'all';
+const wrapMedia = (styleData, media) => qualifiedMedia(media) ? `@media ${media} {\n${styleData}\n}` : styleData;
+const removeStyle = (el, styleData, options) => {
+    let mediaQueries;
+
+    if (options.preserveMediaQueries) {
+        const media = el.attr('media');
+
+        mediaQueries = qualifiedMedia(media) ? wrapMedia(styleData, media) : mediaQueryText(styleData);
+        el.removeAttr('media').text(mediaQueries);
+    }
+    if (!mediaQueries) {
+        el.remove();
+    }
+};
+const collectStyle = (el, styleData, { options, results, decodeEntities }) => {
+    if (options.applyStyleTags) {
+        results.css.push(decodeEntities(wrapMedia(styleData, el.attr('media'))));
+    }
+    if (options.removeStyleTags) {
+        removeStyle(el, styleData, options);
+    }
+};
+
+const processStyle = (el, { options, results, decodeEntities }) => {
+    // Embedded styles are intentionally preserved without applying them.
+    if (typeof el.data('embed') !== 'undefined') {
+        return;
+    }
+    const styleData = el.html() || '';
+
+    if (!styleData.trim()) {
+        if (options.removeStyleTags) {
+            el.remove();
+        }
+        return;
+    }
+    collectStyle(el, styleData, { options, results, decodeEntities });
+};
 const extract = (html, options) => {
     const results = {};
 
     const protectedHtml = protect(html, options.codeBlocks);
     const decodeEntities = protectedHtml.restore;
     let $;
-    let styleData;
 
     $ = cheerio.load(protectedHtml.html, Object.assign({
         decodeEntities: false
@@ -25,37 +63,7 @@ const extract = (html, options) => {
 
     results.css = [];
 
-    $('style').each((index, element) => {
-        let mediaQueries;
-
-        // if data-embed property exists, skip inlining and removing
-        if (typeof $(element).data('embed') !== 'undefined') {
-            return;
-        }
-
-        styleData = $(element).html() || '';
-        if (!styleData.trim()) {
-            if (options.removeStyleTags) {
-                $(element).remove();
-            }
-            return;
-        }
-        const media = $(element).attr('media');
-        const qualified = media && media.trim() && media.trim().toLowerCase() !== 'all';
-
-        if (options.applyStyleTags) {
-            results.css.push(decodeEntities(qualified ? `@media ${media} {\n${styleData}\n}` : styleData));
-        }
-        if (options.removeStyleTags) {
-            if (options.preserveMediaQueries) {
-                mediaQueries = qualified ? `@media ${media} {\n${styleData}\n}` : mediaQueryText(styleData);
-                $(element).removeAttr('media').text(mediaQueries);
-            }
-            if (!mediaQueries) {
-                $(element).remove();
-            }
-        }
-    });
+    $('style').each((index, element) => processStyle($(element), { options, results, decodeEntities }));
 
     results.html = decodeEntities($.html());
 

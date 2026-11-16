@@ -12,47 +12,63 @@ const defaults = Object.freeze({
     maxStylesheets: 32, concurrency: 4, maxRedirects: 5
 });
 const error = (kind, message, cause) => Object.assign(new Error(message, cause ? { cause } : undefined), { code: `ERR_INLINE_CSS_${kind}` });
+const isHttp = url => [ 'http:', 'https:' ].includes(url.protocol);
+const hasCredentials = url => url.username || url.password;
+const hasSuffix = url => url.search || url.hash;
+const validOrigin = (origin, url) => typeof origin === 'string' && isHttp(url) && !hasCredentials(url) && url.pathname === '/' && !hasSuffix(url);
+const normalizeOrigin = origin => {
+    try {
+        const url = new URL(origin);
+
+        if (!validOrigin(origin, url)) {
+            throw new Error('Invalid origin');
+        }
+        return url.origin;
+    } catch (cause) {
+        throw error('INVALID_OPTIONS', 'allowedOrigins must contain HTTP(S) origins', cause);
+    }
+};
+const validatePolicyTypes = policy => {
+    if (policy.timeoutMs > 2147483647 || typeof policy.allowPrivateNetworks !== 'boolean' || !Array.isArray(policy.allowedOrigins)) {
+        throw error('INVALID_OPTIONS', 'Invalid resource policy');
+    }
+};
+const validateLimits = policy => {
+    for (const key of [ 'timeoutMs', 'maxStylesheetBytes', 'maxTotalBytes', 'maxStylesheets', 'concurrency', 'maxRedirects' ]) {
+        if (!Number.isSafeInteger(policy[key]) || policy[key] < (key === 'maxRedirects' ? 0 : 1)) {
+            throw error('INVALID_OPTIONS', `Invalid resourcePolicy.${key}`);
+        }
+    }
+    validatePolicyTypes(policy);
+};
+const validateDirectory = directory => {
+    if (typeof directory !== 'string' || !path.isAbsolute(directory) || !fs.statSync(directory).isDirectory()) {
+        throw new Error('Invalid directory');
+    }
+};
+const normalizeRoot = (policy, input) => {
+    if (policy.fileRoot === null) {
+        return;
+    }
+    try {
+        validateDirectory(policy.fileRoot);
+        policy[ROOT_PATH] = input[ROOT_PATH] || path.resolve(policy.fileRoot);
+
+        // Match fs.promises.realpath below, including Windows 8.3 expansion.
+        policy.fileRoot = fs.realpathSync.native(policy.fileRoot);
+    } catch (cause) {
+        throw error('INVALID_OPTIONS', 'fileRoot must be an existing absolute directory', cause);
+    }
+};
 const normalizePolicy = (input = {}) => {
     if (!input || typeof input !== 'object' || Array.isArray(input)) {
         throw error('INVALID_OPTIONS', 'resourcePolicy must be an object');
     }
     const policy = { ...defaults, ...input };
 
-    for (const key of [ 'timeoutMs', 'maxStylesheetBytes', 'maxTotalBytes', 'maxStylesheets', 'concurrency', 'maxRedirects' ]) {
-        if (!Number.isSafeInteger(policy[key]) || policy[key] < (key === 'maxRedirects' ? 0 : 1)) {
-            throw error('INVALID_OPTIONS', `Invalid resourcePolicy.${key}`);
-        }
-    }
-
-    // Node timers cannot represent larger delays safely.
-    if (policy.timeoutMs > 2147483647 || typeof policy.allowPrivateNetworks !== 'boolean' || !Array.isArray(policy.allowedOrigins)) {
-        throw error('INVALID_OPTIONS', 'Invalid resource policy');
-    }
-    policy.allowedOrigins = policy.allowedOrigins.map(origin => {
-        try {
-            const url = new URL(origin);
-
-            if (typeof origin !== 'string' || ![ 'http:', 'https:' ].includes(url.protocol) || url.username || url.password || url.pathname !== '/' || url.search || url.hash) {
-                throw new Error('Invalid origin');
-            }
-            return url.origin;
-        } catch (cause) {
-            throw error('INVALID_OPTIONS', 'allowedOrigins must contain HTTP(S) origins', cause);
-        }
-    });
-    if (policy.fileRoot !== null) {
-        try {
-            if (typeof policy.fileRoot !== 'string' || !path.isAbsolute(policy.fileRoot) || !fs.statSync(policy.fileRoot).isDirectory()) {
-                throw new Error('Invalid directory');
-            }
-            policy[ROOT_PATH] = input[ROOT_PATH] || path.resolve(policy.fileRoot);
-
-            // Match fs.promises.realpath below, including Windows 8.3 expansion.
-            policy.fileRoot = fs.realpathSync.native(policy.fileRoot);
-        } catch (cause) {
-            throw error('INVALID_OPTIONS', 'fileRoot must be an existing absolute directory', cause);
-        }
-    }
+    validateLimits(policy);
+    policy.allowedOrigins = policy.allowedOrigins.map(normalizeOrigin);
+    normalizeRoot(policy, input);
     return policy;
 };
 const checkAddress = (address, policy) => {
@@ -65,15 +81,17 @@ const checkAddress = (address, policy) => {
         throw error('RESOURCE_DENIED', 'Nonpublic network destination denied');
     }
 };
-const authorizeUrl = (input, policy) => {
-    let url;
-
+const parseResourceUrl = input => {
     try {
-        url = new URL(input);
+        return new URL(input);
     } catch (cause) {
         throw error('RESOURCE_DENIED', 'Invalid stylesheet URL', cause);
     }
-    if (![ 'http:', 'https:' ].includes(url.protocol) || url.username || url.password || !policy.allowedOrigins.includes(url.origin)) {
+};
+const authorizeUrl = (input, policy) => {
+    const url = parseResourceUrl(input);
+
+    if (!isHttp(url) || hasCredentials(url) || !policy.allowedOrigins.includes(url.origin)) {
         throw error('RESOURCE_DENIED', 'Stylesheet origin or scheme denied');
     }
     const host = url.hostname.replace(/^\[|\]$/g, '');
@@ -83,31 +101,39 @@ const authorizeUrl = (input, policy) => {
     }
     return url;
 };
-const authorizeFile = async (input, policy) => {
+const validateFileHost = url => {
+    if (url.hostname && url.hostname !== 'localhost') {
+        throw error('RESOURCE_DENIED', 'Remote file authorities are not supported');
+    }
+};
+const filePath = (input, policy) => {
     if (!policy.fileRoot) {
         throw error('RESOURCE_DENIED', 'File stylesheet access requires fileRoot');
     }
     const url = new URL(input);
 
-    if (url.protocol !== 'file:' || url.username || url.password || url.search || url.hash) {
+    if (url.protocol !== 'file:' || hasCredentials(url) || hasSuffix(url)) {
         throw error('RESOURCE_DENIED', 'Invalid file stylesheet URL');
     }
-    if (url.hostname && url.hostname !== 'localhost') {
-        throw error('RESOURCE_DENIED', 'Remote file authorities are not supported');
-    }
-    const decoded = fileURLToPath(url);
+    validateFileHost(url);
+    return fileURLToPath(url);
+};
+const outside = relative => relative === '..' || relative.startsWith(`..${path.sep}`) || path.isAbsolute(relative);
+const validateLexicalPath = (decoded, policy) => {
     const lexical = path.relative(policy.fileRoot, decoded);
-
     const configured = path.relative(policy[ROOT_PATH] || policy.fileRoot, decoded);
-    const outside = relative => relative === '..' || relative.startsWith(`..${path.sep}`) || path.isAbsolute(relative);
 
     if (outside(lexical) && outside(configured)) {
         throw error('RESOURCE_DENIED', 'Stylesheet path is outside fileRoot');
     }
-    const target = await fs.promises.realpath(decoded);
-    const relative = path.relative(policy.fileRoot, target);
+};
+const authorizeFile = async (input, policy) => {
+    const decoded = filePath(input, policy);
 
-    if (relative === '..' || relative.startsWith(`..${path.sep}`) || path.isAbsolute(relative)) {
+    validateLexicalPath(decoded, policy);
+    const target = await fs.promises.realpath(decoded);
+
+    if (outside(path.relative(policy.fileRoot, target))) {
         throw error('RESOURCE_DENIED', 'Stylesheet is outside fileRoot');
     }
     return target;

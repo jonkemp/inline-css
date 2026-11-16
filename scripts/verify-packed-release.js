@@ -25,6 +25,13 @@ const run = (command, args, cwd) => new Promise((resolve, reject) => {
     child.on('exit', code => code ? reject(new Error(`${command} exited ${code}\n${output.slice(-5000)}`)) : resolve(output));
 });
 
+const closeRegistry = async server => {
+    if (server) {
+        server.closeAllConnections();
+        await new Promise(resolve => server.close(resolve));
+    }
+};
+
 (async () => {
     let server;
 
@@ -109,10 +116,7 @@ const run = (command, args, cwd) => new Promise((resolve, reject) => {
             console.log(`Retained consumer: ${consumer}`);
         }
     } finally {
-        if (server) {
-            server.closeAllConnections();
-            await new Promise(resolve => server.close(resolve));
-        }
+        await closeRegistry(server);
         if (!process.env.INLINE_CSS_KEEP_CONSUMER) {
             fs.rmSync(scratch, { recursive: true, force: true });
         }
