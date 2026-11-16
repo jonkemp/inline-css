@@ -10,7 +10,6 @@
 
 - Updated dependencies
   - mediaquery-text@2.0.0-rc.1
-  - inline-css-template-blocks@1.0.0-rc.1
 
 ## 2.0.2
 

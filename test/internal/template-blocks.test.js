@@ -1,6 +1,6 @@
 /* eslint-disable */
 const assert = require('node:assert/strict');
-const { protect } = require('../');
+const { protect } = require('../../internal/template-blocks');
 describe('template protection', () => {
     for (const [start, end] of [['[[', ']]'], ['($', '$)'], ['\\{', '}\\']]) {
         it(`round trips literal ${start} delimiters`, () => {

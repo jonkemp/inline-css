@@ -12,8 +12,6 @@
   - href-content@3.0.0-rc.1
   - list-stylesheets@3.0.0-rc.1
   - style-data@3.0.0-rc.1
-  - inline-css-template-blocks@1.0.0-rc.1
-  - resource-policy@1.0.0-rc.1
 
 ## 3.0.2
 

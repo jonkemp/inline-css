@@ -2,7 +2,7 @@
 const assert=require('node:assert/strict');
 const cheerio=require('cheerio');
 const inline=require('../');
-const {protect}=require('inline-css-template-blocks');
+const {protect}=require('../internal/template-blocks');
 const list=require('list-stylesheets');
 const styles=require('style-data');
 const run=(html,opts={})=>inline(html,{url:'https://example.test/email',...opts});

@@ -1,7 +1,7 @@
 const http = require('node:http');
 const https = require('node:https');
 const axios = require('axios');
-const { normalizePolicy, authorizeUrl, createLookup, createContext, CONTEXT, error } = require('resource-policy');
+const { normalizePolicy, authorizeUrl, createLookup, createContext, CONTEXT, error } = require('./lib/internal/resource-policy');
 
 module.exports = (remoteUrl, options, callback) => {
     const run = async () => {

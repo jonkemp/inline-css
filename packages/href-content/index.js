@@ -1,5 +1,5 @@
 const fs = require('node:fs');
-const { normalizePolicy, authorizeFile, createContext, CONTEXT } = require('resource-policy');
+const { normalizePolicy, authorizeFile, createContext, CONTEXT } = require('./lib/internal/resource-policy');
 const getRemoteContent = require('remote-content');
 
 module.exports = (destHref, sourceHref, options, callback) => {

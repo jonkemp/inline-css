@@ -5,7 +5,7 @@ const net = require('node:net');
 const { fileURLToPath } = require('node:url');
 const ipaddr = require('ipaddr.js');
 
-const ROOT_PATH = Symbol('configured file root');
+const ROOT_PATH = Symbol.for('inline-css.v5.configured-file-root');
 const defaults = Object.freeze({
     allowedOrigins: [], fileRoot: null, allowPrivateNetworks: false,
     timeoutMs: 10000, maxStylesheetBytes: 1048576, maxTotalBytes: 10485760,
@@ -46,6 +46,7 @@ const normalizePolicy = (input = {}) => {
                 throw new Error('Invalid directory');
             }
             policy[ROOT_PATH] = input[ROOT_PATH] || path.resolve(policy.fileRoot);
+
             // Match fs.promises.realpath below, including Windows 8.3 expansion.
             policy.fileRoot = fs.realpathSync.native(policy.fileRoot);
         } catch (cause) {
@@ -137,7 +138,7 @@ const createLookup = policy => (hostname, options, callback) => {
         }
     });
 };
-const CONTEXT = Symbol('stylesheet resource context');
+const CONTEXT = Symbol.for('inline-css.v5.resource-context');
 const createContext = policy => {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(error('RESOURCE_TIMEOUT', 'Stylesheet resource loading timed out')), policy.timeoutMs);

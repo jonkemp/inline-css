@@ -10,7 +10,6 @@
 
 - Updated dependencies
   - remote-content@5.0.0-rc.1
-  - resource-policy@1.0.0-rc.1
 
 ## 2.0.3
 

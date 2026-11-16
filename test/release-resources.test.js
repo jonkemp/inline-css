@@ -5,7 +5,7 @@ const zlib = require('node:zlib');
 const dns = require('node:dns');
 const inline = require('../');
 const remote = require('remote-content');
-const policyModule = require('resource-policy');
+const policyModule = require('../internal/resource-policy');
 
 describe('5.0 bounded resource integration', function () {
     this.timeout(5000);

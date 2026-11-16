@@ -10,10 +10,9 @@
     "cheerio": "^1.2.0",
     "css-rules": "^2.0.0-rc.1",
     "extract-css": "^4.0.0-rc.1",
-    "inline-css-template-blocks": "^1.0.0-rc.1",
-    "resource-policy": "^1.0.0-rc.1",
     "specificity": "^1.0.0",
-    "postcss-selector-parser": "^7.2.0"
+    "postcss-selector-parser": "^7.2.0",
+    "ipaddr.js": "^2.5.0"
   },
   "devDependencies": {
     "@babel/core": "^7.26.7",
@@ -34,9 +33,9 @@
     "node": ">=22.12.0"
   },
   "scripts": {
-    "test": "mocha \"test/*.test.js\" test/main.js \"packages/*/test/**/*.js\"",
-    "lint": "eslint index.js lib/ packages/",
-    "lint:fix": "eslint --fix index.js lib/ packages/",
+    "test": "mocha \"test/**/*.test.js\" test/main.js \"packages/*/test/**/*.js\"",
+    "lint": "eslint index.js lib/ packages/ internal/ scripts/",
+    "lint:fix": "eslint --fix index.js lib/ packages/ internal/ scripts/",
     "coverage": "nyc npm test && nyc report",
     "changeset": "changeset",
     "release": "npm run release:check && node scripts/publish-release.js",
@@ -45,7 +44,11 @@
     "release:pack": "node scripts/verify-packed-release.js",
     "release:audit": "node scripts/audit-release.js",
     "test:browser": "mocha test/browser.test.js",
-    "release:preview": "node scripts/publish-release.js --dry-run"
+    "release:preview": "node scripts/publish-release.js --dry-run",
+    "prepack": "node scripts/build-internals.js",
+    "build": "node scripts/build-internals.js",
+    "pretest": "npm run build",
+    "pretest:browser": "npm run build"
   },
   "files": [
     "index.js",

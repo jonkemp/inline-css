@@ -6,6 +6,8 @@ const http = require('node:http');
 const { spawn, execFileSync } = require('node:child_process');
 
 const root = path.resolve(__dirname, '..');
+
+require('./build-internals')();
 const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'inline-css-packed-'));
 const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
 const run = (command, args, cwd) => new Promise((resolve, reject) => {
@@ -85,11 +87,14 @@ const run = (command, args, cwd) => new Promise((resolve, reject) => {
             const inline=require('inline-css');
             (async()=>{
                 const options={url:'https://example.test/'};
+                for(const name of ['resource-policy','inline-css-template-blocks']) assert.throws(()=>require.resolve(name),{code:'MODULE_NOT_FOUND'});
                 assert.match(await inline('<style>p{color:red}</style><p>x</p>',options),/color: red/);
                 const file=path.join(process.cwd(),'style.css');fs.writeFileSync(file,'p{color:blue}@media print{p{color:red}}');
                 const html='<link rel="stylesheet" href="'+pathToFileURL(file).href+'"><p>x</p>';
                 await assert.rejects(inline(html,options),{code:'ERR_INLINE_CSS_RESOURCE_DENIED'});
                 assert.match(await inline(html,{...options,preserveMediaQueries:true,resourcePolicy:{fileRoot:process.cwd()}}),/@media print/);
+                const bytes=fs.statSync(file).size;
+                await assert.rejects(inline(html+html,{...options,resourcePolicy:{fileRoot:process.cwd(),maxTotalBytes:bytes*2-1}}),{code:'ERR_INLINE_CSS_RESOURCE_LIMIT'});
                 assert.match(await inline('<p>EXCS_CODE_BLOCK_0_ [[v]] {{x}}</p>',{...options,codeBlocks:{X:{start:'[[',end:']]'}}}),/EXCS_CODE_BLOCK_0_ \\[\\[v\\]\\]/);
                 assert.match(await inline('<style>p{constructor:red;color:blue}</style><p>x</p>',options),/color: blue/);
                 await assert.rejects(inline('<style data-embed>.x{color:red}</style><p class="x">x</p>',{...options,removeHtmlSelectors:true}),{code:'ERR_INLINE_CSS_SELECTOR_RETENTION_CONFLICT'});

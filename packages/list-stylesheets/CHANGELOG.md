@@ -9,7 +9,6 @@
 ### Patch Changes
 
 - Updated dependencies
-  - inline-css-template-blocks@1.0.0-rc.1
 
 ## 2.0.2
 

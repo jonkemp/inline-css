@@ -1,7 +1,7 @@
 const cheerio = require('cheerio');
 const postcss = require('postcss');
-const { protect } = require('inline-css-template-blocks');
-const { normalizePolicy, createContext, CONTEXT, error } = require('resource-policy');
+const { protect } = require('./lib/internal/template-blocks');
+const { normalizePolicy, createContext, CONTEXT, error } = require('./lib/internal/resource-policy');
 const getHrefContent = require('href-content');
 
 const conditional = media => media && media.trim() && media.trim().toLowerCase() !== 'all';

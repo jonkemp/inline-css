@@ -4,7 +4,8 @@
   "description": "Get content from link tags in an HTML document.",
   "main": "index.js",
   "files": [
-    "index.js"
+    "index.js",
+    "lib/internal/"
   ],
   "repository": "https://github.com/jonkemp/inline-css/tree/master/packages/href-content",
   "keywords": [
@@ -18,9 +19,12 @@
   "homepage": "https://github.com/jonkemp/inline-css/tree/master/packages/href-content",
   "dependencies": {
     "remote-content": "^5.0.0-rc.1",
-    "resource-policy": "^1.0.0-rc.1"
+    "ipaddr.js": "^2.5.0"
   },
   "engines": {
     "node": ">=22.12.0"
+  },
+  "scripts": {
+    "prepack": "node ../../scripts/build-internals.js href-content"
   }
 }

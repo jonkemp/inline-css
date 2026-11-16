@@ -2,3 +2,7 @@ node_modules
 coverage
 .nyc_output
 .turbo
+
+# Generated from shared internal sources before testing/packing.
+/lib/internal/
+/packages/*/lib/internal/

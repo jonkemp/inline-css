@@ -4,7 +4,8 @@
   "description": "Get a list of stylesheets from an HTML document.",
   "main": "index.js",
   "files": [
-    "index.js"
+    "index.js",
+    "lib/internal/"
   ],
   "repository": "https://github.com/jonkemp/inline-css/tree/master/packages/list-stylesheets",
   "keywords": [
@@ -15,10 +16,12 @@
   "homepage": "https://github.com/jonkemp/inline-css/tree/master/packages/list-stylesheets",
   "dependencies": {
     "cheerio": "^1.2.0",
-    "pick-util": "^1.1.5",
-    "inline-css-template-blocks": "^1.0.0-rc.1"
+    "pick-util": "^1.1.5"
   },
   "engines": {
     "node": ">=22.12.0"
+  },
+  "scripts": {
+    "prepack": "node ../../scripts/build-internals.js list-stylesheets"
   }
 }

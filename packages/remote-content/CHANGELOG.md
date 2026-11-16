@@ -9,7 +9,6 @@
 ### Patch Changes
 
 - Updated dependencies
-  - resource-policy@1.0.0-rc.1
 
 ## 4.0.1
 

@@ -1,7 +1,7 @@
 const cheerio = require('cheerio');
 const pick = require('pick-util');
 
-const { protect } = require('inline-css-template-blocks');
+const { protect } = require('./lib/internal/template-blocks');
 
 module.exports = (html, options) => {
     const results = {};

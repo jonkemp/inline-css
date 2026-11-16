@@ -123,6 +123,10 @@ Important declarations retain specificity, inline important declarations win app
 - `remote-content` becomes `(url, options, callback)`.
 - Both loaders require explicit `options.resourcePolicy` permissions for external access.
 - `extract-css` keeps its entry signature; its callback adds fourth argument `{hasRetainedCss}` after `(err, html, css)`. Its returned CSS includes only unconditional sources; conditional rules can remain in the returned HTML. Its loaders share one conversion budget.
-- New shared packages supply template protection and resource policy; their defaults match the root package.
+- Resource policy and template protection are internal helpers bundled inside the existing packages. There are no new helper packages to install, own, or publish.
 
 Each package receives its own appropriate version. No npm publication or stable promotion occurs merely by running the verification scripts.
+
+## Building from this repository
+
+Run `npm run build` before requiring entry points directly from a checkout. `npm test` builds automatically, and normal `npm pack`/`npm publish` hooks rebuild the internal files for the selected existing package. `release:pack` explicitly builds before its lifecycle-disabled packaging checks. Edit `internal/`, not generated `lib/internal/` copies; the copies are ignored by Git and included only in the existing tarballs.

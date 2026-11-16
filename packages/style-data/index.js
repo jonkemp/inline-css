@@ -2,7 +2,7 @@ const mediaQueryText = require('mediaquery-text');
 const cheerio = require('cheerio');
 const pick = require('pick-util');
 
-const { protect } = require('inline-css-template-blocks');
+const { protect } = require('./lib/internal/template-blocks');
 
 const extract = (html, options) => {
     const results = {};

@@ -1,5 +1,5 @@
 const inlineContent = require('./lib/inlineContent');
-const { normalizePolicy, error } = require('resource-policy');
+const { normalizePolicy, error } = require('./lib/internal/resource-policy');
 
 module.exports = (html, options) => new Promise((resolve, reject) => {
     const opt = Object.assign({}, {
