@@ -55,6 +55,9 @@
     "lib/",
     "docs/migration-5.md"
   ],
+  "bin": {
+    "inline-css": "bin/cli.js"
+  },
   "repository": "jonkemp/inline-css",
   "keywords": [
     "inline",
